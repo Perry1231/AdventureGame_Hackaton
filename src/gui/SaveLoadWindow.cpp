@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QFont>
 #include <QApplication>
+#include <QScreen>
+#include <QGuiApplication>
 
 SaveLoadWindow::SaveLoadWindow(Mode mode, const QStringList &saveFiles, QWidget *parent) 
     : QDialog(parent), m_mode(mode), m_saveFiles(saveFiles)
@@ -14,7 +16,9 @@ SaveLoadWindow::SaveLoadWindow(Mode mode, const QStringList &saveFiles, QWidget 
     setupUI();
     applyWhiteTheme();
     
-    move(QApplication::desktop()->screen()->rect().center() - rect().center());
+    if (QScreen *screen = QGuiApplication::primaryScreen()) {
+        move(screen->availableGeometry().center() - rect().center());
+    }
 }
 
 SaveLoadWindow::~SaveLoadWindow()

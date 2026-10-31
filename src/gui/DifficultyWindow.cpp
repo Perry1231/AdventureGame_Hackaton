@@ -1,6 +1,9 @@
 #include "DifficultyWindow.h"
 #include <QFont>
 #include <QApplication>
+#include <QScreen>
+#include <QGuiApplication>
+#include <QHBoxLayout>
 
 DifficultyWindow::DifficultyWindow(QWidget *parent) : QDialog(parent)
 {
@@ -10,7 +13,9 @@ DifficultyWindow::DifficultyWindow(QWidget *parent) : QDialog(parent)
     setupUI();
     applyWhiteTheme();
     
-    move(QApplication::desktop()->screen()->rect().center() - rect().center());
+    if (QScreen *screen = QGuiApplication::primaryScreen()) {
+        move(screen->availableGeometry().center() - rect().center());
+    }
 }
 
 DifficultyWindow::~DifficultyWindow()

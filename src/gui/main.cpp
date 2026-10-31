@@ -1,6 +1,10 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <QTimer>
+#include <QFile>
+#include <QDir>
+#include <QTextStream>
+#include <QStandardPaths>
 #include "MainWindow.h"
 #include "DifficultyWindow.h"
 #include "GameWindow.h"
@@ -10,9 +14,43 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    app.setApplicationName("Adventure Game: Dorm Edition");
+    app.setApplicationName("AdventureGameDormEdition");
     app.setApplicationVersion("1.0.0");
     app.setOrganizationName("DormAdventure");
+
+    // Headless self-test: verifies core game flow without showing windows
+    for (int i = 1; i < argc; ++i) {
+        if (QString(argv[i]) == "--selftest") {
+            GameController testController;
+            QString report;
+            QTextStream rep(&report);
+            bool ok = testController.initializeNewGame(2);
+            rep << "init: " << (ok ? "OK" : "FAIL") << "\n";
+            for (int t = 0; t < 5; ++t) {
+                testController.processTurn(0);
+            }
+            rep << testController.getHeroStatus() << "\n";
+            rep << testController.getInventoryText() << "\n";
+            rep << testController.getQuestText() << "\n";
+            testController.saveGame("selftest.sav");
+            rep << "hasSaves after save: " << (testController.hasSaveFiles() ? "YES" : "NO") << "\n";
+            testController.loadGame("selftest.sav");
+            rep << "after load:\n" << testController.getHeroStatus() << "\n";
+
+            QFile reportFile(QDir::tempPath() + "/dorm_selftest.txt");
+            if (reportFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                QTextStream fileOut(&reportFile);
+                fileOut << report;
+                reportFile.close();
+            }
+
+            // Remove the test save so it doesn't appear in the real menu
+            QFile::remove(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
+                          + "/DormAdventureSaves/selftest.sav");
+
+            return ok ? 0 : 1;
+        }
+    }
     
     // Set global font
     QFont globalFont("Arial", 10);
@@ -29,6 +67,7 @@ int main(int argc, char *argv[])
     AppState currentState = MainMenu;
     
     // Show main window initially
+    mainWindow.setContinueMode(gameController.hasSaveFiles());
     mainWindow.show();
     
     // ===== CONNECTIONS =====
@@ -61,8 +100,13 @@ int main(int argc, char *argv[])
     
     // Main Menu -> Load Game
     QObject::connect(&mainWindow, &MainWindow::loadGameRequested, [&]() {
-        mainWindow.hide();
         QStringList saves = gameController.getSaveFiles();
+        if (saves.isEmpty()) {
+            QMessageBox::information(&mainWindow, "No Saves",
+                "There are no saved games yet.\nStart a new game and save your progress first.");
+            return;
+        }
+        mainWindow.hide();
         SaveLoadWindow loadWindow(SaveLoadWindow::LoadMode, saves);
         if (loadWindow.exec() == QDialog::Accepted) {
             QString saveName = loadWindow.getSelectedSave();
@@ -98,6 +142,7 @@ int main(int argc, char *argv[])
     QObject::connect(&gameWindow, &GameWindow::returnToMainMenuRequested, [&]() {
         gameController.saveGame("autosave.sav");
         gameWindow.hide();
+        mainWindow.setContinueMode(gameController.hasSaveFiles());
         mainWindow.show();
         currentState = MainMenu;
     });
@@ -110,6 +155,7 @@ int main(int argc, char *argv[])
             QString saveName = saveWindow.getSelectedSave();
             gameController.saveGame(saveName);
             gameWindow.appendGameLog(QString("Game saved as: %1").arg(saveName));
+            mainWindow.setContinueMode(gameController.hasSaveFiles());
         }
     });
     
@@ -182,9 +228,7 @@ int main(int argc, char *argv[])
     });
     
     // Initial welcome message
-    QTimer::singleShot(500, [&]() {
-        mainWindow.appendGameLog("Welcome to Adventure Game: Dorm Edition!");
-    });
+    gameWindow.appendGameLog("Welcome to Adventure Game: Dorm Edition!");
     
     return app.exec();
 }

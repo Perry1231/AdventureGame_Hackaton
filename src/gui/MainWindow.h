@@ -14,6 +14,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void setContinueMode(bool hasSaves);
+
 signals:
     void startNewGameRequested();
     void loadGameRequested();

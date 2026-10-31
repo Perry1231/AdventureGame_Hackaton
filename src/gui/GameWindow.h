@@ -11,6 +11,8 @@
 #include <QListWidget>
 #include <QSplitter>
 #include <QScrollArea>
+#include <functional>
+#include <QColor>
 
 class GameWindow : public QMainWindow
 {
@@ -32,6 +34,7 @@ public:
     void showTavernMode(bool show);
     void showLocationMode(bool show, const QString &locationName);
     void enableMainActions(bool enable);
+    void setNpcPortrait(const QString &title, const QColor &color);
 
 signals:
     void actionSelected(int actionIndex);
@@ -72,6 +75,11 @@ private:
     QWidget *m_rightPanel = nullptr;
     QVBoxLayout *m_rightLayout = nullptr;
     
+    // NPC Portrait
+    QWidget *m_portraitWidget = nullptr;
+    QLabel *m_portraitImage = nullptr;
+    QLabel *m_portraitName = nullptr;
+
     // Hero Status
     QWidget *m_statusWidget = nullptr;
     QVBoxLayout *m_statusLayout = nullptr;

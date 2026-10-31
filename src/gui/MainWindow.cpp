@@ -2,7 +2,8 @@
 #include <QPixmap>
 #include <QFont>
 #include <QApplication>
-#include <QDesktopWidget>
+#include <QScreen>
+#include <QGuiApplication>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -12,7 +13,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     applyWhiteTheme();
     
     // Center on screen
-    move(QApplication::desktop()->screen()->rect().center() - rect().center());
+    if (QScreen *screen = QGuiApplication::primaryScreen()) {
+        move(screen->availableGeometry().center() - rect().center());
+    }
 }
 
 MainWindow::~MainWindow()
@@ -107,6 +110,17 @@ void MainWindow::applyWhiteTheme()
         "   color: #2c3e50;"
         "}"
     );
+}
+
+void MainWindow::setContinueMode(bool hasSaves)
+{
+    if (hasSaves) {
+        m_loadButton->setText("▶ CONTINUE GAME");
+        m_loadButton->setEnabled(true);
+    } else {
+        m_loadButton->setText("📂 LOAD GAME (no saves)");
+        m_loadButton->setEnabled(true);
+    }
 }
 
 void MainWindow::onStartClicked()

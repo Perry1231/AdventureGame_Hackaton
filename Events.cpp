@@ -17,10 +17,14 @@ enum EventType {
     QUEST_ENCOUNTER=40
 };
 void BardStory() ;
+void GainHealth(Character& hero, int amount);
+void GainGold(Character& hero, int amount);
+void DamageHero(Character& hero, int amount);
+void LoseGold(Character& hero, int amount);
 void RandomizerEvent(Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1)
 {
     int eventType = rand() % 41; //From 0 to 40
-    // Перевірка на повтор подій з історії — без безлімітного циклу
+    // Check for repeated events from history - without an infinite loop
     for (bool duplicate = true; duplicate; ) {
         duplicate = false;
         for (int h : gameEvent.eventHistory) {

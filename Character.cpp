@@ -416,7 +416,7 @@ void Character::Take() {
         return;
     }
     if (inventory) {
-        inventory->AddItem(selectedItem);  // <-- ТУТ inventory->, а не inventory.
+        inventory->AddItem(selectedItem);  // <-- use inventory->, not inventory
         currentChest->RemoveItem(choice - 1);
         std::cout << "Successfully taken " << selectedItem->GetName() << "!\n";
     } else {
@@ -442,7 +442,7 @@ void Character::TakeAll() {
     for (int i = itemCount - 1; i >= 0; --i) {
         Item* item = currentChest->GetItem(i);
         if (!item) continue;
-        inventory->AddItem(item);  // <-- ТУТ теж inventory->
+        inventory->AddItem(item);  // <-- same here: inventory->
         currentChest->RemoveItem(i);
         std::cout << "- Taken " << item->GetName() << std::endl;
     }
@@ -543,7 +543,7 @@ void Character::ProcessEffects()
                 else
                     std::cout << name << " is at full health.\n";
             }
-            // Для HEALTH баффа нічого не робимо, бо зілля миттєві
+            // No action needed for HEALTH buffs because potions apply instantly
             break;
         case 1: defense += it->potency; break;
         case 2: agility += it->potency; break;

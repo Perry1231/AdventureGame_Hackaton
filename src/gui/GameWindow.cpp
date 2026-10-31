@@ -3,7 +3,13 @@
 #include <QFont>
 #include <QScrollBar>
 #include <QApplication>
+#include <QScreen>
+#include <QGuiApplication>
 #include <QMessageBox>
+#include <functional>
+#include <QPainter>
+#include <QPixmap>
+#include <QLinearGradient>
 
 GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -12,7 +18,9 @@ GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent)
     setupUI();
     applyWhiteTheme();
     
-    move(QApplication::desktop()->screen()->rect().center() - rect().center());
+    if (QScreen *screen = QGuiApplication::primaryScreen()) {
+        move(screen->availableGeometry().center() - rect().center());
+    }
 }
 
 GameWindow::~GameWindow()
@@ -59,6 +67,34 @@ void GameWindow::setupUI()
     m_rightLayout->setSpacing(10);
     m_rightLayout->setContentsMargins(5, 5, 5, 5);
     
+    // --- NPC / Location Portrait ---
+    m_portraitWidget = new QWidget(m_rightPanel);
+    m_portraitWidget->setStyleSheet(
+        "QWidget {"
+        "   background-color: #f8f9fa;"
+        "   border: 1px solid #dee2e6;"
+        "   border-radius: 8px;"
+        "}"
+    );
+    QVBoxLayout *portraitLayout = new QVBoxLayout(m_portraitWidget);
+    portraitLayout->setContentsMargins(5, 5, 5, 5);
+    portraitLayout->setSpacing(4);
+
+    m_portraitImage = new QLabel(m_portraitWidget);
+    m_portraitImage->setAlignment(Qt::AlignCenter);
+    m_portraitImage->setFixedHeight(110);
+
+    m_portraitName = new QLabel("HERO", m_portraitWidget);
+    m_portraitName->setAlignment(Qt::AlignCenter);
+    m_portraitName->setFont(QFont("Arial", 10, QFont::Bold));
+    m_portraitName->setStyleSheet("color: #2c3e50; background: transparent; border: none;");
+
+    portraitLayout->addWidget(m_portraitImage);
+    portraitLayout->addWidget(m_portraitName);
+    m_rightLayout->addWidget(m_portraitWidget);
+
+    setNpcPortrait("HERO", QColor("#27ae60"));
+
     // --- Hero Status ---
     m_statusWidget = new QWidget(m_rightPanel);
     m_statusWidget->setStyleSheet(
@@ -212,6 +248,15 @@ void GameWindow::setupUI()
     connect(m_saveButton, &QPushButton::clicked, this, &GameWindow::onSaveButtonClicked);
     connect(m_loadButton, &QPushButton::clicked, this, &GameWindow::onLoadButtonClicked);
     
+    // Wrap the right panel in a scroll area so all widgets remain reachable
+    QScrollArea *rightScroll = new QScrollArea(this);
+    rightScroll->setWidget(m_rightPanel);
+    rightScroll->setWidgetResizable(true);
+    rightScroll->setFixedWidth(420);
+    rightScroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    rightScroll->setStyleSheet("QScrollArea { border: none; background-color: #ffffff; }");
+    m_mainLayout->addWidget(rightScroll);
+
     setCentralWidget(m_centralWidget);
 }
 
@@ -231,6 +276,45 @@ void GameWindow::applyWhiteTheme()
 void GameWindow::setGameController(GameController *controller)
 {
     m_controller = controller;
+}
+
+void GameWindow::setNpcPortrait(const QString &title, const QColor &color)
+{
+    if (!m_portraitImage) return;
+
+    const int size = 96;
+    QPixmap pixmap(size, size);
+    pixmap.fill(Qt::transparent);
+
+    QPainter painter(&pixmap);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+
+    QColor light = color.lighter(160);
+    QLinearGradient gradient(0, 0, size, size);
+    gradient.setColorAt(0.0, light);
+    gradient.setColorAt(1.0, color);
+    painter.setBrush(gradient);
+    painter.setPen(QPen(color.darker(120), 2));
+    painter.drawEllipse(3, 3, size - 6, size - 6);
+
+    // Simple face
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(QColor(255, 255, 255, 220));
+    painter.drawEllipse(size * 0.32, size * 0.26, 10, 10);
+    painter.drawEllipse(size * 0.58, size * 0.26, 10, 10);
+    painter.setBrush(QColor(255, 255, 255, 180));
+    painter.drawRoundedRect(QRectF(size * 0.36, size * 0.52, size * 0.28, 8), 4, 4);
+
+    painter.setPen(QColor(255, 255, 255));
+    QFont f = painter.font();
+    f.setPointSize(16);
+    f.setBold(true);
+    painter.setFont(f);
+    painter.drawText(QRect(0, size - 30, size, 24), Qt::AlignCenter, title.left(1).toUpper());
+    painter.end();
+
+    m_portraitImage->setPixmap(pixmap);
+    if (m_portraitName) m_portraitName->setText(title.toUpper());
 }
 
 void GameWindow::updateHeroStatus(const QString &status)
@@ -319,6 +403,7 @@ void GameWindow::showCombatMode(bool show)
     m_tavernActionContainer->setVisible(false);
     m_locationActionContainer->setVisible(false);
     m_actionLabel->setText(show ? "⚔️ COMBAT ACTIONS" : "⚡ ACTIONS");
+    if (show) setNpcPortrait("ENEMY", QColor("#c0392b"));
 }
 
 void GameWindow::showTavernMode(bool show)
@@ -329,6 +414,7 @@ void GameWindow::showTavernMode(bool show)
     m_tavernActionContainer->setVisible(show);
     m_locationActionContainer->setVisible(false);
     m_actionLabel->setText(show ? "🍻 TAVERN ACTIONS" : "⚡ ACTIONS");
+    if (show) setNpcPortrait("COMMON ROOM", QColor("#8e44ad"));
 }
 
 void GameWindow::showLocationMode(bool show, const QString &locationName)
@@ -339,6 +425,7 @@ void GameWindow::showLocationMode(bool show, const QString &locationName)
     m_tavernActionContainer->setVisible(false);
     m_locationActionContainer->setVisible(show);
     m_actionLabel->setText(show ? ("📍 " + locationName.toUpper() + " ACTIONS") : "⚡ ACTIONS");
+    if (show) setNpcPortrait(locationName, QColor("#2980b9"));
 }
 
 void GameWindow::enableMainActions(bool enable)
