@@ -46,6 +46,7 @@ set(GUI_SOURCES
     src/gui/DifficultyWindow.cpp
     src/gui/GameWindow.cpp
     src/gui/SaveLoadWindow.cpp
+    src/gui/InfoDialog.cpp
 )
 
 # Headers for GUI
@@ -55,6 +56,7 @@ set(GUI_HEADERS
     src/gui/DifficultyWindow.h
     src/gui/GameWindow.h
     src/gui/SaveLoadWindow.h
+    src/gui/InfoDialog.h
 )
 
 # Resources

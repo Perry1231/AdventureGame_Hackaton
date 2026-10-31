@@ -301,6 +301,12 @@
 			null
 		],
 		[
+			"C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/InfoDialog.h",
+			"MU",
+			"MXUWEOXILK/moc_InfoDialog.cpp",
+			null
+		],
+		[
 			"C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/MainWindow.h",
 			"MU",
 			"MXUWEOXILK/moc_MainWindow.cpp",
@@ -507,6 +513,11 @@
 		],
 		[
 			"C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/GameWindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/InfoDialog.cpp",
 			"MU",
 			null
 		],

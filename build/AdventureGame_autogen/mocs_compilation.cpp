@@ -2,5 +2,6 @@
 #include "MXUWEOXILK/moc_DifficultyWindow.cpp"
 #include "MXUWEOXILK/moc_GameController.cpp"
 #include "MXUWEOXILK/moc_GameWindow.cpp"
+#include "MXUWEOXILK/moc_InfoDialog.cpp"
 #include "MXUWEOXILK/moc_MainWindow.cpp"
 #include "MXUWEOXILK/moc_SaveLoadWindow.cpp"

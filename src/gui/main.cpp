@@ -9,6 +9,7 @@
 #include "DifficultyWindow.h"
 #include "GameWindow.h"
 #include "SaveLoadWindow.h"
+#include "InfoDialog.h"
 #include "GameController.h"
 #include "Header.h"
 
@@ -236,6 +237,16 @@ int main(int argc, char *argv[])
     
     // Game Window Actions -> Game Controller
     QObject::connect(&gameWindow, &GameWindow::actionSelected, [&](int action) {
+        if (action == 1) {
+            InfoDialog dialog("🎒 INVENTORY", gameController.getInventoryText(), &gameWindow);
+            dialog.exec();
+            return;
+        }
+        if (action == 2) {
+            InfoDialog dialog("📋 ACTIVE QUESTS", gameController.getQuestText(), &gameWindow);
+            dialog.exec();
+            return;
+        }
         gameController.processTurn(action);
     });
     

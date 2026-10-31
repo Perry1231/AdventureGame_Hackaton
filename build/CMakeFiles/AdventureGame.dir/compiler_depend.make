@@ -76,6 +76,8 @@ AdventureGame_autogen/timestamp: C:/Program\ Files/CMake/bin/cmake.exe \
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/GameController.h \
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/GameWindow.cpp \
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/GameWindow.h \
+  C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/InfoDialog.cpp \
+  C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/InfoDialog.h \
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/MainWindow.cpp \
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/MainWindow.h \
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/SaveLoadWindow.cpp \
@@ -7939,6 +7941,12 @@ C:/msys64/ucrt64/include/qt6/QtCore/q20type_traits.h:
 
 C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/GameWindow.h:
 
+C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/InfoDialog.cpp:
+
+C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h:
+
+C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/InfoDialog.h:
+
 C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/MainWindow.cpp:
 
 C:/msys64/ucrt64/include/qt6/QtCore/qcompilerdetection.h:
@@ -8649,9 +8657,9 @@ C:/msys64/ucrt64/include/qt6/QtCore/qcontainertools_impl.h:
 
 C:/msys64/ucrt64/include/qt6/QtCore/qdatastream.h:
 
-C:/msys64/ucrt64/include/qt6/QtWidgets/qradiobutton.h:
-
 C:/msys64/ucrt64/include/qt6/QtWidgets/qtextedit.h:
+
+C:/msys64/ucrt64/include/qt6/QtWidgets/qradiobutton.h:
 
 C:/msys64/ucrt64/include/qt6/QtCore/qendian.h:
 
@@ -9216,8 +9224,6 @@ C:/msys64/ucrt64/include/qt6/QtGui/qpainter.h:
 C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollBar:
 
 C:/msys64/ucrt64/include/qt6/QtWidgets/qdialogbuttonbox.h:
-
-C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h:
 
 C:/msys64/ucrt64/include/qt6/QtWidgets/qscrollbar.h:
 

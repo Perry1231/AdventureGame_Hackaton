@@ -505,11 +505,26 @@ CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.s"
 	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\src\gui\SaveLoadWindow.cpp" -o CMakeFiles\AdventureGame.dir\src\gui\SaveLoadWindow.cpp.s
 
+CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj: CMakeFiles/AdventureGame.dir/flags.make
+CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj: CMakeFiles/AdventureGame.dir/includes_CXX.rsp
+CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj: C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/InfoDialog.cpp
+CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj: CMakeFiles/AdventureGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj -MF CMakeFiles\AdventureGame.dir\src\gui\InfoDialog.cpp.obj.d -o CMakeFiles\AdventureGame.dir\src\gui\InfoDialog.cpp.obj -c "C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\src\gui\InfoDialog.cpp"
+
+CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\src\gui\InfoDialog.cpp" > CMakeFiles\AdventureGame.dir\src\gui\InfoDialog.cpp.i
+
+CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\src\gui\InfoDialog.cpp" -o CMakeFiles\AdventureGame.dir\src\gui\InfoDialog.cpp.s
+
 CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj: CMakeFiles/AdventureGame.dir/flags.make
 CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj: CMakeFiles/AdventureGame.dir/includes_CXX.rsp
 CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj: qrc_resources.cpp
 CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj: CMakeFiles/AdventureGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj"
 	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj -MF CMakeFiles\AdventureGame.dir\qrc_resources.cpp.obj.d -o CMakeFiles\AdventureGame.dir\qrc_resources.cpp.obj -c "C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\qrc_resources.cpp"
 
 CMakeFiles/AdventureGame.dir/qrc_resources.cpp.i: cmake_force
@@ -550,6 +565,7 @@ AdventureGame_OBJECTS = \
 "CMakeFiles/AdventureGame.dir/src/gui/DifficultyWindow.cpp.obj" \
 "CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj" \
 "CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.obj" \
+"CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj" \
 "CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj"
 
 # External object files for target AdventureGame
@@ -583,6 +599,7 @@ output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/src/gui/MainWindow.cpp.ob
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/src/gui/DifficultyWindow.cpp.obj
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.obj
+output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/build.make
 output/AdventureGame.exe: C:/msys64/ucrt64/lib/libQt6Widgets.dll.a
@@ -592,7 +609,7 @@ output/AdventureGame.exe: C:/msys64/ucrt64/lib/libQt6EntryPoint.a
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/linkLibs.rsp
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/objects1.rsp
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Linking CXX executable output\AdventureGame.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Linking CXX executable output\AdventureGame.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\AdventureGame.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

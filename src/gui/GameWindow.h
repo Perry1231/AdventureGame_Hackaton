@@ -135,6 +135,8 @@ private:
     
     bool m_inCombatMode = false;
     bool m_inTavernMode = false;
+    QString m_lastInventory;
+    QString m_lastQuests;
     bool m_inLocationMode = false;
 };
 

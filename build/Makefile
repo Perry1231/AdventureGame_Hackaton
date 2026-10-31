@@ -778,6 +778,30 @@ src/gui/GameWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdventureGame.dir\build.make CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.s
 .PHONY : src/gui/GameWindow.cpp.s
 
+src/gui/InfoDialog.obj: src/gui/InfoDialog.cpp.obj
+.PHONY : src/gui/InfoDialog.obj
+
+# target to build an object file
+src/gui/InfoDialog.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdventureGame.dir\build.make CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj
+.PHONY : src/gui/InfoDialog.cpp.obj
+
+src/gui/InfoDialog.i: src/gui/InfoDialog.cpp.i
+.PHONY : src/gui/InfoDialog.i
+
+# target to preprocess a source file
+src/gui/InfoDialog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdventureGame.dir\build.make CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.i
+.PHONY : src/gui/InfoDialog.cpp.i
+
+src/gui/InfoDialog.s: src/gui/InfoDialog.cpp.s
+.PHONY : src/gui/InfoDialog.s
+
+# target to generate assembly for a file
+src/gui/InfoDialog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AdventureGame.dir\build.make CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.s
+.PHONY : src/gui/InfoDialog.cpp.s
+
 src/gui/MainWindow.obj: src/gui/MainWindow.cpp.obj
 .PHONY : src/gui/MainWindow.obj
 
@@ -939,6 +963,9 @@ help:
 	@echo ... src/gui/GameWindow.obj
 	@echo ... src/gui/GameWindow.i
 	@echo ... src/gui/GameWindow.s
+	@echo ... src/gui/InfoDialog.obj
+	@echo ... src/gui/InfoDialog.i
+	@echo ... src/gui/InfoDialog.s
 	@echo ... src/gui/MainWindow.obj
 	@echo ... src/gui/MainWindow.i
 	@echo ... src/gui/MainWindow.s

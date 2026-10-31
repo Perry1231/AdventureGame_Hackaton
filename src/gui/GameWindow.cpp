@@ -190,56 +190,6 @@ void GameWindow::setupUI()
     
     m_rightLayout->addWidget(m_statusWidget);
     
-    // --- Inventory ---
-    m_inventoryWidget = new QWidget(m_rightPanel);
-    m_inventoryWidget->setStyleSheet(
-        "QWidget {"
-        "   background-color: #f8f9fa;"
-        "   border: 1px solid #dee2e6;"
-        "   border-radius: 8px;"
-        "}"
-    );
-    m_inventoryLayout = new QVBoxLayout(m_inventoryWidget);
-    
-    m_inventoryLabel = new QLabel("🎒 INVENTORY", m_inventoryWidget);
-    m_inventoryLabel->setFont(QFont("Arial", 12, QFont::Bold));
-    m_inventoryLabel->setStyleSheet("color: #2c3e50; padding: 5px;");
-    m_inventoryLayout->addWidget(m_inventoryLabel);
-    
-    m_inventoryText = new QTextEdit(m_inventoryWidget);
-    m_inventoryText->setReadOnly(true);
-    m_inventoryText->setMaximumHeight(150);
-    m_inventoryText->setFont(QFont("Consolas", 10));
-    m_inventoryText->setStyleSheet("background: transparent; border: none; color: #2c3e50;");
-    m_inventoryLayout->addWidget(m_inventoryText);
-    
-    m_rightLayout->addWidget(m_inventoryWidget);
-    
-    // --- Quests ---
-    m_questWidget = new QWidget(m_rightPanel);
-    m_questWidget->setStyleSheet(
-        "QWidget {"
-        "   background-color: #f8f9fa;"
-        "   border: 1px solid #dee2e6;"
-        "   border-radius: 8px;"
-        "}"
-    );
-    m_questLayout = new QVBoxLayout(m_questWidget);
-    
-    m_questLabel = new QLabel("📋 ACTIVE QUESTS", m_questWidget);
-    m_questLabel->setFont(QFont("Arial", 12, QFont::Bold));
-    m_questLabel->setStyleSheet("color: #2c3e50; padding: 5px;");
-    m_questLayout->addWidget(m_questLabel);
-    
-    m_questText = new QTextEdit(m_questWidget);
-    m_questText->setReadOnly(true);
-    m_questText->setMaximumHeight(150);
-    m_questText->setFont(QFont("Consolas", 10));
-    m_questText->setStyleSheet("background: transparent; border: none; color: #2c3e50;");
-    m_questLayout->addWidget(m_questText);
-    
-    m_rightLayout->addWidget(m_questWidget);
-    
     // --- Action Buttons ---
     m_actionWidget = new QWidget(m_rightPanel);
     m_actionLayout = new QVBoxLayout(m_actionWidget);
@@ -435,12 +385,12 @@ void GameWindow::updateHeroStatus(const QString &status)
 
 void GameWindow::updateInventory(const QString &inventory)
 {
-    m_inventoryText->setPlainText(inventory);
+    m_lastInventory = inventory;
 }
 
 void GameWindow::updateQuests(const QString &quests)
 {
-    m_questText->setPlainText(quests);
+    m_lastQuests = quests;
 }
 
 void GameWindow::appendGameLog(const QString &text)

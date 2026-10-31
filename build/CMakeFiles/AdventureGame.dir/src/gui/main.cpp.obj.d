@@ -516,9 +516,10 @@ CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: \
  C:/msys64/ucrt64/include/qt6/QtWidgets/QLineEdit \
  C:/msys64/ucrt64/include/qt6/QtWidgets/qlineedit.h \
  C:/msys64/ucrt64/include/qt6/QtCore/QStringList \
+ C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\src\gui\InfoDialog.h \
+ C:/msys64/ucrt64/include/qt6/QtCore/QString \
  C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\src\gui\GameController.h \
  C:/msys64/ucrt64/include/qt6/QtCore/QObject \
- C:/msys64/ucrt64/include/qt6/QtCore/QString \
  C:/msys64/ucrt64/include/qt6/QtCore/QVector \
  C:/msys64/ucrt64/include/qt6/QtCore/qvector.h \
  C:/msys64/ucrt64/include/qt6/QtCore/QMap \

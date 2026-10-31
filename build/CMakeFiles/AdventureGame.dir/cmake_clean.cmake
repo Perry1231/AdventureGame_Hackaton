@@ -56,6 +56,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/AdventureGame.dir/src/gui/GameController.cpp.obj.d"
   "CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj"
   "CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj.d"
+  "CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj"
+  "CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj.d"
   "CMakeFiles/AdventureGame.dir/src/gui/MainWindow.cpp.obj"
   "CMakeFiles/AdventureGame.dir/src/gui/MainWindow.cpp.obj.d"
   "CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.obj"

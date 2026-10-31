@@ -460,6 +460,8 @@ CMakeFiles/AdventureGame.dir/AdventureGame_autogen/mocs_compilation.cpp.obj: \
  C:/msys64/ucrt64/include/qt6/QtGui/QColor \
  C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
  C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
+ C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\build\AdventureGame_autogen\MXUWEOXILK/moc_InfoDialog.cpp \
+ C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/InfoDialog.h \
  C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\build\AdventureGame_autogen\MXUWEOXILK/moc_MainWindow.cpp \
  C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/MainWindow.h \
  C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\build\AdventureGame_autogen\MXUWEOXILK/moc_SaveLoadWindow.cpp \
