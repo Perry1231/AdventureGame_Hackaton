@@ -66,6 +66,10 @@ void Chest::ShowItems() const
 
 void Chest::RemoveItem(int index)
 {
-    // TODO: Remove item at index
+    if (index < 0 || index >= (int)items.size()) {
+        std::cout << "Invalid item index!\n";
+        return;
+    }
+    items.erase(items.begin() + index);
     std::cout << "Item removed from chest (index " << index << ")!\n";
 }

@@ -42,6 +42,6 @@ void Turn(Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInv
                 std::cout << "\nInvalid choice. Please select a valid option.\n";
                 break;
         }
-    } while (choice != 3);
+    } while (choice != 4);
     std::cout << "\n\n";
 }

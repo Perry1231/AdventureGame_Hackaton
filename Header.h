@@ -476,12 +476,14 @@ public:
     void ShowItems() const;
 
 
-    int GetItemCount() const { return items.size(); }
-    Item* GetItem(int index) const { 
-    return nullptr; 
-}
+    int GetItemCount() const { return (int)items.size(); }
+    Item* GetItem(int index) const {
+        if (index < 0 || index >= (int)items.size()) return nullptr;
+        return items[index];
+    }
 
 ~Chest(){}
+    void AddItem(Item* item) { items.push_back(item); }
     void RemoveItem(int index);
 };
 //==================================================================Other_Character============================================================================
@@ -654,8 +656,6 @@ Character* GetOwner() const { return owner_p; }
 void SetOwner(Character* c) { owner_p = c; }  
 //Getters
 int GetObjectCount() const {return count_object;}
-std::string GetName() const {return name_object;}
-std::string GetType() const override { return "Object"; }
 
 
 //Base functions
@@ -687,7 +687,7 @@ int ChoiceInput_Number();
 std::string GetEffectName(int type);
 void MainFunction();
 
-void StartGame(Enemy& enemy, Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1);
+void StartGame(Enemy& enemy, Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1, Quest& quest1);
 void Help();
 void GetInfo();
 void Menu(Enemy& enemy, Character& hero, MyInventory& inv1, GameHard& levelDificulty);
@@ -751,7 +751,7 @@ void FistFight(Character& hero);
 void DrinkingContest(Character& hero, GameHard& levelDificulty);
 void CardDraw(Character& hero);
 //==================================================================StoryFunction_and_Turn_Functions=============================================================================
-void Turn(Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1); //Plot.cpp
+void Turn(Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1, Quest& quest1); //Plot.cpp
 void BugReportFunction();           //Addition.cpp
 //==================================================================Additional_functions================================================================================
 void HowToPlayRollDiceFunction();

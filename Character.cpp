@@ -6,8 +6,6 @@
 #include <map>
 #include <limits>
 
-void Task_Generator();
-void Talk_About_Life();
 //=============================Main functions=============================
 void Character::DisplayStats() 
 {
@@ -400,8 +398,9 @@ void Character::Take() {
     }
     std::cout << "\n=== Items in chest ===\n";
     for (int i = 0; i < itemCount; ++i) {
+        Item* chestItem = currentChest->GetItem(i);
         std::cout << i + 1 << ". ";
-        currentChest->GetItem(i)->ShowInfo();
+        if (chestItem) chestItem->ShowInfo();
     }
     std::cout << "0. Cancel\n";
     std::cout << "Select item to take: ";
@@ -412,6 +411,10 @@ void Character::Take() {
         return;
     }
     Item* selectedItem = currentChest->GetItem(choice - 1);
+    if (!selectedItem) {
+        std::cout << "Item no longer available!\n";
+        return;
+    }
     if (inventory) {
         inventory->AddItem(selectedItem);  // <-- ТУТ inventory->, а не inventory.
         currentChest->RemoveItem(choice - 1);
@@ -438,6 +441,7 @@ void Character::TakeAll() {
     }
     for (int i = itemCount - 1; i >= 0; --i) {
         Item* item = currentChest->GetItem(i);
+        if (!item) continue;
         inventory->AddItem(item);  // <-- ТУТ теж inventory->
         currentChest->RemoveItem(i);
         std::cout << "- Taken " << item->GetName() << std::endl;

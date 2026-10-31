@@ -172,6 +172,16 @@ std::cout << "Talk about life Not implemented yet" << std::endl;
 }
 
 
+void Character::Task_Generator()
+{
+    GameHard difficulty;
+    Quest quest;
+    std::string questName = quest.RandomizeQuest(difficulty);
+    std::cout << "\n" << name << " offers you a task: " << questName << std::endl;
+    quest.DisplayQuestInfo();
+}
+
+
 
 
 int Quest::Delete_Quest(int ) {

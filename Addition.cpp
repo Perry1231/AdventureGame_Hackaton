@@ -241,13 +241,12 @@ void BugReportFunction()
     std::cout << CYAN << "└───────────────────────────────────────────────────┘" << RESET << "\n\n";
 }
 
-void StartGame(Enemy& enemy, Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1)
+void StartGame(Enemy& enemy, Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1, Quest& quest1)
 {
-    std::cout << "[START GAME] - Function not yet implemented.\n";
-    std::cout << "Game starting logic would go here.\n";
+    (void)enemy;
+    std::cout << "[START GAME]\n";
     std::cout << "Current difficulty: " << levelDificulty.GetDifficultyLevel() << "\n";
-    std::cout << "Press Enter to continue...\n";
-    std::cin.ignore();
+    Turn(hero, levelDificulty, gameEvent, inv1, quest1);
 }
 
 
