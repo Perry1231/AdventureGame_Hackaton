@@ -161,66 +161,53 @@ void LoseGold(Character& hero, int amount) {
 
 void ToxicRain(Character& hero, GameHard& levelDificulty) {
     if (levelDificulty.GetDifficultyLevel() >= 2) {
-        PrintEventCard("☣️", "TOXIC RAIN", "Acidic rain burns your skin! You take extra damage due to the high difficulty level.");
-        DamageHero(hero, 10); // Increased damage for higher difficulty
+        PrintEventCard("☣️", "MOLD OUTBREAK", "Black mold spores spread through the ventilation! You cough violently.", Color::RED);
+        DamageHero(hero, 10);
     } else {
-        PrintEventCard("☣️", "TOXIC RAIN", "Acidic rain burns your skin!");
+        PrintEventCard("☣️", "MOLD OUTBREAK", "Musty smell in the hallway. Mild respiratory irritation.", Color::YELLOW);
         DamageHero(hero, 5);
     }
-    PrintEventCard("☣️", "TOXIC RAIN", "Acidic rain burns your skin!");
-    DamageHero(hero, 5);
-    hero.SetLevel(hero.GetLevel() + 0.01); // Increase level by 1
+    hero.SetLevel(hero.GetLevel() + 0.01);
 }
 
 
 void Rain(Character& hero, GameHard& levelDificulty) {
-     if (levelDificulty.GetDifficultyLevel() >= 2) {
-        PrintEventCard("🌧️", "RAIN", "Heavy rain soaks you! You take extra damage due to the high difficulty level.");
-        DamageHero(hero, 5); // Increased damage for higher difficulty
-    }
-    int rainType = rand() % 2;
-    if (rainType == 0) {
-        PrintEventCard("🌧️", "LIGHT RAIN", "Light rain falls. It is chilly and uncomfortable.", Color::YELLOW);
-        DamageHero(hero, 2);
+    if (levelDificulty.GetDifficultyLevel() >= 2) {
+        PrintEventCard("🌧️", "CEILING LEAK", "A pipe bursts above your room! Water damages your belongings.", Color::RED);
+        DamageHero(hero, 8);
+        LoseGold(hero, 15);
     } else {
-        PrintEventCard("⛈️", "HEAVY RAIN", "Heavy rain pours down! You take damage from exposure.");
-        DamageHero(hero, 5);
+        PrintEventCard("🌧️", "DRIPPING FAUCET", "Annoying drip keeps you awake. You lose some rest.", Color::YELLOW);
+        DamageHero(hero, 3);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
 }
 
 void VolcanicEruption(Character& hero, GameHard& levelDificulty) {
-     if (levelDificulty.GetDifficultyLevel() >= 2) {
-    if (rand() % 2 == 0) {
-        PrintEventCard("🌋", "VOLCANIC ERUPTION", "The ground shakes! You manage to escape safely.", Color::GREEN);
+    if (levelDificulty.GetDifficultyLevel() >= 2) {
+        PrintEventCard("🌋", "HEATING SYSTEM FAILURE", "The boiler explodes! Scalding steam fills the corridors.", Color::RED);
+        DamageHero(hero, 15);
     } else {
-        PrintEventCard("🌋", "VOLCANIC ERUPTION", "Hot ash and lava burn you as you run!");
-        DamageHero(hero, 10);
+        PrintEventCard("🌋", "RADIATOR BURST", "Your radiator cracks. Hot water sprays everywhere.", Color::YELLOW);
+        DamageHero(hero, 8);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
-}
-else {
-    if (rand() % 2 == 0) {
-        PrintEventCard("🌋", "VOLCANIC ERUPTION", "The ground shakes! You manage to escape safely.", Color::GREEN);
-    } else {
-        PrintEventCard("🌋", "VOLCANIC ERUPTION", "Hot ash and lava burn you as you run!");
-        DamageHero(hero, 5);
-    }
-    hero.SetLevel(hero.GetLevel() + 0.01);
-}
 }
 
 void FlashFlood(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("🌊", "FLASH FLOOD", "A sudden wave sweeps you away into sharp rocks! You take extra damage due to the high difficulty level.");
-        DamageHero(hero, 15); // Increased damage for higher difficulty
+        PrintEventCard("🌊", "BASEMENT FLOODING", "Sewage backup floods the lower floors! You wade through waste.", Color::RED);
+        DamageHero(hero, 15);
+        LoseGold(hero, 20);
     } else
     if (rand() % 2 == 0) {
-        PrintEventCard("🌊", "FLASH FLOOD", "Water rises fast, but you climb to high ground safely.", Color::GREEN);
+        PrintEventCard("🌊", "BATHROOM FLOOD", "Someone clogged the toilet. Water seeps into the hallway.", Color::YELLOW);
+        DamageHero(hero, 5);
     } else {
-        PrintEventCard("🌊", "FLASH FLOOD", "A sudden wave sweeps you away into sharp rocks!");
-        DamageHero(hero, 10);
+        PrintEventCard("🌊", "WASHING MACHINE LEAK", "Laundry room floods. Your socks are ruined.", Color::YELLOW);
+        DamageHero(hero, 5);
+        LoseGold(hero, 10);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
 
@@ -229,14 +216,15 @@ void FlashFlood(Character& hero, GameHard& levelDificulty) {
 void Mudslide(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("⛰️", "MUDSLIDE", "A torrent of mud sweeps past you closely! You take extra damage due to the high difficulty level.");
-        DamageHero(hero, 10); // Increased damage for higher difficulty
+        PrintEventCard("⛰️", "TRASH CHUTE AVALANCHE", "Garbage compactor jams! Trash cascades down all floors.", Color::RED);
+        DamageHero(hero, 12);
     } else
     if (rand() % 2 == 0) {
-        PrintEventCard("⛰️", "MUDSLIDE", "A torrent of mud sweeps past you closely.", Color::GREEN);
+        PrintEventCard("⛰️", "LAUNDRY PILE COLLAPSE", "Mountain of dirty clothes topples on you.", Color::YELLOW);
+        DamageHero(hero, 6);
     } else {
-        PrintEventCard("⛰️", "MUDSLIDE", "You get caught in a dangerous mudslide!");
-        DamageHero(hero, 5);
+        PrintEventCard("⛰️", "BOOKSHELF TOPPLES", "Your roommate's textbook tower falls. Bruised but alive.", Color::YELLOW);
+        DamageHero(hero, 8);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
 }
@@ -244,14 +232,15 @@ void Mudslide(Character& hero, GameHard& levelDificulty) {
 void HumidHot(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("🏜️", "HUMID & HOT", "All water dried up! You suffer from severe heat exhaustion! Extra damage due to high difficulty level.");
-        DamageHero(hero, 10); // Increased damage for higher difficulty
+        PrintEventCard("🏜️", "AC BROKEN HEATWAVE", "Air conditioning dies during finals week! Unbearable heat.", Color::RED);
+        DamageHero(hero, 12);
     } else
     if (rand() % 2 == 0) {
-        PrintEventCard("☀️", "HUMID & HOT", "It's humid and hot, but you manage fine.", Color::YELLOW);
+        PrintEventCard("☀️", "STUFFY ROOM", "Windows painted shut. Stale air makes you sluggish.", Color::YELLOW);
+        DamageHero(hero, 4);
     } else {
-        PrintEventCard("🏜️", "HUMID & HOT", "All water dried up! You suffer from severe heat exhaustion.");
-        DamageHero(hero, 5);
+        PrintEventCard("🏜️", "SAUNA DORM", "Someone left the dryer on all night. Humidity at 90%.", Color::RED);
+        DamageHero(hero, 7);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
 }
@@ -259,12 +248,12 @@ void HumidHot(Character& hero, GameHard& levelDificulty) {
 void ConstrictorVines(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("🌿", "CONSTRICTOR VINES", "Predatory vines squeeze tight around you! Extra damage due to high difficulty level.");
-        DamageHero(hero, 6); // Increased damage for higher difficulty
+        PrintEventCard("🌿", "CABLE MAZE", "Tangled charger cables ensnare you! Panic attack.", Color::RED);
+        DamageHero(hero, 8);
     } else
     {
-        PrintEventCard("🌿", "CONSTRICTOR VINES", "Predatory vines squeeze tight around you!");
-        DamageHero(hero, 3);
+        PrintEventCard("🌿", "BLIND CORDS", "Window blind cords wrap around your neck briefly.", Color::YELLOW);
+        DamageHero(hero, 4);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
 }
@@ -273,12 +262,12 @@ void ConstrictorVines(Character& hero, GameHard& levelDificulty) {
 void QuickFreezingGlad(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("❄️", "QUICK FREEZING GLADE", "The temperature plummets. Frostbite sets in! Extra damage due to high difficulty level.");
-        DamageHero(hero, 8); // Increased damage for higher difficulty
+        PrintEventCard("❄️", "WINDOW BROKEN IN WINTER", "Dorm window shattered! Arctic wind blasts through.", Color::RED);
+        DamageHero(hero, 12);
     } else
     {
-    PrintEventCard("❄️", "QUICK FREEZING GLADE", "The temperature plummets. Frostbite sets in!");
-    DamageHero(hero, 4);
+        PrintEventCard("❄️", "HEATING OFF", "Radiators cold. You wake up shivering.", Color::YELLOW);
+        DamageHero(hero, 6);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
 }
@@ -303,27 +292,28 @@ void Extortion(Character& hero, GameHard& levelDificulty) {
 void PoacherTrapTrigger(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("🪤", "POACHER TRAP", "Snap! You stepped into a sharp steel trap!");
-    DamageHero(hero, 10);
+        PrintEventCard("🪤", "ELEVATOR TRAP", "Elevator drops between floors! You're stuck for hours.", Color::RED);
+        DamageHero(hero, 10);
+        LoseGold(hero, 20);
     } else
     {
-    PrintEventCard("🪤", "POACHER TRAP", "Snap! You stepped into a sharp steel trap!");
-    DamageHero(hero, 6);
+        PrintEventCard("🪤", "DOOR JAM", "Your dorm room door jams. You climb out the window.", Color::YELLOW);
+        DamageHero(hero, 6);
     }
     hero.SetLevel(hero.GetLevel() + 0.04);
     
 }
 // Narrative Events (No stat loss)  =====================Need finish
-void WillWispAttraction(Character& hero, GameHard& levelDificulty)   { PrintEventCard("👻", "WILL-O'-WISP", "Mysterious glowing lights attempt to lead you astray.", Color::MAGENTA); }
-void PollenHallucinations(Character& hero, GameHard& levelDificulty) { PrintEventCard("🍄", "POLLEN HALLUCINATIONS", "Strange floral pollen fills the air, distorting your sight.", Color::MAGENTA); }
-void EnemyPatrol(Character& hero, GameHard& levelDificulty)          { PrintEventCard("⚔️", "SECURITY PATROL", "You spot a security guard patrol marching nearby!", Color::YELLOW); }
-void MonsterAmbush(Character& hero, GameHard& levelDificulty)        { PrintEventCard("🐺", "LOUD NEIGHBOR AMBUSH", "A loud neighbor bursts out from their room!", Color::RED); }
-void CunningScavengers(Character& hero, GameHard& levelDificulty)    { PrintEventCard("🦅", "CUNNING SCAVENGERS", "Opportunists are watching your every step...", Color::YELLOW); }
-void StagedAccident(Character& hero, GameHard& levelDificulty)       { PrintEventCard("🎭", "STAGED ACCIDENT", "A student cries for help, but it feels like a trap.", Color::YELLOW); }
-void FalseHospitableHost(Character& hero, GameHard& levelDificulty)  { PrintEventCard("🏡", "FALSE HOSPITABLE HOST", "Your roommate offers food, but their smile feels unnatural.", Color::YELLOW); }
-void ThePropheticBeggar(Character& hero, GameHard& levelDificulty)   { PrintEventCard("🔮", "PROPHETIC SENIOR", "An old senior whispers an ominous prophecy about finals.", Color::CYAN); }
-void TheShadowingKid(Character& hero, GameHard& levelDificulty)      { PrintEventCard("👀", "SHADOWING FRESHMAN", "A young freshman stalks you quietly from behind.", Color::CYAN); }
-void TheTurncoatGuide(Character& hero, GameHard& levelDificulty)     { PrintEventCard("🗺️", "TURNCOAT GUIDE", "Your guide seems to be leading you to the wrong lecture hall...", Color::YELLOW); }
+void WillWispAttraction(Character& hero, GameHard& levelDificulty)   { PrintEventCard("👻", "GHOST IN THE HALLWAY", "Flickering lights guide you to a hidden study nook.", Color::MAGENTA); hero.SetLevel(hero.GetLevel() + 0.02); }
+void PollenHallucinations(Character& hero, GameHard& levelDificulty) { PrintEventCard("🍄", "EXHAUSTION HALLUCINATIONS", "Sleep deprivation makes shadows move. You see things.", Color::MAGENTA); hero.SetLevel(hero.GetLevel() + 0.01); }
+void EnemyPatrol(Character& hero, GameHard& levelDificulty)          { PrintEventCard("⚔️", "SECURITY PATROL", "Campus security does rounds. Hide your contraband!", Color::YELLOW); hero.SetLevel(hero.GetLevel() + 0.01); }
+void MonsterAmbush(Character& hero, GameHard& levelDificulty)        { PrintEventCard("🐺", "LOUD NEIGHBOR AMBUSH", "A loud neighbor bursts out from their room!", Color::RED); DamageHero(hero, 5); hero.SetLevel(hero.GetLevel() + 0.03); }
+void CunningScavengers(Character& hero, GameHard& levelDificulty)    { PrintEventCard("🦅", "TEXTBOOK SCALPERS", "Students resell notes at 10x price. Watch your wallet.", Color::YELLOW); LoseGold(hero, 15); hero.SetLevel(hero.GetLevel() + 0.02); }
+void StagedAccident(Character& hero, GameHard& levelDificulty)       { PrintEventCard("🎭", "STAGED SPILL", "Someone 'accidentally' spills coffee on your laptop.", Color::YELLOW); DamageHero(hero, 3); LoseGold(hero, 50); hero.SetLevel(hero.GetLevel() + 0.02); }
+void FalseHospitableHost(Character& hero, GameHard& levelDificulty)  { PrintEventCard("🏡", "ROOMMATE'S MYSTERY MEAL", "Your roommate offers 'special brownies'. Suspicious.", Color::YELLOW); hero.SetHealth(hero.GetHealth() - 5); hero.SetLevel(hero.GetLevel() + 0.02); }
+void ThePropheticBeggar(Character& hero, GameHard& levelDificulty)   { PrintEventCard("🔮", "PROPHETIC SENIOR", "An old senior whispers an ominous prophecy about finals.", Color::CYAN); hero.SetLevel(hero.GetLevel() + 0.03); hero.SetIntelligence(hero.GetIntelligence() + 1); }
+void TheShadowingKid(Character& hero, GameHard& levelDificulty)      { PrintEventCard("👀", "SHADOWING FRESHMAN", "A lost freshman follows you thinking you're their RA.", Color::CYAN); hero.SetLevel(hero.GetLevel() + 0.01); GainGold(hero, 5); }
+void TheTurncoatGuide(Character& hero, GameHard& levelDificulty)     { PrintEventCard("🗺️", "BAD DIRECTIONS", "Upperclassman sends you to the wrong building for your exam.", Color::YELLOW); DamageHero(hero, 2); hero.SetLevel(hero.GetLevel() + 0.02); }
 
 
 
@@ -967,7 +957,43 @@ void Tired_Granny_Event(Character& hero, GameHard& levelDifficulty)
 
 void Wendigo_Encounter_Event(Character& hero, GameHard& levelDificulty)
 {
+    std::cout << Color::RED << "\n┌──────────────────────────────────────────────┐\n" << Color::RESET;
+    std::cout << Color::RED << "│ 👻  MIDNIGHT FIRE ALARM                      │\n" << Color::RESET;
+    std::cout << Color::RED << "├──────────────────────────────────────────────┤\n" << Color::RESET;
+    std::cout << "│ The fire alarm screams at 3 AM! Everyone     │\n";
+    std::cout << "│ evacuates into the cold night. Someone       │\n";
+    std::cout << "│ pulled it as a prank... or was it?           │\n";
+    std::cout << Color::RED << "└──────────────────────────────────────────────┘\n" << Color::RESET;
 
+    std::cout << "\nWhat do you do?\n";
+    std::cout << "1. Grab your go-bag and evacuate properly\n";
+    std::cout << "2. Hide in your room and hope it's false\n";
+    std::cout << "3. Help the RA check floors\n";
+    std::cout << "Choice: ";
+    
+    int choice = ChoiceInput_Number();
+    
+    switch(choice) {
+        case 1:
+            std::cout << "You evacuate calmly with your essentials. Smart move.\n";
+            GainHealth(hero, 5);
+            hero.SetLevel(hero.GetLevel() + 0.05);
+            break;
+        case 2:
+            std::cout << "The RA kicks your door open. You get written up and lose sleep.\n";
+            DamageHero(hero, 8);
+            hero.SetLevel(hero.GetLevel() + 0.01);
+            break;
+        case 3:
+            std::cout << "You help the RA. They're grateful and share insider info.\n";
+            GainGold(hero, 20);
+            hero.SetLevel(hero.GetLevel() + 0.08);
+            break;
+        default:
+            std::cout << "You freeze in panic. The crowd pushes you outside.\n";
+            DamageHero(hero, 5);
+            hero.SetLevel(hero.GetLevel() + 0.01);
+    }
 }
 
 //===============================Talking to Locals Event (Placeholder)=============================
