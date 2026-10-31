@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "Build Adventure Game",
+      "command": "C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame\\Adventure-Game\\msys2_g++.cmd",
+      "args": [
+        "-Wall",
+        "-Wextra",
+        "-g3",
+        "-std=c++17",
+        "${workspaceFolder}/*.cpp",
+        "-o",
+        "${workspaceFolder}/output/Main.exe"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Compile all .cpp files in the project root"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+Charcter.cpp=========================================
+Implement Character::Talk(Enemy& enemy)
+Implement Character::Trade(Enemy& enemy)
+Implement Character::Attack(Enemy& enemy)    +-
+Implement Character::Menu(function)
+Perfect Character::DmageSystem(function)     +-
+
+
+
+Header.h==================(Task.class)=================
+Craete task creator for Task_Generator_For_Character
+
+
+
+Task_Generator_For_Character========================
+Implement all functions
+Add task related on stranger job
+Change experience in DB related to difficulty
+Add display tasks actibe to main
+Add main functions for Quest class rom Invenctory
+
+
+
+Objects======================
+Add magic grass or else to collect
+Add functions to create them as object = items
+add object rarity
+
+
+//Additional_Functions=============================
+Add more functions except these in code       Example : char Choice()   ->>><<<- int choice ...
+
+
+
+//Buggs=============================================
+
+
+
+//check all functions (actions)
+Add level uprade to all functions
+Add strenght uprade to all functions
+Add inteligence uprade to all functions
+
+
+
+Events.cpp============================================
+Implement Events.cpp +-
+Tavern in Events.cpp +-
+Events.cpp and functions
+Add events related to tasks 
+End started evnts structure
+
+
+
+Saver.cpp============================================
+Add quests saver 
+
+
+
+
+Loader.cpp===========================================
+Add game dificult load + in Header
+Implement Loader.cpp (read from files that had been created from saver) +- Only wothout accurate weapon , armor stats
+
+
+
+OtherCharacter.cpp=======================================
+Implement othar character function
+
+
+
+AdditionalGames.cpp===================================
+Add games + add randomizer for places games (it randomize games in tavers)
+Multiply for HowToPlayFunction()
+
+
+
+Armory.cpp============================================
+RandomizeArmorSpecial() not ended
+
+
+
+Artifacts.cpp========================================
+Add artifact rarity
+
+
+
+Future==================================================
+Optimize process
+Better function / variables other (readable and view)
+
+Add better vizualization methods
+Add more weapon and armor (future)
+Add more events
+Check Invenctory.cpp
+
+Checker + tests

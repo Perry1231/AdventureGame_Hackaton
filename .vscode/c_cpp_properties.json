@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "windows-clang-x64",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "windows-clang-x64",
+      "compilerArgs": [
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-std=c++17"
+      ],
+      "compilerPath": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame/Adventure-Game/msys2_g++.cmd"
+    }
+  ],
+  "version": 4
+}
