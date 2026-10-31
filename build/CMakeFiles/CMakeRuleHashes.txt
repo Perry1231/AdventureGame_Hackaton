@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+6f52730221cf5983440beb9d0c69206e AdventureGame_autogen/timestamp
+c974d2692a49e5e9b1879b6b6327d5a2 CMakeFiles/AdventureGame_autogen
+eaa46eaefc495fa61e0201e5524ef043 qrc_resources.cpp
