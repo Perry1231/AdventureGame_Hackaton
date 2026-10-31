@@ -31,6 +31,21 @@ void Saver(Character& hero, MyInventory& inv, GameHard& difficultyLevel)
             saveFile << "Item #" << (i + 1) << ": " << item->GetName() << " [" << item->GetType() << "]\n";
         }
     }
+
+    saveFile << "\nQuests:\n";
+    Quest* activeQuests = hero.GetActiveQuests();
+    if (activeQuests && activeQuests->GetCountQuest() > 0) {
+        for (int i = 0; i < activeQuests->GetCountQuest(); i++) {
+            Quest* q = activeQuests->GetItemQuest(i);
+            if (q) {
+                saveFile << "Quest #" << (i + 1) << ": " << q->GetQuestName()
+                         << " [Difficulty: " << q->GetQuestDifficulty()
+                         << ", Reward: " << q->GetReward()
+                         << ", Status: " << (q->IsCompleted() ? "Completed" : "In Progress") << "]\n";
+            }
+        }
+    }
+
     saveFile << "\nDifficulty: " << difficultyLevel.GetDifficultyLevel() << "\n";
     
     saveFile.close();

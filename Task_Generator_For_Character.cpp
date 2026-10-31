@@ -193,6 +193,12 @@ void Quest::CompleteQuest(Character& hero)
     std::cout << "Reward: +" << reward << " gold, +" << questExperience << " experience.\n";
 }
 
+Quest* Quest::GetItemQuest(int index) const
+{
+    if (index < 0 || index >= count_quest) return nullptr;
+    return quests[index];
+}
+
 void Character::Task_Generator()
 {
     GameHard difficulty;

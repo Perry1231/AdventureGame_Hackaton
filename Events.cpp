@@ -9,12 +9,12 @@ enum EventType {
     TOXIC_RAIN =0, RAIN=1, VOLCANIC_ERUPTION=2, FLASH_FLOOD=3, MUDSLIDE=4, HUMID_HOT=5,
     CONSTRICTOR_VINES=6, QUICK_FREEZING_GLAD=7,
     WILL_WISP_ATTRACTION=8,POLLEN_HALLUCINATIONS=9,
-    ENEMY_PATROL=11, MONSTER_AMBUSH=12, CUNNING_SCAVENGERS=13, STAGED_ACCIDENT=14,
-    FALSE_HOSPITABLE_HOST=15, THE_PROPHETIC_BEGGAR=16, THE_SHADOWING_KID=17,
-    EXTORTION=18, THE_TURNCOAT_GUIDE=19, POACHER_TRAP_TRIGGER=20, FAKE_DISTRESS_CALL=21,
-    MONEY_FIND=22, GOOD_STRANGER=23, GOOD_WEATHER=24, GOOD_REST=25 , TAVERN=26, HOSTEL=27, CASTLE=28, DUNGEON=29, CAVE=30, FOREST=31, DESERT=32,
-    VILLAGE=33, BASTION=34, TOWERPLACE=35, SIMPLE_HOUSE=36, GOOD_PLACE=37 , FISHING_CHALLENGE=38, ARCHERY_CONTEST=39, STRANGE_STONE=40
-    
+    ENEMY_PATROL=10, MONSTER_AMBUSH=11, CUNNING_SCAVENGERS=12, STAGED_ACCIDENT=13,
+    FALSE_HOSPITABLE_HOST=14, THE_PROPHETIC_BEGGAR=15, THE_SHADOWING_KID=16,
+    EXTORTION=17, THE_TURNCOAT_GUIDE=18, POACHER_TRAP_TRIGGER=19, FAKE_DISTRESS_CALL=20,
+    MONEY_FIND=21, GOOD_STRANGER=22, GOOD_WEATHER=23, GOOD_REST=24 , TAVERN=25, HOSTEL=26, CASTLE=27, DUNGEON=28, CAVE=29, FOREST=30, DESERT=31,
+    VILLAGE=32, BASTION=33, TOWERPLACE=34, SIMPLE_HOUSE=35, GOOD_PLACE=36 , FISHING_CHALLENGE=37, ARCHERY_CONTEST=38, STRANGE_STONE=39,
+    QUEST_ENCOUNTER=40
 };
 void BardStory() ;
 void RandomizerEvent(Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1)
@@ -77,8 +77,30 @@ void RandomizerEvent(Character& hero, GameHard& levelDificulty, GameEvent& gameE
         case FISHING_CHALLENGE: FishingChallenge(hero); break;
         case ARCHERY_CONTEST: ArcheryContest(hero, levelDificulty); break;
         case STRANGE_STONE: StrangeStone(hero, inv1); break;
+        case QUEST_ENCOUNTER: QuestEncounter(hero); break;
         default: std::cout << "Unknown event type!" << std::endl; break;
     }
+}
+
+
+void QuestEncounter(Character& hero)
+{
+    Quest* activeQuests = hero.GetActiveQuests();
+    if (!activeQuests || activeQuests->GetCountQuest() == 0) {
+        std::cout << "\nYou come across a lead related to a task, but you have no active quests right now.\n";
+        return;
+    }
+
+    std::cout << "\nYou find clues related to one of your active quests!\n";
+    for (int i = 0; i < activeQuests->GetCountQuest(); i++) {
+        Quest* q = activeQuests->GetItemQuest(i);
+        if (q && !q->IsCompleted()) {
+            std::cout << "You make progress on: " << q->GetQuestName() << "\n";
+            q->CompleteQuest(hero);
+            return;
+        }
+    }
+    std::cout << "All your active quests are already completed.\n";
 }
 void Tired_Granny_Event(Character& hero, GameHard& levelDificulty);
 
@@ -407,9 +429,7 @@ std::cout << "2. Talk to the locals" << std::endl;
 std::cout << "3. Play a game of chance" << std::endl;
 std::cout << "4. Leave the tavern" << std::endl;
 
-int choice =ChoiceInput_Number();
-int gameChoice;
-int gameChoice2;
+int choice = ChoiceInput_Number();
 
 switch (choice) {
     case 1:
@@ -417,50 +437,47 @@ switch (choice) {
         hero.SetHealth(hero.GetHealth() + 20);
         hero.SetLevel(hero.GetLevel() + 0.04);
         break;
-    case 2:
-        std::cout << "You talk to the locals and gather information about your next adventure." << std::endl;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+    case 2: {
+        GameHard localDifficulty;
+        TalkToLocals(hero, localDifficulty);
         break;
-    case 3:
+    }
+    case 3: {
         std::cout << "You play a game of chance with the tavern patrons." << std::endl;
-        
+
         std::cout << "Choose a game to play:\n1. Dice Roll\n2. Card Draw\n3. Coin Flip\n";
-        std::cin >> gameChoice;
+        int gameChoice = ChoiceInput_Number();
         switch (gameChoice) {
             case 1:
                 std::cout << "You choose to play Dice Roll." << std::endl;
-                std::cout << "1. Roll the dice" << std::endl;
-                std::cout << "2. Leave the game" << std::endl;
-                std::cout << "Enter your choice: ";
-                std::cin >> gameChoice2;
-                switch (gameChoice2) {
-                    case 1:
-                        std::cout << "Rolling the dice..." << std::endl;
-                        DiceRoll(hero);
-                        
-                    case 2:
-                        std::cout << "You leave the game." << std::endl;
-                        break;
-                    default:
-                        std::cout << "Invalid choice. You leave the game." << std::endl;
-                }
+                DiceRoll(hero);
                 break;
 
             case 2:
                 std::cout << "You choose to play Card Draw." << std::endl;
                 CardDraw(hero);
                 break;
-            case 3:
+            case 3: {
                 std::cout << "You choose to play Coin Flip." << std::endl;
+                std::cout << "Call it: 1. Heads  2. Tails\n";
+                int call = ChoiceInput_Number();
+                int result = rand() % 2 + 1;
+                std::cout << "The coin lands on " << (result == 1 ? "Heads" : "Tails") << "!\n";
+                if (call == result) {
+                    std::cout << "You won! +10 gold.\n";
+                    hero.SetGold(hero.GetGold() + 10);
+                } else {
+                    std::cout << "You lost. -5 gold.\n";
+                    hero.SetGold(hero.GetGold() - 5);
+                }
                 break;
+            }
             default:
-                std::cout << "Invalid choice. Try again." << std::endl;
-                std::cin.clear();
-                return;
+                std::cout << "Invalid choice. You leave the game." << std::endl;
+                break;
         }
-
-        DiceRoll(hero);
         break;
+    }
     case 4:
         std::cout << "You leave the tavern and continue your adventure." << std::endl;
         break;
@@ -604,42 +621,121 @@ default:
 
 void Dungeon(Character& hero)
 {
-
+    std::cout << Color::DARK_GRAY << "\n [LOCATION] " << Color::RESET << "You descend into a dark, damp dungeon.\n";
+    std::cout << "Choose your action:\n1. Search for treasure\n2. Look for monsters\n3. Leave\n";
+    int choice = ChoiceInput_Number();
+    switch (choice) {
+        case 1: {
+            int found = rand() % 100 + 1;
+            if (found <= 40) {
+                int gold = rand() % 50 + 10;
+                std::cout << "You found " << gold << " gold hidden in a crack in the wall!\n";
+                hero.SetGold(hero.GetGold() + gold);
+            } else {
+                std::cout << "You search but find nothing of value.\n";
+            }
+            hero.SetLevel(hero.GetLevel() + 0.02);
+            break;
+        }
+        case 2:
+            std::cout << "You hear growling from the shadows but decide not to provoke it.\n";
+            hero.SetLevel(hero.GetLevel() + 0.01);
+            break;
+        case 3:
+            std::cout << "You leave the dungeon.\n";
+            break;
+        default:
+            std::cout << "Invalid choice. You leave the dungeon.\n";
+    }
 }
 
 void Cave(Character& hero)//goblin cave, dragon or simple cave
 {
-
+    std::cout << Color::DARK_GRAY << "\n [LOCATION] " << Color::RESET << "You enter a dim cave.\n";
+    int caveType = rand() % 3;
+    if (caveType == 0) {
+        std::cout << "This appears to be a goblin den. Something stirs in the dark!\n";
+        hero.SetHealth(hero.GetHealth() - 3);
+    } else if (caveType == 1) {
+        std::cout << "You hear a distant roar. A dragon might live here. You retreat carefully.\n";
+    } else {
+        std::cout << "It's just a simple, empty cave. You rest for a moment.\n";
+        hero.SetHealth(hero.GetHealth() + 5);
+    }
+    hero.SetLevel(hero.GetLevel() + 0.02);
 }
 
 void Forest(Character& hero)
 {
-
+    std::cout << Color::GREEN << "\n [LOCATION] " << Color::RESET << "You walk through a dense forest.\n";
+    int event = rand() % 3;
+    if (event == 0) {
+        std::cout << "You gather some herbs along the path.\n";
+        hero.SetHealth(hero.GetHealth() + 3);
+    } else if (event == 1) {
+        std::cout << "You get scratched by thorny bushes.\n";
+        hero.SetHealth(hero.GetHealth() - 2);
+    } else {
+        std::cout << "The forest is quiet and peaceful.\n";
+    }
+    hero.SetLevel(hero.GetLevel() + 0.01);
 }
 
 void Desert(Character& hero)
 {
-
+    std::cout << Color::YELLOW << "\n [LOCATION] " << Color::RESET << "You trek across a scorching desert.\n";
+    int heatDamage = rand() % 5 + 1;
+    std::cout << "The relentless heat drains you. You lose " << heatDamage << " health.\n";
+    hero.SetHealth(hero.GetHealth() - heatDamage);
+    hero.SetLevel(hero.GetLevel() + 0.02);
 }
 
 void Village(Character& hero)
 {
-
+    std::cout << Color::CYAN << "\n [LOCATION] " << Color::RESET << "You arrive at a small, quiet village.\n";
+    std::cout << "The villagers greet you warmly and offer you a place to rest.\n";
+    hero.SetHealth(hero.GetHealth() + 5);
+    hero.SetLevel(hero.GetLevel() + 0.01);
 }
 
 void Bastion(Character& hero)
 {
-
+    std::cout << Color::CYAN << "\n [LOCATION] " << Color::RESET << "You reach a fortified bastion manned by soldiers.\n";
+    std::cout << "The guards let you rest within its safe walls.\n";
+    hero.SetHealth(hero.GetHealth() + 10);
+    hero.SetDefense(hero.GetDefense() + 1);
+    hero.SetLevel(hero.GetLevel() + 0.02);
 }
 
 void TowerPlace(Character& hero)//evil TowerPlace , mage TowerPlace
 {
-
+    std::cout << Color::MAGENTA << "\n [LOCATION] " << Color::RESET << "You approach a tall, mysterious tower.\n";
+    int towerType = rand() % 2;
+    if (towerType == 0) {
+        std::cout << "Dark energy radiates from this evil tower. You feel uneasy.\n";
+        hero.SetHealth(hero.GetHealth() - 4);
+    } else {
+        std::cout << "A reclusive mage lives here and shares some arcane wisdom with you.\n";
+        hero.SetIntelligence(hero.GetIntelligence() + 1);
+    }
+    hero.SetLevel(hero.GetLevel() + 0.02);
 }
 
 void SimpleHouse(Character& hero)//evil mage , witch , friendly house
 {
-
+    std::cout << Color::YELLOW << "\n [LOCATION] " << Color::RESET << "You come across a small house on the roadside.\n";
+    int houseType = rand() % 3;
+    if (houseType == 0) {
+        std::cout << "An evil mage lives here and curses you as you pass!\n";
+        hero.SetHealth(hero.GetHealth() - 5);
+    } else if (houseType == 1) {
+        std::cout << "A friendly old witch offers you a warm meal.\n";
+        hero.SetHealth(hero.GetHealth() + 8);
+    } else {
+        std::cout << "The house is friendly and welcoming. You rest a while.\n";
+        hero.SetHealth(hero.GetHealth() + 5);
+    }
+    hero.SetLevel(hero.GetLevel() + 0.01);
 }
 
 

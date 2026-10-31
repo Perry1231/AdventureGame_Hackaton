@@ -589,9 +589,9 @@ class Quest
         bool isCompleted;
 
     public:
-        Quest() : number_quest(0), capacity_quest(0), count_quest(0), questName(""), questDescription(""), questDifficulty(1), reward(0), questExperience(0.0f), isCompleted(false) {}
+        Quest() : quests(nullptr), number_quest(0), capacity_quest(0), count_quest(0), questName(""), questDescription(""), questDifficulty(1), reward(0), questExperience(0.0f), isCompleted(false) {}
         Quest(int number_quest1, int capacity_quest1,int count_quest1, std::string name, std::string description, int difficulty, int rewardes) : 
-        number_quest(number_quest1), capacity_quest(capacity_quest1),count_quest(count_quest1),
+        quests(nullptr), number_quest(number_quest1), capacity_quest(capacity_quest1),count_quest(count_quest1),
         questName(name), questDescription(description), questDifficulty(difficulty), reward(rewardes), questExperience(0.0f), isCompleted(false) {}
 
 
@@ -651,7 +651,7 @@ Character* owner_p;                          //how many
 public:
 
 Object() : price_object(0), name_object("Default name object"), describtion_object("Default describtion object"),
- isQuest("false"), count_object(0) , rarityType_object("Common") {};
+ isQuest(false), count_object(0) , rarityType_object("Common") {};
 Object(int price_object1, std::string name_object1, std::string describtion_object1, bool isQuest1, int count1, std::string RarityType_object1): price_object(price_object1),
  name_object(name_object1), describtion_object(describtion_object1), isQuest(isQuest1), count_object(count1), rarityType_object(RarityType_object1) {}
 
@@ -660,6 +660,10 @@ Object(int price_object1, std::string name_object1, std::string describtion_obje
 void CreateObjectConstructor();
 void RecountObject();
 void DisplayObjectStats();
+std::string RandomizeObject();
+int GetObjectValue() const { return price_object; }
+std::string GetObjectRarity() const { return rarityType_object; }
+bool IsQuestItem() const { return isQuest; }
 
 
 Character* GetOwner() const { return owner_p; } 
@@ -692,6 +696,8 @@ void SetObjectDescribtion(std::string describtion_object1) { describtion_object=
 //==================================================================Additional_Functions================================================
 char ChoiceInput_YN();
 int ChoiceInput_Number();
+int ChoiceInput_NumberInRange(int min, int max);
+std::string ChoiceInput_Text();
 
 //===============================================================================Additional_Events_Games======================================================
 std::string GetEffectName(int type);
@@ -750,6 +756,7 @@ void GoodPlace(Character& hero);
 void FishingChallenge(Character& hero);
 void ArcheryContest(Character& hero, GameHard& levelDificulty);
 void StrangeStone(Character& hero, MyInventory& inv1);
+void QuestEncounter(Character& hero);
 void Tired_Granny_Event(Character& hero, GameHard& levelDificulty);
 void Wendigo_Encounter_Event(Character& hero, GameHard& levelDificulty);
 void TalkToLocals(Character& hero, GameHard& levelDificulty);

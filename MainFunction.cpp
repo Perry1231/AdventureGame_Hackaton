@@ -42,9 +42,7 @@ void MainFunction() {
     GameEvent gameEvent;
 
     Quest quest1;
-    quest1.SetQuestName("The Lost Home");
-    quest1.SetQuestDescription("Find the lost home of the ancient civilization.");
-    quest1.SetQuestDifficulty(3);
+    hero.SetActiveQuests(&quest1);
     quest1.DisplayAllQuestInfo();
 
 
