@@ -289,11 +289,11 @@ void QuickFreezingGlad(Character& hero, GameHard& levelDificulty) {
 void Extortion(Character& hero, GameHard& levelDificulty) {
     if(levelDificulty.GetDifficultyLevel()  ==3 ) 
     {
-        PrintEventCard("💰", "EXTORTION", "Local bandits force you to hand over some coin!");
+        PrintEventCard("💰", "EXTORTION", "The RA demands you hand over some snacks for the floor meeting!");
     LoseGold(hero, 15);
     } else
     {
-    PrintEventCard("💰", "EXTORTION", "Local bandits force you to hand over some coin!");
+    PrintEventCard("💰", "EXTORTION", "A senior student demands you hand over some snacks!");
     LoseGold(hero, 10);
     }
     hero.SetLevel(hero.GetLevel() + 0.01);
@@ -316,14 +316,14 @@ void PoacherTrapTrigger(Character& hero, GameHard& levelDificulty) {
 // Narrative Events (No stat loss)  =====================Need finish
 void WillWispAttraction(Character& hero, GameHard& levelDificulty)   { PrintEventCard("👻", "WILL-O'-WISP", "Mysterious glowing lights attempt to lead you astray.", Color::MAGENTA); }
 void PollenHallucinations(Character& hero, GameHard& levelDificulty) { PrintEventCard("🍄", "POLLEN HALLUCINATIONS", "Strange floral pollen fills the air, distorting your sight.", Color::MAGENTA); }
-void EnemyPatrol(Character& hero, GameHard& levelDificulty)          { PrintEventCard("⚔️", "ENEMY PATROL", "You spot an armed patrol marching nearby!", Color::YELLOW); }
-void MonsterAmbush(Character& hero, GameHard& levelDificulty)        { PrintEventCard("🐺", "MONSTER AMBUSH", "A wild beast leaps out from the shadows!", Color::RED); }
+void EnemyPatrol(Character& hero, GameHard& levelDificulty)          { PrintEventCard("⚔️", "SECURITY PATROL", "You spot a security guard patrol marching nearby!", Color::YELLOW); }
+void MonsterAmbush(Character& hero, GameHard& levelDificulty)        { PrintEventCard("🐺", "LOUD NEIGHBOR AMBUSH", "A loud neighbor bursts out from their room!", Color::RED); }
 void CunningScavengers(Character& hero, GameHard& levelDificulty)    { PrintEventCard("🦅", "CUNNING SCAVENGERS", "Opportunists are watching your every step...", Color::YELLOW); }
-void StagedAccident(Character& hero, GameHard& levelDificulty)       { PrintEventCard("🎭", "STAGED ACCIDENT", "A traveler cries for help, but it feels like a trap.", Color::YELLOW); }
-void FalseHospitableHost(Character& hero, GameHard& levelDificulty)  { PrintEventCard("🏡", "FALSE HOSPITABLE HOST", "Your host offers food, but their smile feels unnatural.", Color::YELLOW); }
-void ThePropheticBeggar(Character& hero, GameHard& levelDificulty)   { PrintEventCard("🔮", "PROPHETIC BEGGAR", "An old beggar whispers an ominous prophecy.", Color::CYAN); }
-void TheShadowingKid(Character& hero, GameHard& levelDificulty)      { PrintEventCard("👀", "SHADOWING KID", "A young child stalks you quietly from behind.", Color::CYAN); }
-void TheTurncoatGuide(Character& hero, GameHard& levelDificulty)     { PrintEventCard("🗺️", "TURNCOAT GUIDE", "Your guide seems to be leading you off course...", Color::YELLOW); }
+void StagedAccident(Character& hero, GameHard& levelDificulty)       { PrintEventCard("🎭", "STAGED ACCIDENT", "A student cries for help, but it feels like a trap.", Color::YELLOW); }
+void FalseHospitableHost(Character& hero, GameHard& levelDificulty)  { PrintEventCard("🏡", "FALSE HOSPITABLE HOST", "Your roommate offers food, but their smile feels unnatural.", Color::YELLOW); }
+void ThePropheticBeggar(Character& hero, GameHard& levelDificulty)   { PrintEventCard("🔮", "PROPHETIC SENIOR", "An old senior whispers an ominous prophecy about finals.", Color::CYAN); }
+void TheShadowingKid(Character& hero, GameHard& levelDificulty)      { PrintEventCard("👀", "SHADOWING FRESHMAN", "A young freshman stalks you quietly from behind.", Color::CYAN); }
+void TheTurncoatGuide(Character& hero, GameHard& levelDificulty)     { PrintEventCard("🗺️", "TURNCOAT GUIDE", "Your guide seems to be leading you to the wrong lecture hall...", Color::YELLOW); }
 
 
 
@@ -649,7 +649,7 @@ void Dungeon(Character& hero)
     }
 }
 
-void Cave(Character& hero)//goblin cave, dragon or simple cave
+void Cave(Character& hero)//laundry room: lost socks, machine rumble, or empty
 {
     std::cout << Color::DARK_GRAY << "\n [LOCATION] " << Color::RESET << "You enter the dim, cluttered laundry room.\n";
     int caveType = rand() % 3;

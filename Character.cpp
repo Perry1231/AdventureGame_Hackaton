@@ -82,7 +82,7 @@ else if (profession == "Peasant") {
     health = 70;
     Shealth = health;
     level = 1;
-    description = "A simple villager with basic survival skills, but untapped potential.";
+    description = "A simple student with basic study skills, but untapped potential.";
 }
 else if (profession == "Archer") {
     health = 100;
@@ -100,7 +100,7 @@ else if (profession == "Ranger") {
     health = 100;
     Shealth = health;
     level = 1;
-    description = "A versatile hunter, adept at tracking and surviving in the wilderness.";
+    description = "A versatile explorer, adept at navigating campus and surviving exam weeks.";
 }
 else if (profession == "Blacksmith") {
     health = 120;
@@ -112,7 +112,7 @@ else if (profession == "Miner") {
     health = 140;
     Shealth = health;
     level = 1;
-    description = "A hardy worker, skilled in extracting valuable resources from the earth.";
+    description = "A hardy student, skilled in extracting valuable notes from the library archives.";
 }
 else if (profession == "Berserker") {
     health = 130;
@@ -166,8 +166,8 @@ else if (profession == "Scavenger") {
     std::string firstNames_o[] = {"Grommash", "Garrosh", "Thrall", "Durotan", "Orgrim", "Kargathia", "Zul'jin", "Kilrogg", "Nazgrel", "Mok'Nathal"};
     std::string lastNames_o[] = {"Hellscream", "Doomhammer", "Shadowmoon", "Warsong", "Blackrock", "Frostwolf", "Bleeding Hollow", "Shattered Hand", "Burning Blade", "Skullcrusher"};
 
-    std::string firstNames_g[] = {"Grimtooth", "Snaggletooth", "Gobblesnort", "Snotgoblin", "Fizzlefink", "Muckwump", "Raggleflap", "Zogmug", "Blightfang", "Wartnose"};
-    std::string lastNames_g[] = {"Rotfang", "Snotlicker", "Guttergrin", "Pusface", "Filthsnout", "Mucknose", "Raggleflap", "Zogmug", "Blightfang", "Wartnose"};
+    std::string firstNames_g[] = {"Loud Larry", "Messy Mike", "Noisy Nick", "Party Paul", "Snoring Sam", "Cluttered Chris", "Chaotic Chad", "Rowdy Ryan", "Boisterous Brad", "Turbulent Tom"};
+    std::string lastNames_g[] = {"NoiseMaker", "MessMaster", "ClatterKing", "ChaosLord", "RacketRuler", "DinDuke", "HullabalooHead", "BrouhahaBoss", "UproarUmpire", "TumultTitan"};
   
     if (race == "Human") {
         name = firstNames_h[rand() % 10] + " " + lastNames_h[rand() % 10];

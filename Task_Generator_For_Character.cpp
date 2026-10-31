@@ -67,26 +67,26 @@ static std::map<std::string, QuestStructBasic>& GetQuestTaskDB() {              
             {"Collect Magic Mirror",{20, 1, 0.01}},
             {"Collect Magic Pages from Book",{25, 5, 0.01}},
             {"Collect Magic Pages from Evil Book",{32, 2, 0.01}},
-            {"Collect Magical Herb for village",{25, 2, 0.01}},
+{"Collect Magical Herb for dorm",{25, 2, 0.01}},
             {"Collect pinocones for magic squirrel",{12, 1, 0.01}},
-            {"Collect leaves for small dwarf's house",{20, 1, 0.01}},
+            {"Collect leaves for roommate's plant",{20, 1, 0.01}},
+
+            
+            {"Rescue girl from noisy neighbor", {40, 3, 0.3}},
+            {"Rescue roommate from noisy neighbors", {50, 3, 0.3}},
+            {"Rescue boy from laundry room", {35, 3, 0.25}},
+            {"Rescue pet from misfortune", {15, 3, 0.09}},
+            {"Rescue a batch of cookies for neighbor", {20, 3, 0.05}},
+
+            {"Explore new floors for RA", {15, 1, 0.03}},
+            {"Explore new floors for dean", {27, 1, 0.05}},
+            {"Explore new floors for RA", {15, 1, 0.03}},
+            {"Explore new floors for RA", {15, 1, 0.03}},
 
 
-            {"Rescue girl form goblin", {40, 3, 0.3}},
-            {"Rescue village form orks", {50, 3, 0.3}},
-            {"Rescue boy form orks camp", {35, 3, 0.25}},
-            {"Rescue dog form misfortune", {15, 3, 0.09}},
-            {"Rescue a herd pf pigs for farmer", {20, 3, 0.05}},
-
-            {"Explore new lands for farmers", {15, 1, 0.03}},
-            {"Explore new lands for king", {27, 1, 0.05}},
-            {"Explore new lands for farmers", {15, 1, 0.03}},
-            {"Explore new lands for farmers", {15, 1, 0.03}},
-
-
-            {"Eliminate danger ork", {25, 2, 0.08}},
+            {"Eliminate danger: noisy neighbor", {25, 2, 0.08}},
             {"Kill big hog", {15, 1, 0.04}},
-            {"Eliminate danger bear", {17, 2, 0.05}}
+            {"Eliminate danger: mold in bathroom", {17, 2, 0.05}}
             
         };
     }
@@ -103,10 +103,10 @@ std::string Quest::RandomizeQuest(GameHard& difficulty) {
     std::string task_ar[] = {   //List of tasks
        "Collect Magic Sticks" , "Collect Magic Stones", "ColLect Magic Items", "ColLect Magic Grass", "Collect Magic Flowers",
         "Collect Rare Ores", "Collect Broken Portal Fragments", "Collect Festival Ingredients",
-        "Rescue girl form goblin", "Rescue village form orks", "Rescue boy form orks camp",
-        "Rescue dog form misfortune", "Rescue a herd pf pigs for farmer",
-        "Explore new lands for farmers", "Explore new lands for king",
-        "Eliminate danger ork", "Kill big hog", "Eliminate danger bear"
+        "Rescue girl from goblin", "Rescue roommate from noisy neighbors", "Rescue boy from laundry room",
+        "Rescue pet from misfortune", "Rescue a batch of cookies for neighbor",
+        "Explore new floors for RA", "Explore new floors for dean",
+        "Eliminate danger: noisy neighbor", "Kill big hog", "Eliminate danger: mold in bathroom"
     };
 
     std::string chosen_name_t;

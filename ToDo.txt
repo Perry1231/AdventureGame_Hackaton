@@ -8,7 +8,7 @@ Perfect Character::DmageSystem(function)     +-
 
 
 Header.h==================(Task.class)=================
-Craete task creator for Task_Generator_For_Character
+Craete task creator for Task_Generator_For_Character        +-
 
 
 
