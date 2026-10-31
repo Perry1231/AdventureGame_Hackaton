@@ -1086,7 +1086,7 @@ switch(story_random)
             std::cout << "This historical favorite is told more cautiously in the dean's office, " << std::endl;
             std::cout << "for fear of the retribution that comes with openly mocking the faculty's ancestors. " << std::endl;
             std::cout << "The tale itself concerns an arrogant freshman who received a pair of cursed dancing shoes as a orientation gift that gave them two left feet. " << std::endl;
-            std::endl;
+            std::cout << std::endl;
             std::cout << "Aside from the embarrassment upon the welcome party dance floor that evening," << std::endl;
             std::cout << "they were forever remembered for their clumsy gait and inability to climb stairs without stumbling." << std::endl;
             break;

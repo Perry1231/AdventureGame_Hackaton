@@ -16,6 +16,7 @@ class MyInventory;
 class Chest; 
 class Enemy;
 class GameHard;
+class Quest;
 
 enum ChestType { COMMON = 52, RARE = 28, EPIC=15, LEGENDARY=5 };
 enum EffectType { HEALTH, DEFENSE, AGILITY, INTELLIGENCE, GOLD, STRENGTH }; 
@@ -30,6 +31,7 @@ public:
     virtual void ShowInfo() const = 0;
     virtual std::string GetName() const = 0;
     virtual std::string GetType() const = 0;
+    virtual int GetValue() const = 0;
     int GetItemId() const { return itemId; }
     void SetItemId(int id) { itemId = id; }
 
@@ -437,6 +439,7 @@ Artifact() : name(""), description(""),effectType(0) ,value(0) ,power(0), isEqui
 : name(name_), description(description_), effectType(EffectType_),value(value_), power(power_), isEquipped(isEquipped), rarityType(rarityType_) {}
 
     int GetArtifactValue() const { return value; }
+    int GetValue() const override { return value; }
     int GetArtifactPower() const { return power; }
     std::string GetName() const override { return name; }
     std::string GetArtifactDescription() const { return description; }
@@ -662,7 +665,8 @@ void RecountObject();
 void DisplayObjectStats();
 std::string RandomizeObject();
 int GetObjectValue() const { return price_object; }
-std::string GetObjectRarity() const { return rarityType_object; }
+    int GetValue() const override { return price_object; }
+    std::string GetObjectRarity() const { return rarityType_object; }
 bool IsQuestItem() const { return isQuest; }
 
 
