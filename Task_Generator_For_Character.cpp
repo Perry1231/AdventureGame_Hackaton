@@ -102,22 +102,30 @@ std::string Quest::RandomizeQuest(GameHard& difficulty) {
 
     std::string task_ar[] = {   //List of tasks
        "Collect Magic Sticks" , "Collect Magic Stones", "ColLect Magic Items", "ColLect Magic Grass", "Collect Magic Flowers",
-        "Collect Rare Ores", "Collect Broken Portal Fragments", "Collect Festival Ingredients"
+        "Collect Rare Ores", "Collect Broken Portal Fragments", "Collect Festival Ingredients",
+        "Rescue girl form goblin", "Rescue village form orks", "Rescue boy form orks camp",
+        "Rescue dog form misfortune", "Rescue a herd pf pigs for farmer",
+        "Explore new lands for farmers", "Explore new lands for king",
+        "Eliminate danger ork", "Kill big hog", "Eliminate danger bear"
     };
 
     std::string chosen_name_t;
     chosen_name_t = task_ar[rand() % std::size(task_ar)];    //Change number of tasks
-    questDifficulty = rand() + 3;
+    questDifficulty = 3;
+    questExperience = 0.01f;
     auto it = yar.find(chosen_name_t);
     if (it != yar.end()) {
-        reward = it->second.gold_task;                      //get reward
-        questDifficulty = it->second.difficulty_task;       //get diffilculty
-        int exp = it->second.experience_task;               //get experience
-        
-        reward = reward / difficulty.GetDifficultyLevel();
+        reward = it->second.gold_task;                       //get reward
+        questDifficulty = it->second.difficulty_task;        //get difficulty
+        questExperience = it->second.experience_task;        //get experience
+
+        // Higher difficulty level means tougher tasks but bigger rewards and experience
+        reward = reward * difficulty.GetDifficultyLevel();
+        questExperience = questExperience * difficulty.GetDifficultyLevel();
     }
 
     questName = chosen_name_t;
+    questDescription = "A task offered by a stranger: " + chosen_name_t + ".";
     return questName;
 }
 
@@ -172,13 +180,32 @@ std::cout << "Talk about life Not implemented yet" << std::endl;
 }
 
 
+void Quest::CompleteQuest(Character& hero)
+{
+    if (isCompleted) {
+        std::cout << "This quest is already completed!\n";
+        return;
+    }
+    isCompleted = true;
+    hero.SetGold(hero.GetGold() + reward);
+    hero.SetLevel(hero.GetLevel() + questExperience);
+    std::cout << "\nQuest \"" << questName << "\" completed!\n";
+    std::cout << "Reward: +" << reward << " gold, +" << questExperience << " experience.\n";
+}
+
 void Character::Task_Generator()
 {
     GameHard difficulty;
-    Quest quest;
-    std::string questName = quest.RandomizeQuest(difficulty);
-    std::cout << "\n" << name << " offers you a task: " << questName << std::endl;
-    quest.DisplayQuestInfo();
+    Quest* quest = new Quest();
+    std::string generatedName = quest->RandomizeQuest(difficulty);
+    std::cout << "\n" << "A stranger offers you a task: " << generatedName << std::endl;
+    quest->DisplayQuestInfo();
+
+    if (!activeQuests) {
+        activeQuests = new Quest();
+    }
+    activeQuests->AddQuest(quest);
+    std::cout << "Task added to your active quests!\n";
 }
 
 

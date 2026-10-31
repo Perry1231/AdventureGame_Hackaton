@@ -599,13 +599,31 @@ void Character::Attack(Character& hero, Enemy& enemy)
 {
     enemy.SetAttitude(-1);
 
- std::cout << "You attack the " << enemy.GetName() << "!" << std::endl;
-        {
-            int damage =  enemy.GetTotalDefense()- hero.GetTotalAttack();
-            if (damage < 0) damage = 0;
-            enemy.ApplyPotionEffect(0, -damage);
-            std::cout << enemy.GetName() << " takes " << damage << " damage! (HP: " << enemy.GetHealth() << ")\n";
+    std::cout << "You attack the " << enemy.GetName() << "!" << std::endl;
+    {
+        int damage = hero.GetTotalAttack() - enemy.GetTotalDefense();
+        if (damage < 0) damage = 0;
+        enemy.ApplyPotionEffect(0, -damage);
+        std::cout << enemy.GetName() << " takes " << damage << " damage! (HP: " << enemy.GetHealth() << ")\n";
+
+        if (enemy.GetHealth() <= 0) {
+            std::cout << "You have defeated " << enemy.GetName() << "!" << std::endl;
+            hero.SetLevel(hero.GetLevel() + 0.1);
+            hero.SetGold(hero.GetGold() + enemy.GetGold());
+            return;
         }
+
+        int counterDamage = enemy.GetTotalAttack() - hero.GetTotalDefense();
+        if (counterDamage < 0) counterDamage = 0;
+        hero.SetHealth(hero.GetHealth() - counterDamage);
+        std::cout << enemy.GetName() << " strikes back for " << counterDamage << " damage! (Your HP: " << hero.GetHealth() << ")\n";
+        hero.SetLevel(hero.GetLevel() + 0.01);
+
+        if (hero.GetHealth() <= 0) {
+            std::cout << "You have been defeated by " << enemy.GetName() << "! Game over!" << std::endl;
+            std::exit(0);
+        }
+    }
 }
 
 void Character::DamageSystem(Enemy& enemy)
@@ -617,7 +635,7 @@ std::cout << "|| " << "Your total attack = " << GetTotalAttack() << "  ||  " << 
 std::cout << "|| " << "Your total defense = " << GetTotalDefense() << "  ||  " << "Enemy total attack = " << enemy.GetTotalAttack() << " ||" << std::endl;
 std::cout << "||\t\t\t\t\t\t\t\t||" << std::endl;
 std::cout << "||"  << "Attack - 1" << std::endl;
-std::cout << "||"  << "Look in your inventory" << std::endl;
+std::cout << "||"  << "Look in your inventory - 3" << std::endl;
 std::cout << "||"  << "Leave battle - 2" << std::endl;
 int choice = ChoiceInput_Number();
 switch (choice)
@@ -699,11 +717,12 @@ void Menu(Enemy& enemy, Character& hero, MyInventory& inv1, GameHard& difficulty
 
 int Character::Trade(Enemy& enemy)
 {
-    if(enemy.GetAttitude() < 1)
+    if(enemy.GetAttitude() < 0)
     {
         std::cout << "You have bad attitude to your opponent !!! \n You can't talk and trade " << std::endl;
         return 0;
     }
+
     Weapon* weapon_2 = new Weapon();
     weapon_2->RandomizeWeaponStart(enemy.GetProfession());
 
@@ -713,68 +732,75 @@ int Character::Trade(Enemy& enemy)
     Weapon* weapon_3 = new Weapon();
     weapon_3->RandomizeWeaponSpeacial();
 
-
     MyInventory inv2;
     inv2.SetOwner(&enemy);
     enemy.SetInventory(&inv2);
 
-    inv2.AddItem(weapon_2);             //Added item with ID ---- will be written
-    inv2.AddItem(armor_2);
     inv2.AddItem(weapon_2);
-//Created inventory of enemy 
-//Implemed creating inventory from enemy profession , role , etc
+    inv2.AddItem(armor_2);
+    inv2.AddItem(weapon_3);
 
-if (enemy.GetProfession() == "Warrior") 
-{
-    // Add warrior-specific items
-} 
+    std::cout << "\n" << enemy.GetName() << " offers you the following goods:\n";
+    inv2.DisplayInventory();
 
-else if (enemy.GetProfession() == "Mage")
-{
-    // Add mage-specific items
-}
+    std::cout << "Enter item ID to buy (0 to leave): ";
+    int itemId = ChoiceInput_Number();
+    if (itemId == 0) {
+        std::cout << "You leave the trade.\n";
+        return 0;
+    }
 
-else if (enemy.GetProfession() == "")
-{
- return 0;
+    for (int i = 0; i < inv2.GetCount(); i++) {
+        Item* item = inv2.GetItem(i);
+        if (item && item->GetItemId() == itemId) {
+            int price = item->GetValue();
+            if (GetGold() < price) {
+                std::cout << "You don't have enough gold! (Need " << price << ", have " << GetGold() << ")\n";
+                return 0;
+            }
+            SetGold(GetGold() - price);
+            if (inventory) {
+                inventory->AddItem(item);
+                inv2.RemoveFromArray(i);
+                std::cout << "Bought " << item->GetName() << " for " << price << " gold!\n";
+            } else {
+                std::cout << "Inventory not linked to character!\n";
+            }
+            return 0;
+        }
+    }
 
-}
-
-else 
-{
- return 0;
-}
-
-return 0;
+    std::cout << "Item not found!\n";
+    return 0;
 }
 
 
 int Character::Talk(Enemy& enemy)
 {
-    if(enemy.GetAttitude() < 1)
+    if(enemy.GetAttitude() < 0)
     {
         std::cout << "You have bad attitude to your opponent !!! \n You can't talk and trade " << std::endl;
-        
-        std::cout << "`Do what you want` ---->" << std::endl;
-        std::cout << "1 - Take task \n2 - Talk about life \n 3 - Leave" << std::endl;
-        int choice=ChoiceInput_Number();
-        switch(choice)
-        {
-            case 1:
-            Task_Generator();
-            break;
-            case 2:
-            Talk_About_Life();
-            break;
-            case 3:
-
-            break;
-            default: std::cout << "Wrong choice !" << std::endl;
-        }
         return 0;
     }
-    std::cout << "\n" << name << " says: 'Hello there! I'm ready for adventure.'\n";
-return 0;
+
+    std::cout << "\n" << enemy.GetName() << " says: 'Hello there! I'm ready for adventure.'\n";
+    std::cout << "`Do what you want` ---->" << std::endl;
+    std::cout << "1 - Take task \n2 - Talk about life \n3 - Leave" << std::endl;
+    int choice=ChoiceInput_Number();
+    switch(choice)
+    {
+        case 1:
+        Task_Generator();
+        break;
+        case 2:
+        Talk_About_Life();
+        break;
+        case 3:
+
+        break;
+        default: std::cout << "Wrong choice !" << std::endl;
+    }
+    return 0;
 }
 
 
@@ -787,11 +813,6 @@ void Character::Fight(Enemy& enemy)
             std::cout << "You have defeated " << enemy.GetName() << "!" << std::endl;
             break;
         }
-        // Enemy's turn to attack
-        int damage = GetTotalAttack() - enemy.GetTotalDefense();
-        if (damage < 0) damage = 0;
-        health -= damage;
-        std::cout << enemy.GetName() << " attacks you for " << damage << " damage! (HP: " << health << ")\n";
         if (health <= 0) {
             std::cout << "You have been defeated by " << enemy.GetName() << "! Game over!" << std::endl;
             std::exit(0);

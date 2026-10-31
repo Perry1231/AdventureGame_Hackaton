@@ -60,6 +60,15 @@ int MyInventory::AddItem(Item* item) {
 }
 
 
+int MyInventory::RemoveFromArray(int index) {
+    if (index < 0 || index >= count) return -1;
+    for (int j = index; j < count - 1; j++) {
+        items[j] = items[j + 1];
+    }
+    count--;
+    return 0;
+}
+
 int MyInventory::DelItem(int itemId) {
     for (int i = 0; i < count; i++) {
         if (items[i]->GetItemId() == itemId) {

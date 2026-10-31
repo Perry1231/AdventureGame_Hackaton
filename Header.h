@@ -53,8 +53,9 @@ std::string name;
 int age;
 std::string race;
 std::string profession;
-int level;
+float level;
 std::string description;
+Quest* activeQuests;
 int strength;
 int agility;
 int intelligence;
@@ -76,13 +77,14 @@ Character() : health(100), Shealth(100), name ("Hero"), age(20), race("Human"),
 profession("Adventurer"), level(1), description("A brave adventurer ready to explore the world."),
 strength(10), agility(10), intelligence(10), defense(10), gold(100),auraType(MEDIUM) ,
 equipped_weapon(nullptr), equipped_armor(nullptr),
-inventory(nullptr), currentChest(nullptr) {} 
+inventory(nullptr), currentChest(nullptr), activeQuests(nullptr) {} 
 
 //Parameterized constructor
 Character(int health_, std::string name_, int age_, std::string race_, std::string profession_, int level_, 
         std::string description_, int strength_, int agility_, int intelligence_, int defense_, int gold_) : health(health_), name(name_),
         age(age_), race(race_), profession(profession_), level(level_), description(description_), strength(strength_), agility(agility_),  
-        intelligence(intelligence_), defense(defense_), gold(gold_) , auraType(MEDIUM) {}
+        intelligence(intelligence_), defense(defense_), gold(gold_) , auraType(MEDIUM), equipped_weapon(nullptr), equipped_armor(nullptr),
+        inventory(nullptr), currentChest(nullptr), activeQuests(nullptr) {}
     
     void DisplayStats();
     void RandomizeStats();
@@ -105,7 +107,7 @@ Character(int health_, std::string name_, int age_, std::string race_, std::stri
 
     int GetGold() const { return gold; }
     int GetHealth() const { return health; }
-    int GetLevel() const { return level; }
+    float GetLevel() const { return level; }
     int GetDefense() const { return defense; }
     int GetStrength() const { return strength;}
     int GetAgility() const { return agility; }
@@ -123,7 +125,7 @@ Character(int health_, std::string name_, int age_, std::string race_, std::stri
     void SetAge(int a) { age = a; }
     void SetRace(const std::string& r) { race = r; }
     void SetProfession(const std::string& p) { profession = p; }
-    void SetLevel(int l) { level = l; }
+    void SetLevel(float l) { level = l; }
     void SetDescription(const std::string& d) { description = d; }
     void SetStrength(int s) { strength = s; }
     void SetAgility(int a) { agility = a; }
@@ -134,6 +136,8 @@ Character(int health_, std::string name_, int age_, std::string race_, std::stri
     void SetCurrentChest(Chest* chest) { currentChest = chest; }
     Chest* GetCurrentChest() const { return currentChest; }
     MyInventory* GetInventory() const { return inventory; } 
+    void SetActiveQuests(Quest* q) { activeQuests = q; }
+    Quest* GetActiveQuests() const { return activeQuests; }
 
     void ApplyPotionEffect(int effectType, int potency);
     void ApplyArtifactEffect(int effectType, int power);
@@ -336,6 +340,7 @@ Item* GetItem(int index) const;
 
 void Clear(); //Additional
 int DelItem(int id);
+int RemoveFromArray(int index); //Remove from array slot without deleting the item (ownership transfer)
 int ResizeInventoryBig();
 void InventoryFunctions();
 
@@ -540,7 +545,7 @@ public:
     std::string GetDescription() const { return description; }
     int GetStrength() const { return strength; }
     int GetHealth() const { return health; }
-    int GetLevel() const { return level; }
+    float GetLevel() const { return level; }
     int GetDefense() const { return defense; }
     int GetGold() const { return gold; }
 
@@ -580,13 +585,14 @@ class Quest
         std::string questDescription;
         int questDifficulty;
         int reward;
+        float questExperience;
         bool isCompleted;
 
     public:
-        Quest() : number_quest(0), capacity_quest(0), count_quest(0), questName(""), questDescription(""), questDifficulty(1), reward(0),isCompleted(false) {}
+        Quest() : number_quest(0), capacity_quest(0), count_quest(0), questName(""), questDescription(""), questDifficulty(1), reward(0), questExperience(0.0f), isCompleted(false) {}
         Quest(int number_quest1, int capacity_quest1,int count_quest1, std::string name, std::string description, int difficulty, int rewardes) : 
         number_quest(number_quest1), capacity_quest(capacity_quest1),count_quest(count_quest1),
-        questName(name), questDescription(description), questDifficulty(difficulty), reward(rewardes), isCompleted(false) {}
+        questName(name), questDescription(description), questDifficulty(difficulty), reward(rewardes), questExperience(0.0f), isCompleted(false) {}
 
 
 
@@ -605,12 +611,16 @@ class Quest
         void SetCompleted(bool completed) { isCompleted = completed; }
         void SetUncompleted() { isCompleted = false; }
         void SetReward(int rewardes) { reward = rewardes; }
+        void SetQuestExperience(float exp) { questExperience = exp; }
         void DisplayAllQuestInfo() const;
 
         int GetQuestDifficulty() const { return questDifficulty; }
         std::string GetQuestDescription() const { return questDescription; } 
         std::string GetQuestName() const { return questName; }
         int GetQuestNumber() const {return number_quest; }
+        int GetReward() const { return reward; }
+        float GetQuestExperience() const { return questExperience; }
+        void CompleteQuest(Character& hero);
 
         
         int Delete_Quest(int number_quest);
