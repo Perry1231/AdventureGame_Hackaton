@@ -10,6 +10,7 @@
 #include "GameWindow.h"
 #include "SaveLoadWindow.h"
 #include "GameController.h"
+#include "Header.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +30,11 @@ int main(int argc, char *argv[])
             for (int t = 0; t < 5; ++t) {
                 testController.processTurn(0);
             }
+            testController.processTurn(4); // start combat
+            for (int c = 0; c < 6; ++c) {
+                testController.processCombatAction(0); // attack
+            }
+            rep << "combat: OK\n";
             rep << testController.getHeroStatus() << "\n";
             rep << testController.getInventoryText() << "\n";
             rep << testController.getQuestText() << "\n";
@@ -187,6 +193,25 @@ int main(int argc, char *argv[])
     QObject::connect(&gameController, &GameController::questUpdated, &gameWindow, &GameWindow::updateQuests);
     QObject::connect(&gameController, &GameController::turnProcessed, &gameWindow, &GameWindow::appendGameLog);
     QObject::connect(&gameController, &GameController::combatProcessed, &gameWindow, &GameWindow::appendGameLog);
+    QObject::connect(&gameController, &GameController::combatStarted,
+                     [&](const QString &name, int hp, int maxHp, int atk, int def) {
+        gameWindow.appendGameLog(QString("<b style='color:#c0392b;'>⚔️ A %1 blocks your way! (HP %2, ATK %3, DEF %4)</b>")
+                                 .arg(name).arg(maxHp).arg(atk).arg(def));
+        gameWindow.setCombatActions(gameController.getCombatActions());
+        gameWindow.showCombatMode(true);
+        gameWindow.showCombatInterface(name, hp, maxHp, atk, def);
+        gameWindow.updateCombatStatus(hp, maxHp, gameController.getHero()->GetHealth(), gameController.getHero()->GetHealth());
+    });
+    QObject::connect(&gameController, &GameController::combatUpdated,
+                     &gameWindow, &GameWindow::updateCombatStatus);
+    QObject::connect(&gameController, &GameController::combatEnded,
+                     [&](const QString &message) {
+        gameWindow.appendGameLog(QString("<b style='color:#27ae60;'>✔ %1</b>").arg(message));
+        gameWindow.showCombatMode(false);
+        gameWindow.hideCombatInterface();
+        gameWindow.setAvailableActions(gameController.getAvailableActions());
+        gameWindow.updateHeroStatus(gameController.getHeroStatus());
+    });
     QObject::connect(&gameController, &GameController::eventTriggered, [&](const QString &text, const QStringList &choices) {
         gameWindow.appendGameLog(text);
         for (const QString &choice : choices) {

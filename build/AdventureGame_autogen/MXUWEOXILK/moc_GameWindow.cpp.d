@@ -384,6 +384,7 @@ C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/build/Adv
   C:/msys64/ucrt64/include/qt6/QtWidgets/QLabel \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QListWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QSplitter \
@@ -405,6 +406,7 @@ C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/build/Adv
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistview.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qrubberband.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qscrollarea.h \

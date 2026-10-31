@@ -327,6 +327,21 @@ void GameController::processTurn(int action)
             emit returnedToMainMenu();
             return;
         }
+        case 4: { // Fight an enemy
+            m_enemy->RandomizeStats();
+            m_enemyMaxHealth = m_enemy->GetHealth();
+            if (m_enemyMaxHealth < 1) m_enemyMaxHealth = 1;
+            m_heroMaxHealth = m_hero->GetHealth();
+            if (m_heroMaxHealth < 1) m_heroMaxHealth = 1;
+            m_inCombat = true;
+            emit combatStarted(QString::fromStdString(m_enemy->GetName()),
+                               m_enemy->GetHealth(), m_enemyMaxHealth,
+                               m_enemy->GetTotalAttack(), m_enemy->GetTotalDefense());
+            emit combatUpdated(m_enemy->GetHealth(), m_enemyMaxHealth,
+                               m_hero->GetHealth(), m_heroMaxHealth);
+            emit heroStatusUpdated(formatHeroStatus());
+            return;
+        }
     }
     
     emit turnProcessed(result);
@@ -336,72 +351,95 @@ void GameController::processTurn(int action)
 void GameController::processCombatAction(int action)
 {
     if (!m_hero || !m_enemy) return;
-    
+
     QString result;
     QTextStream out(&result);
-    
+    bool combatOver = false;
+
     switch (action) {
         case 0: { // Attack
             int damage = m_hero->GetTotalAttack() - m_enemy->GetTotalDefense();
             if (damage < 1) damage = 1;
             m_enemy->SetHealth(m_enemy->GetHealth() - damage);
-            out << "You attack for " << damage << " damage!\n";
-            
+            out << "<span style='color:#2980b9;'><b>You strike the "
+                << m_enemy->GetName().c_str() << " for " << damage << " damage!</b></span>";
+
             if (m_enemy->GetHealth() <= 0) {
-                out << "Enemy defeated!\n";
-                m_hero->SetGold(m_hero->GetGold() + m_enemy->GetGold());
-                m_hero->SetLevel(m_hero->GetLevel() + 0.1);
-                m_enemy->RandomizeStats();
-                m_inCombat = false;
+                int reward = m_enemy->GetGold();
+                m_hero->SetGold(m_hero->GetGold() + reward);
+                m_hero->SetLevel(m_hero->GetLevel() + 0.1f);
+                out << "<br/><span style='color:#27ae60;'><b>🏆 VICTORY! "
+                    << m_enemy->GetName().c_str() << " is defeated. +" << reward
+                    << " gold, +0.10 XP.</b></span>";
+                combatOver = true;
             } else {
-                // Enemy counterattack
                 int enemyDmg = m_enemy->GetTotalAttack() - m_hero->GetTotalDefense();
                 if (enemyDmg < 1) enemyDmg = 1;
                 m_hero->SetHealth(m_hero->GetHealth() - enemyDmg);
-                out << "Enemy counterattacks for " << enemyDmg << " damage!\n";
-                
+                out << "<br/><span style='color:#c0392b;'><b>⚔ "
+                    << m_enemy->GetName().c_str() << " hits back for " << enemyDmg
+                    << " damage!</b></span>";
+
                 if (m_hero->GetHealth() <= 0) {
-                    emit gameOver("You have been defeated!");
+                    emit combatProcessed(result);
+                    emit combatUpdated(m_enemy->GetHealth(), m_enemyMaxHealth, 0, m_heroMaxHealth);
+                    emit gameOver("You have been defeated in battle!");
                     return;
                 }
             }
             break;
         }
         case 1: { // Talk
-            out << "You try to talk to the enemy...\n";
+            out << "<span style='color:#8e44ad;'><b>You try to talk to the "
+                << m_enemy->GetName().c_str() << "...</b></span>";
             if (m_enemy->GetAttitude() < 0) {
-                out << "The enemy is hostile!\n";
                 int enemyDmg = m_enemy->GetTotalAttack() - m_hero->GetTotalDefense();
                 if (enemyDmg < 1) enemyDmg = 1;
                 m_hero->SetHealth(m_hero->GetHealth() - enemyDmg);
+                out << "<br/><span style='color:#c0392b;'><b>The enemy is hostile and attacks for "
+                    << enemyDmg << " damage!</b></span>";
+                if (m_hero->GetHealth() <= 0) {
+                    emit combatProcessed(result);
+                    emit combatUpdated(m_enemy->GetHealth(), m_enemyMaxHealth, 0, m_heroMaxHealth);
+                    emit gameOver("You have been defeated in battle!");
+                    return;
+                }
             } else {
-                out << "The enemy calms down.\n";
-                m_hero->SetLevel(m_hero->GetLevel() + 0.02);
-                m_inCombat = false;
+                m_hero->SetLevel(m_hero->GetLevel() + 0.02f);
+                out << "<br/><span style='color:#27ae60;'><b>The enemy calms down. +0.02 XP</b></span>";
+                combatOver = true;
             }
             break;
         }
         case 2: { // Trade
-            out << "You offer to trade...\n";
+            out << "<span style='color:#f39c12;'><b>You offer to trade...</b></span>";
             if (m_enemy->GetAttitude() < 0) {
-                out << "The enemy refuses to trade!\n";
+                out << "<br/><span style='color:#c0392b;'><b>The enemy refuses to trade!</b></span>";
             } else {
-                out << "Trade successful! You gain some gold.\n";
                 m_hero->SetGold(m_hero->GetGold() + 10);
-                m_inCombat = false;
+                out << "<br/><span style='color:#27ae60;'><b>Trade successful! +10 gold.</b></span>";
+                combatOver = true;
             }
             break;
         }
         case 3: { // Flee
-            out << "You flee from combat!\n";
-            m_hero->SetLevel(m_hero->GetLevel() + 0.01);
-            m_inCombat = false;
+            m_hero->SetLevel(m_hero->GetLevel() + 0.01f);
+            out << "<span style='color:#95a5a6;'><b>You flee from combat. +0.01 XP</b></span>";
+            combatOver = true;
             break;
         }
     }
-    
+
+    if (combatOver) m_inCombat = false;
+
     emit combatProcessed(result);
+    emit combatUpdated(m_enemy->GetHealth(), m_enemyMaxHealth,
+                       m_hero->GetHealth(), m_heroMaxHealth);
     emit heroStatusUpdated(formatHeroStatus());
+
+    if (combatOver) {
+        emit combatEnded(m_enemy->GetHealth() <= 0 ? "Victory!" : "Combat ended.");
+    }
 }
 
 void GameController::processEventChoice(int choice)
@@ -476,7 +514,7 @@ QString GameController::getCurrentEventText() const
 
 QStringList GameController::getAvailableActions() const
 {
-    return {"Make Turn", "Inventory", "Active Quest", "Main Menu"};
+    return {"Make Turn", "Inventory", "Active Quest", "Main Menu", "⚔️ Fight Enemy"};
 }
 
 QStringList GameController::getCombatActions() const

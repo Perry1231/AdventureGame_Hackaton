@@ -474,6 +474,7 @@ AdventureGame_autogen/timestamp: C:/Program\ Files/CMake/bin/cmake.exe \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QLineEdit \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QListWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QRadioButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
@@ -499,6 +500,7 @@ AdventureGame_autogen/timestamp: C:/Program\ Files/CMake/bin/cmake.exe \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistview.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qradiobutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qrubberband.h \
@@ -1609,6 +1611,7 @@ CMakeFiles/AdventureGame.dir/AdventureGame_autogen/mocs_compilation.cpp.obj: Adv
   C:/msys64/ucrt64/include/qt6/QtWidgets/QLineEdit \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QListWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QRadioButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
@@ -1634,6 +1637,7 @@ CMakeFiles/AdventureGame.dir/AdventureGame_autogen/mocs_compilation.cpp.obj: Adv
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistview.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qradiobutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qrubberband.h \
@@ -6092,6 +6096,7 @@ CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj: C:/Users/Dell/Desktop/p
   C:/msys64/ucrt64/include/qt6/QtWidgets/QListWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMessageBox \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollBar \
@@ -6118,6 +6123,7 @@ CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj: C:/Users/Dell/Desktop/p
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qrubberband.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qscrollarea.h \
@@ -7075,6 +7081,7 @@ CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.obj: C:/Users/Dell/Deskt
   C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/SaveLoadWindow.h
 
 CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/src/gui/main.cpp \
+  C:/Users/Dell/Desktop/projetcs/GitHub\ Projects/AdventureGame_Hackaton/Header.h \
   C:/msys64/ucrt64/include/_mingw.h \
   C:/msys64/ucrt64/include/_mingw_locale.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
@@ -7236,6 +7243,7 @@ CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: C:/Users/Dell/Desktop/projetc
   C:/msys64/ucrt64/include/c++/16.2.0/iomanip \
   C:/msys64/ucrt64/include/c++/16.2.0/ios \
   C:/msys64/ucrt64/include/c++/16.2.0/iosfwd \
+  C:/msys64/ucrt64/include/c++/16.2.0/iostream \
   C:/msys64/ucrt64/include/c++/16.2.0/istream \
   C:/msys64/ucrt64/include/c++/16.2.0/iterator \
   C:/msys64/ucrt64/include/c++/16.2.0/limits \
@@ -7532,6 +7540,7 @@ CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: C:/Users/Dell/Desktop/projetc
   C:/msys64/ucrt64/include/qt6/QtWidgets/QListWidget \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMainWindow \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QMessageBox \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QPushButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QRadioButton \
   C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
@@ -7560,6 +7569,7 @@ CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: C:/Users/Dell/Desktop/projetc
   C:/msys64/ucrt64/include/qt6/QtWidgets/qlistwidget.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmainwindow.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qmessagebox.h \
+  C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qpushbutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qradiobutton.h \
   C:/msys64/ucrt64/include/qt6/QtWidgets/qrubberband.h \
@@ -8831,6 +8841,8 @@ C:/msys64/ucrt64/include/qt6/QtCore/qtmocconstants.h:
 
 C:/msys64/ucrt64/include/qt6/QtWidgets/QListWidget:
 
+C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar:
+
 C:/msys64/ucrt64/include/qt6/QtWidgets/QRadioButton:
 
 C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea:
@@ -8854,6 +8866,8 @@ C:/msys64/ucrt64/include/qt6/QtWidgets/qdialog.h:
 C:/msys64/ucrt64/include/qt6/QtWidgets/qlayout.h:
 
 C:/msys64/ucrt64/include/qt6/QtWidgets/qlistwidget.h:
+
+C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h:
 
 C:/msys64/ucrt64/include/qt6/QtWidgets/qstyle.h:
 

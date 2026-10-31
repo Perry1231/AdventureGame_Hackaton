@@ -588,6 +588,7 @@ output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/build.make
 output/AdventureGame.exe: C:/msys64/ucrt64/lib/libQt6Widgets.dll.a
 output/AdventureGame.exe: C:/msys64/ucrt64/lib/libQt6Gui.dll.a
 output/AdventureGame.exe: C:/msys64/ucrt64/lib/libQt6Core.dll.a
+output/AdventureGame.exe: C:/msys64/ucrt64/lib/libQt6EntryPoint.a
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/linkLibs.rsp
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/objects1.rsp
 output/AdventureGame.exe: CMakeFiles/AdventureGame.dir/link.txt

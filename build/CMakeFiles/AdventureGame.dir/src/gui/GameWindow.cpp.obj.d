@@ -439,6 +439,8 @@ CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj: \
  C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
  C:/msys64/ucrt64/include/qt6/QtWidgets/qscrollarea.h \
  C:/msys64/ucrt64/include/qt6/QtGui/QColor \
+ C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
+ C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
  C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\src\gui\GameController.h \
  C:/msys64/ucrt64/include/qt6/QtCore/QObject \
  C:/msys64/ucrt64/include/qt6/QtCore/QString \

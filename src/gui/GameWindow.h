@@ -13,6 +13,7 @@
 #include <QScrollArea>
 #include <functional>
 #include <QColor>
+#include <QProgressBar>
 
 class GameWindow : public QMainWindow
 {
@@ -35,6 +36,10 @@ public:
     void showLocationMode(bool show, const QString &locationName);
     void enableMainActions(bool enable);
     void setNpcPortrait(const QString &title, const QColor &color);
+    void showCombatInterface(const QString &enemyName, int enemyHp, int enemyMaxHp,
+                             int enemyAttack, int enemyDefense);
+    void updateCombatStatus(int enemyHp, int enemyMaxHp, int heroHp, int heroMaxHp);
+    void hideCombatInterface();
 
 signals:
     void actionSelected(int actionIndex);
@@ -79,6 +84,16 @@ private:
     QWidget *m_portraitWidget = nullptr;
     QLabel *m_portraitImage = nullptr;
     QLabel *m_portraitName = nullptr;
+
+    // Battle interface
+    QWidget *m_battlePanel = nullptr;
+    QLabel *m_battleEnemyName = nullptr;
+    QLabel *m_battleEnemyStats = nullptr;
+    QProgressBar *m_enemyHpBar = nullptr;
+    QProgressBar *m_heroHpBar = nullptr;
+    QLabel *m_enemyHpText = nullptr;
+    QLabel *m_heroHpText = nullptr;
+    QLabel *m_battleHint = nullptr;
 
     // Hero Status
     QWidget *m_statusWidget = nullptr;

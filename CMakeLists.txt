@@ -79,4 +79,5 @@ target_include_directories(AdventureGame PRIVATE
 # Output directory
 set_target_properties(AdventureGame PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output
+    WIN32_EXECUTABLE TRUE
 )

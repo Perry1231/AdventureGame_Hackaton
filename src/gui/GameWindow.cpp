@@ -95,6 +95,76 @@ void GameWindow::setupUI()
 
     setNpcPortrait("HERO", QColor("#27ae60"));
 
+    // --- Battle Interface ---
+    m_battlePanel = new QWidget(m_rightPanel);
+    m_battlePanel->setStyleSheet(
+        "QWidget {"
+        "   background-color: #fff5f5;"
+        "   border: 2px solid #c0392b;"
+        "   border-radius: 8px;"
+        "}"
+    );
+    QVBoxLayout *battleLayout = new QVBoxLayout(m_battlePanel);
+    battleLayout->setContentsMargins(8, 8, 8, 8);
+    battleLayout->setSpacing(5);
+
+    QLabel *battleTitle = new QLabel("⚔️ BATTLE", m_battlePanel);
+    battleTitle->setFont(QFont("Arial", 12, QFont::Bold));
+    battleTitle->setStyleSheet("color: #c0392b; background: transparent; border: none;");
+    battleLayout->addWidget(battleTitle);
+
+    m_battleEnemyName = new QLabel("Enemy", m_battlePanel);
+    m_battleEnemyName->setFont(QFont("Arial", 11, QFont::Bold));
+    m_battleEnemyName->setStyleSheet("color: #2c3e50; background: transparent; border: none;");
+    battleLayout->addWidget(m_battleEnemyName);
+
+    m_battleEnemyStats = new QLabel("ATK 0 / DEF 0", m_battlePanel);
+    m_battleEnemyStats->setStyleSheet("color: #7f8c8d; background: transparent; border: none;");
+    battleLayout->addWidget(m_battleEnemyStats);
+
+    auto makeBar = [this](const QString &color) {
+        QProgressBar *bar = new QProgressBar(m_battlePanel);
+        bar->setRange(0, 100);
+        bar->setValue(100);
+        bar->setTextVisible(false);
+        bar->setFixedHeight(16);
+        bar->setStyleSheet(QString(
+            "QProgressBar { background-color: #ecf0f1; border: 1px solid #bdc3c7; border-radius: 6px; }"
+            "QProgressBar::chunk { background-color: %1; border-radius: 5px; }"
+        ).arg(color));
+        return bar;
+    };
+
+    QLabel *enemyHpLabel = new QLabel("Enemy HP", m_battlePanel);
+    enemyHpLabel->setStyleSheet("color: #2c3e50; background: transparent; border: none;");
+    battleLayout->addWidget(enemyHpLabel);
+    m_enemyHpBar = makeBar("#e74c3c");
+    battleLayout->addWidget(m_enemyHpBar);
+
+    m_enemyHpText = new QLabel("0 / 0", m_battlePanel);
+    m_enemyHpText->setAlignment(Qt::AlignRight);
+    m_enemyHpText->setStyleSheet("color: #c0392b; background: transparent; border: none;");
+    battleLayout->addWidget(m_enemyHpText);
+
+    QLabel *heroHpLabel = new QLabel("Your HP", m_battlePanel);
+    heroHpLabel->setStyleSheet("color: #2c3e50; background: transparent; border: none;");
+    battleLayout->addWidget(heroHpLabel);
+    m_heroHpBar = makeBar("#27ae60");
+    battleLayout->addWidget(m_heroHpBar);
+
+    m_heroHpText = new QLabel("0 / 0", m_battlePanel);
+    m_heroHpText->setAlignment(Qt::AlignRight);
+    m_heroHpText->setStyleSheet("color: #27ae60; background: transparent; border: none;");
+    battleLayout->addWidget(m_heroHpText);
+
+    m_battleHint = new QLabel("Choose an action below.", m_battlePanel);
+    m_battleHint->setWordWrap(true);
+    m_battleHint->setStyleSheet("color: #7f8c8d; background: transparent; border: none;");
+    battleLayout->addWidget(m_battleHint);
+
+    m_battlePanel->setVisible(false);
+    m_rightLayout->addWidget(m_battlePanel);
+
     // --- Hero Status ---
     m_statusWidget = new QWidget(m_rightPanel);
     m_statusWidget->setStyleSheet(
@@ -315,6 +385,47 @@ void GameWindow::setNpcPortrait(const QString &title, const QColor &color)
 
     m_portraitImage->setPixmap(pixmap);
     if (m_portraitName) m_portraitName->setText(title.toUpper());
+}
+
+void GameWindow::showCombatInterface(const QString &enemyName, int enemyHp, int enemyMaxHp,
+                                     int enemyAttack, int enemyDefense)
+{
+    if (!m_battlePanel) return;
+
+    m_battleEnemyName->setText("Enemy: " + enemyName);
+    m_battleEnemyStats->setText(QString("ATK %1   •   DEF %2").arg(enemyAttack).arg(enemyDefense));
+
+    int maxHp = qMax(1, enemyMaxHp);
+    m_enemyHpBar->setRange(0, maxHp);
+    m_enemyHpBar->setValue(qBound(0, enemyHp, maxHp));
+    m_enemyHpText->setText(QString("%1 / %2").arg(enemyHp).arg(maxHp));
+
+    m_battleHint->setText("Choose a combat action below!");
+    m_battlePanel->setVisible(true);
+
+    setNpcPortrait(enemyName, QColor("#c0392b"));
+}
+
+void GameWindow::updateCombatStatus(int enemyHp, int enemyMaxHp, int heroHp, int heroMaxHp)
+{
+    if (!m_battlePanel) return;
+
+    int eMax = qMax(1, enemyMaxHp);
+    int hMax = qMax(1, heroMaxHp);
+
+    m_enemyHpBar->setRange(0, eMax);
+    m_enemyHpBar->setValue(qBound(0, enemyHp, eMax));
+    m_enemyHpText->setText(QString("%1 / %2").arg(qMax(0, enemyHp)).arg(eMax));
+
+    m_heroHpBar->setRange(0, hMax);
+    m_heroHpBar->setValue(qBound(0, heroHp, hMax));
+    m_heroHpText->setText(QString("%1 / %2").arg(qMax(0, heroHp)).arg(hMax));
+}
+
+void GameWindow::hideCombatInterface()
+{
+    if (m_battlePanel) m_battlePanel->setVisible(false);
+    setNpcPortrait("HERO", QColor("#27ae60"));
 }
 
 void GameWindow::updateHeroStatus(const QString &status)

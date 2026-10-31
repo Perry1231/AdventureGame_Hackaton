@@ -69,6 +69,9 @@ signals:
     void heroStatusUpdated(const QString &statusText);
     void gameOver(const QString &reason);
     void returnedToMainMenu();
+    void combatStarted(const QString &enemyName, int enemyHp, int enemyMaxHp, int enemyAttack, int enemyDefense);
+    void combatUpdated(int enemyHp, int enemyMaxHp, int heroHp, int heroMaxHp);
+    void combatEnded(const QString &message);
 
 private:
     // Existing game objects
@@ -82,6 +85,8 @@ private:
     // Game state
     bool m_inCombat = false;
     bool m_inTavern = false;
+    int m_enemyMaxHealth = 0;
+    int m_heroMaxHealth = 100;
     QString m_currentLocation;
     QString m_lastEventText;
     QStringList m_lastChoices;

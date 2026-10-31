@@ -510,6 +510,8 @@ CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: \
  C:/msys64/ucrt64/include/qt6/QtWidgets/QScrollArea \
  C:/msys64/ucrt64/include/qt6/QtWidgets/qscrollarea.h \
  C:/msys64/ucrt64/include/qt6/QtGui/QColor \
+ C:/msys64/ucrt64/include/qt6/QtWidgets/QProgressBar \
+ C:/msys64/ucrt64/include/qt6/QtWidgets/qprogressbar.h \
  C:\Users\Dell\Desktop\projetcs\GitHub\ Projects\AdventureGame_Hackaton\src\gui\SaveLoadWindow.h \
  C:/msys64/ucrt64/include/qt6/QtWidgets/QLineEdit \
  C:/msys64/ucrt64/include/qt6/QtWidgets/qlineedit.h \
@@ -519,4 +521,6 @@ CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj: \
  C:/msys64/ucrt64/include/qt6/QtCore/QString \
  C:/msys64/ucrt64/include/qt6/QtCore/QVector \
  C:/msys64/ucrt64/include/qt6/QtCore/qvector.h \
- C:/msys64/ucrt64/include/qt6/QtCore/QMap
+ C:/msys64/ucrt64/include/qt6/QtCore/QMap \
+ C:/Users/Dell/Desktop/projetcs/GITHUB~1/ADVENT~2/Header.h \
+ C:/msys64/ucrt64/include/c++/16.2.0/iostream
