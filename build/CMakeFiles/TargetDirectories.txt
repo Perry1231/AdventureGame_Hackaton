@@ -1,5 +1,0 @@
-C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/AdventureGame.dir
-C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/edit_cache.dir
-C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/rebuild_cache.dir
-C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/AdventureGame_autogen_timestamp_deps.dir
-C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/AdventureGame_autogen.dir
