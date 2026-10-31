@@ -371,3 +371,63 @@ void CardDraw(Character& hero)
     
     std::cout << "========================================\n\n";
 }
+
+// Randomizer for common room games
+void PlayRandomCommonRoomGame(Character& hero)
+{
+    std::cout << "\n┌───────────────────────────────────────────────────┐\n";
+    std::cout << "│           COMMON ROOM - RANDOM GAME               │\n";
+    std::cout << "├───────────────────────────────────────────────────┤\n";
+    
+    int gameChoice = rand() % 4;
+    std::string gameNames[] = {"Dice Roll", "Music Challenge", "Fist Fight", "Energy Drink Contest"};
+    
+    std::cout << "│  Randomly selected: " << gameNames[gameChoice] << "\n";
+    std::cout << "└───────────────────────────────────────────────────┘\n\n";
+    
+    switch(gameChoice) {
+        case 0: DiceRoll(hero); break;
+        case 1: MusicChallenge(hero); break;
+        case 2: FistFight(hero); break;
+        case 3: { GameHard diff; DrinkingContest(hero, diff); } break;
+    }
+}
+
+// Play all games in sequence (tournament mode)
+void PlayGameTournament(Character& hero)
+{
+    std::cout << "\n┌───────────────────────────────────────────────────┐\n";
+    std::cout << "│         COMMON ROOM - GAME TOURNAMENT             │\n";
+    std::cout << "├───────────────────────────────────────────────────┤\n";
+    std::cout << "│  Play all games and compete for the champion title!│\n";
+    std::cout << "└───────────────────────────────────────────────────┘\n\n";
+    
+    int totalScore = 0;
+    int initialGold = hero.GetGold();
+    
+    std::cout << "=== GAME 1: DICE ROLL ===\n";
+    DiceRoll(hero);
+    totalScore += (hero.GetGold() - initialGold) > 0 ? 10 : 0;
+    
+    std::cout << "\n=== GAME 2: MUSIC CHALLENGE ===\n";
+    MusicChallenge(hero);
+    totalScore += (hero.GetGold() - initialGold) > 10 ? 15 : 0;
+    
+    std::cout << "\n=== GAME 3: ENERGY DRINK CONTEST ===\n";
+    GameHard diff;
+    DrinkingContest(hero, diff);
+    totalScore += (hero.GetGold() - initialGold) > 25 ? 20 : 0;
+    
+    std::cout << "\n=== TOURNAMENT RESULTS ===\n";
+    std::cout << "Final Gold: " << hero.GetGold() << " (Gained: " << hero.GetGold() - initialGold << ")\n";
+    
+    if (hero.GetGold() - initialGold > 50) {
+        std::cout << "🏆 TOURNAMENT CHAMPION! Bonus: +50 Gold!\n";
+        hero.SetGold(hero.GetGold() + 50);
+    } else if (hero.GetGold() - initialGold > 20) {
+        std::cout << "🥈 Runner up! Bonus: +20 Gold!\n";
+        hero.SetGold(hero.GetGold() + 20);
+    } else {
+        std::cout << "🥉 Participant. Better luck next time!\n";
+    }
+}

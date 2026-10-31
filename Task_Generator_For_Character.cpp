@@ -93,10 +93,8 @@ static std::map<std::string, QuestStructBasic>& GetQuestTaskDB() {              
             {"Meet Your Roommates", {50, 2, 0.3}},
             {"Attend First Lecture", {75, 2, 0.4}},
             {"Survive Exam Week", {200, 5, 1.0}}
-        };
+};
     }
-    return yar;
-}
     return yar;
 }
 

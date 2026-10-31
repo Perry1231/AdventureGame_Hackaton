@@ -820,4 +820,139 @@ void Character::Fight(Enemy& enemy)
     }
 }
 
+// OtherCharacter interaction functions
+int Character::Talk(OtherCharacter& other)
+{
+    if (other.GetAttitude() < -50) {
+        std::cout << other.GetName() << " ignores you completely.\n";
+        return 0;
+    }
+
+    other.DisplayInfo();
+    
+    std::cout << "\n" << other.GetName() << ": \"Hey! What's up?\"\n";
+    std::cout << "1. Ask for a task/quest\n";
+    std::cout << "2. Chat about campus life\n";
+    std::cout << "3. Ask about the area\n";
+    std::cout << "4. Trade (if merchant)\n";
+    std::cout << "5. Leave\n";
+    std::cout << "Choice: ";
+    
+    int choice = ChoiceInput_Number();
+    
+    switch(choice) {
+        case 1:
+            Task_Generator();
+            other.SetAttitude(other.GetAttitude() + 5);
+            break;
+        case 2:
+            std::cout << "\nYou chat about classes, exams, and dorm life.\n";
+            other.SetAttitude(other.GetAttitude() + 10);
+            SetHealth(GetHealth() + 5);
+            break;
+        case 3:
+            std::cout << "\n" << other.GetName() << ": \"This area has the dorms, library, student union, and academic buildings.\"";
+            std::cout << " The dining hall is on the first floor.\"\n";
+            other.SetAttitude(other.GetAttitude() + 5);
+            break;
+        case 4:
+            if (other.GetType() == MERCHANTS || other.GetType() == VENDOR) {
+                Trade(other);
+            } else {
+                std::cout << "\n" << other.GetName() << ": \"I don't have anything to trade.\"\n";
+            }
+            break;
+        case 5:
+            std::cout << "\nYou say goodbye.\n";
+            break;
+        default:
+            std::cout << "\nInvalid choice.\n";
+    }
+    return 0;
+}
+
+int Character::Trade(OtherCharacter& other)
+{
+    if (!other.GetInventory()) {
+        std::cout << other.GetName() << " has nothing to trade.\n";
+        return 0;
+    }
+
+    std::cout << "\n" << other.GetName() << " shows you their wares:\n";
+    other.GetInventory()->DisplayInventory();
+    
+    std::cout << "Enter item ID to buy (0 to leave): ";
+    int itemId = ChoiceInput_Number();
+    if (itemId == 0) {
+        std::cout << "You leave the trade.\n";
+        return 0;
+    }
+
+    MyInventory* inv = other.GetInventory();
+    for (int i = 0; i < inv->GetCount(); i++) {
+        Item* item = inv->GetItem(i);
+        if (item && item->GetItemId() == itemId) {
+            int price = item->GetValue();
+            if (GetGold() < price) {
+                std::cout << "Not enough gold! Need " << price << ", have " << GetGold() << "\n";
+                return 0;
+            }
+            SetGold(GetGold() - price);
+            if (inventory) {
+                inventory->AddItem(item);
+                inv->RemoveFromArray(i);
+                std::cout << "Bought " << item->GetName() << " for " << price << " gold!\n";
+                other.SetAttitude(other.GetAttitude() + 5);
+            } else {
+                std::cout << "Your inventory is not linked!\n";
+            }
+            return 0;
+        }
+    }
+    std::cout << "Item not found!\n";
+    return 0;
+}
+
+void Character::Attack(OtherCharacter& other)
+{
+    std::cout << "\n⚔️ You attack " << other.GetName() << "!\n";
+    std::cout << "This is a peaceful campus. Violence is not the answer.\n";
+    other.SetAttitude(other.GetAttitude() - 50);
+    std::cout << other.GetName() << " is shocked and reports you to campus security!\n";
+    SetHealth(GetHealth() - 10); // Security response
+    std::cout << "You take 10 damage from security response.\n";
+}
+
+void Character::DamageSystem(OtherCharacter& other)
+{
+    // Non-combat interaction - just a placeholder for future combat with hostile NPCs
+    std::cout << "DamageSystem not implemented for peaceful NPCs.\n";
+}
+
+int Character::Interact(OtherCharacter& other)
+{
+    std::cout << "\n┌─────────────────────────────────────────────────────┐\n";
+    std::cout << "│           INTERACT WITH " << other.GetName();
+    int padding = 42 - other.GetName().length();
+    for (int i = 0; i < padding; i++) std::cout << " ";
+    std::cout << "│\n";
+    std::cout << "├─────────────────────────────────────────────────────┤\n";
+    std::cout << "│  1. Talk                                            │\n";
+    std::cout << "│  2. Trade                                           │\n";
+    std::cout << "│  3. Attack (not recommended)                        │\n";
+    std::cout << "│  4. Leave                                           │\n";
+    std::cout << "└─────────────────────────────────────────────────────┘\n";
+    std::cout << "Choice: ";
+    
+    int choice = ChoiceInput_Number();
+    
+    switch(choice) {
+        case 1: return Talk(other);
+        case 2: return Trade(other);
+        case 3: Attack(other); return 0;
+        case 4: std::cout << "You walk away.\n"; return 0;
+        default: std::cout << "Invalid choice.\n"; return 0;
+    }
+}
+
 

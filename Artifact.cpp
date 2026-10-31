@@ -12,83 +12,83 @@ static std::string EffectTypeToString(int type) {
         default: return "Unknown"; break;
     }
 }
-//Name + power + cost
-static std::map<std::string, std::pair<int, int>>& GetWeaponArtifactDB() {
-    static std::map<std::string, std::pair<int, int>> ar;
-    if (ar.empty()) {
-        ar = {
-    {"Midas arm", {1, 15}},
-    {"Orcsplitter ", {1, 12}},
-    {"Two-Birds Sling", {1, 10}},
 
-    //Rare
-    {"Windvane", {2, 35}},
-    {"Spear of Heliod", {2, 40}},
-    {"Sword of Sharpness", {2, 45}},
-    {"Acheron Blade", {2, 38}},
-    {"Mind Lash", {2, 42}},
+// Campus-themed artifacts with rarity
+struct ArtifactData {
+    std::string name;
+    std::string description;
+    int effectType;
+    int power;
+    int value;
+    ArtifactRarity rarity;
+};
 
-    //legendary/Epic
-    {"Javelin of Backbiting", {3, 70}},
-    {"Wand of Orcus", {3, 85}},
-    {"Axe of the Dwarvish Lords", {3, 90}},
-    {"Gambler's Blade", {3, 100}},
-    {"Vorpal Sword", {3, 95}},
-    {"Luck Blade", {3, 80}},
-    {"Sword of Life Stealing", {3, 75}},
-    {"Dragon Slayer", {3, 110}}
-        };
-    }
-    return ar;
-}
-
-//Name + Effect -> 
-static int GetArtifactEffectType(const std::string& name) {
-    static std::map<std::string, int> effects = {
-        {"Midas arm", GOLD},
-        {"Javelin of Backbiting", STRENGTH},
-        {"Wand of Orcus", INTELLIGENCE},
-        {"Windvane", AGILITY},
-        {"Spear of Heliod", STRENGTH},
-        {"Ephixis", DEFENSE},
-        {"Two-Birds Sling", AGILITY},
-        {"Axe of the Dwarvish Lords", STRENGTH},
-        {"Gambler's Blade", GOLD},
-        {"Orcsplitter ", DEFENSE},
-        {"Sword of Sharpness", STRENGTH},
-        {"Vorpal Sword", STRENGTH},
-        {"Acheron Blade", INTELLIGENCE},
-        {"Luck Blade", GOLD},
-        {"Sword of Life Stealing", HEALTH},
-        {"Mind Lash", INTELLIGENCE},
-        {"Dragon Slayer", STRENGTH}
+static std::vector<ArtifactData>& GetArtifactDB() {
+    static std::vector<ArtifactData> db = {
+        // Common artifacts
+        {"Lucky Pen", "A pen that never runs out of ink. +2 Intelligence", INTELLIGENCE, 2, 25, COMMON_ARTIFACT},
+        {"Comfortable Pillow", "Ensures good rest. +5 Health per rest", HEALTH, 5, 30, COMMON_ARTIFACT},
+        {"Noise-Canceling Earbuds", "Blocks dorm noise. +2 Agility (focus)", AGILITY, 2, 35, COMMON_ARTIFACT},
+        {"Reusable Water Bottle", "Stay hydrated. +3 Health", HEALTH, 3, 20, COMMON_ARTIFACT},
+        {"Highlighter Set", "Color-code your notes. +2 Intelligence", INTELLIGENCE, 2, 15, COMMON_ARTIFACT},
+        
+        // Uncommon artifacts
+        {"Professor's Favorite Mug", "Coffee tastes better. +5 Health, +2 Intelligence", HEALTH, 7, 75, RARE_ARTIFACT},
+        {"Campus Legend Hoodie", "Warm and stylish. +10 Health, +3 Defense", DEFENSE, 3, 120, RARE_ARTIFACT},
+        {"Smart Watch", "Tracks fitness and schedule. +3 Agility, +2 Intelligence", AGILITY, 5, 150, RARE_ARTIFACT},
+        {"Vintage Textbook", "Contains hidden knowledge. +10 Intelligence", INTELLIGENCE, 10, 200, RARE_ARTIFACT},
+        {"Energy Drink IV Drip", "Continuous caffeine. +15 Health, +5 Agility", HEALTH, 20, 180, RARE_ARTIFACT},
+        {"RA's Master Key", "Opens common areas. +5 Agility (access)", AGILITY, 5, 160, RARE_ARTIFACT},
+        
+        // Rare artifacts
+        {"Dean's Signet Ring", "Authority recognized. +10 Intelligence, +10 Gold find", GOLD, 10, 500, EPIC_ARTIFACT},
+        {"Ancient Campus Map", "Reveals secret paths. +15 Intelligence, +5 Agility", INTELLIGENCE, 20, 750, EPIC_ARTIFACT},
+        {"Time Management Planner", "Perfect scheduling. +5 to ALL stats", STRENGTH, 5, 1000, EPIC_ARTIFACT},
+        {"Alumni Network Badge", "Connections everywhere. +15 Gold find, +5 Intelligence", GOLD, 15, 800, EPIC_ARTIFACT},
+        {"Enchanted Laptop", "Never crashes, infinite battery. +10 Intelligence, +10 Agility", INTELLIGENCE, 20, 1200, EPIC_ARTIFACT},
+        
+        // Legendary artifacts
+        {"Graduation Cap of Destiny", "Guarantees success. +20 to ALL stats, auto-pass one exam", STRENGTH, 30, 5000, LEGENDARY_ARTIFACT},
+        {"Founder's Diploma", "Legacy of the university. +25 Intelligence, +15 Gold, unique perks", INTELLIGENCE, 35, 10000, LEGENDARY_ARTIFACT},
+        {"Infinite Coffee Thermos", "Never empty, perfect temperature. +30 Health, +10 Agility", HEALTH, 40, 7500, LEGENDARY_ARTIFACT},
     };
-    auto it = effects.find(name);
-    return (it != effects.end()) ? it->second : HEALTH;
+    return db;
 }
 
 std::string Artifact::RandomizeArtifact() {
-    auto& ar = GetWeaponArtifactDB();
-
-    std::string weapon_ar[] = {
-        "Midas arm", "Javelin of Backbiting", "Wand of Orcus", "Windvane",
-        "Spear of Heliod", "Ephixis", "Two-Birds Sling", "Axe of the Dwarvish Lords",
-        "Gambler's Blade", "Orcsplitter ", "Sword of Sharpness", "Vorpal Sword",
-        "Acheron Blade", "Luck Blade", "Sword of Life Stealing", "Mind Lash", "Dragon Slayer"
-    };
-
-    std::string chosen_name;
-    chosen_name = weapon_ar[rand() % 17];
-    auto it = ar.find(chosen_name);
-    if (it != ar.end()) {
-        power = it->second.first;
-        value = it->second.second;
-        value = value * power + (rand() % 15);
+    auto& db = GetArtifactDB();
+    
+    // Weighted rarity selection
+    int roll = rand() % 100;
+    ArtifactRarity targetRarity;
+    if (roll < 50) targetRarity = COMMON_ARTIFACT;
+    else if (roll < 80) targetRarity = RARE_ARTIFACT;
+    else if (roll < 95) targetRarity = EPIC_ARTIFACT;
+    else targetRarity = LEGENDARY_ARTIFACT;
+    
+    // Filter by rarity
+    std::vector<ArtifactData*> candidates;
+    for (auto& item : db) {
+        if (item.rarity == targetRarity) {
+            candidates.push_back(&item);
+        }
     }
-
-    effectType = GetArtifactEffectType(chosen_name);
-
-    name = chosen_name;
+    
+    if (candidates.empty()) {
+        // Fallback to any
+        candidates.reserve(db.size());
+        for (auto& item : db) candidates.push_back(&item);
+    }
+    
+    ArtifactData* chosen = candidates[rand() % candidates.size()];
+    
+    name = chosen->name;
+    description = chosen->description;
+    effectType = chosen->effectType;
+    power = chosen->power;
+    value = chosen->value;
+    rarityType = chosen->rarity;
+    
     return name;
 }
 
@@ -98,7 +98,7 @@ void Artifact::ShowInfo() const {
     std::cout << "├───────────────────────────────────────────────────┤\n";
     std::cout << "│  Artifact : " << name << "\n";
     std::cout << "│  Description: " << description << "\n";
-    std::cout << "│  Rarity   : " << rarityType << "\n";
+    std::cout << "│  Rarity   : " << GetArtifactRarityName() << "\n";
     std::cout << "│  Type     : " << GetType() << "\n";
     std::cout << "│  Power    : " << power << "\n";
     std::cout << "│  Value    : " << value << " gold\n";
@@ -127,5 +127,3 @@ void Artifact::Reset() {
     std::cout << "│  " << name << " unequipped.\n";
     std::cout << "└───────────────────────────────────────────────────┘\n";
 }
-
-

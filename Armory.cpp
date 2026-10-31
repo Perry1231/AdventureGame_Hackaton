@@ -1,76 +1,115 @@
 #include <iostream>
 #include "Header.h"
-#include <map>          //-> for map function 
+#include <map>          
 #include <string>
 #include <utility> 
 
-//Also make as is in weapon.cpp
- static std::map<std::string, std::pair<int, int>>& GetWeaponAR() {
+// Campus-themed armor/clothing
+static std::map<std::string, std::pair<int, int>>& GetArmorDB() {
     static std::map<std::string, std::pair<int, int>> db;
     if (db.empty()) {
         db = {
-    //              suit name defense cost
- 
-        {"Padded suit", {11 ,5}}, 
-        {"Leather suit", {11, 10}}, 
-        {"Studded suit", {12, 22}},
-
-  
-        {"Hide suit", {12, 10}},
-        {"Chain shirt",{ 13, 30}}, 
-        {"Scale male", {13, 43}},
-        {"Spaiked armor", {15 , 50}},
-        {"Breastplate",{17, 70}},
-        {"Halfplate",  {19, 110}},
-
-    
-        {"Ring mail", {14, 40 }}, 
-        {"Chain mail", {15, 55}},
-        {"Splint", {20, 140}}, 
-        {"Plate", {26, 250}},
-
-        {"Shield", {6, 70}}};
-        }
-         return db;
+            // Common - basic clothing
+            {"Hoodie", {3, 15}},
+            {"Jeans", {2, 10}},
+            {"T-Shirt", {1, 5}},
+            {"Sweatpants", {2, 8}},
+            {"Baseball Cap", {1, 5}},
+            {"Sneakers", {2, 20}},
+            {"Light Jacket", {4, 30}},
+            
+            // Uncommon - better gear
+            {"Flannel Shirt", {5, 40}},
+            {"Denim Jacket", {6, 60}},
+            {"Tracksuit", {5, 50}},
+            {"Bomber Jacket", {7, 80}},
+            {"Combat Boots", {4, 70}},
+            {"Raincoat", {5, 55}},
+            
+            // Rare - quality gear
+            {"Leather Jacket", {8, 120}},
+            {"Winter Coat", {9, 150}},
+            {"Tactical Vest", {10, 180}},
+            {"Motorcycle Gear", {12, 200}},
+            {"Hazmat Suit (Clean)", {15, 250}},
+            
+            // Epic - special items
+            {"Dean's Blazer", {18, 500}},
+            {"Alumni Letterman", {15, 400}},
+            {"Graduation Gown", {20, 750}},
+            
+            // Legacy (for compatibility)
+            {"Padded Armor", {3, 15}},
+            {"Leather Armor", {5, 30}},
+            {"Chainmail Shirt", {7, 80}},
+            {"Plate Armor", {15, 300}},
+        };
+    }
+    return db;
 }
 
+// Special/Enchanted armor
+static std::map<std::string, std::pair<int, int>>& GetSpecialArmorDB() {
+    static std::map<std::string, std::pair<int, int>> db;
+    if (db.empty()) {
+        db = {
+            // Enchanted/Cursed items
+            {"Lucky Hoodie", {5, 200}},        // +2 Luck
+            {"Cursed Sweater", {10, 50}},      // High defense but cursed
+            {"Exam Shield", {12, 300}},        // +5 Intelligence during exams
+            {"Party Armor", {8, 400}},         // +5 Charisma at parties
+            {"Study Cloak", {7, 350}},         // +10 Intelligence while studying
+            {"RA Uniform", {15, 500}},         // Authority bonus
+            {"Professor's Tweed", {10, 600}},  // +15 Intelligence
+            {"Founder's Robe", {25, 2000}},    // Legendary
+        };
+    }
+    return db;
+}
 
 std::string Armory::RandomizeArmor()   
 {
-auto& db = GetWeaponAR();
+    auto& db = GetArmorDB();
     int randomIndex = rand() % db.size();
     auto it = db.begin();
     std::advance(it, randomIndex);
     return it->first;
 }
 
-
-std::string Armory::RandomizeArmorStart()                                  //Starter pack armor
+std::string Armory::RandomizeArmorStart()                                  // Starter pack armor
 {
-    auto& db = GetWeaponAR();
-    int choise = rand ()% 3; 
-switch(choise)
-{
-    case 0:
-        name_a = "Padded suit";
-        break;
-    case 1:
-        name_a = "Leather suit";
-        break;
-    case 2:
-        name_a = "Studded suit";
-        break;
-}
-auto it = db.find(name_a);
-    if (it != db.end()) {
-        value_a  = it->second.second; 
+    auto& db = GetArmorDB();
+    int choice = rand() % 3; 
+    switch(choice)
+    {
+        case 0: name_a = "Hoodie"; break;
+        case 1: name_a = "Jeans"; break;
+        case 2: name_a = "T-Shirt"; break;
     }
-return name_a;
+    auto it = db.find(name_a);
+    if (it != db.end()) {
+        value_a = it->second.second; 
+        defend_a = it->second.first;
+    }
+    return name_a;
 }
+
+std::string Armory::RandomizeArmorSpecial()                                  // Special/Enchanted armor
+{
+    auto& db = GetSpecialArmorDB();
+    int randomIndex = rand() % db.size();
+    auto it = db.begin();
+    std::advance(it, randomIndex);
     
+    name_a = it->first;
+    defend_a = it->second.first;
+    value_a = it->second.second;
+    isEnchanted_a = true;
+    
+    return name_a;
+}
 
-
-void Armory::ShowInfo() const                                                                                          //Show armor characteristics
+void Armory::ShowInfo() const
 {
     std::cout << "\n┌───────────────────────────────────────────────────┐\n";
     std::cout << "│              ARMOR CHARACTERISTICS                │\n";
@@ -81,17 +120,6 @@ void Armory::ShowInfo() const                                                   
     std::cout << "│  Value        : " << value_a << "\n";
     std::cout << "│  Is Enchanted : " << (isEnchanted_a ? "Yes" : "No") << "\n";
     std::cout << "└───────────────────────────────────────────────────┘\n\n";
-}
-
-
-void Armory::BrokenArmory()                                                                                                //Count is armor broken
-{
-    isBroken_a = true;
-    durability_a = 0;
-    
-    std::cout << "\n┌───────────────────────────────────────────────────┐\n";
-    std::cout << "│  Status: " << (IsUsable() ? "Usable" : "Broken") << "\n";
-    std::cout << "└───────────────────────────────────────────────────┘\n";
 }
 
 void Armory::Use() {
@@ -108,37 +136,12 @@ void Armory::Reset() {
     std::cout << "└───────────────────────────────────────────────────┘\n";
 }
 
-
-
-
-
-//==================================================================Special_weapon=========================================================================
-
-
-static std::map<std::string, std::pair<int, int>>& GetWeaponARS() {
-    static std::map<std::string, std::pair<int, int>> db;
-    if (db.empty()) {
-        db = {
-            {"Spider suit", {17 ,100}},
-            {"Dragon suit", {22, 200}},
-            {"Yetti suit", {15, 75}},
-            {"Hide suit", {14, 55 }},
-            {"Spiked suit", {16, 60}},
-            {"Kevlar suit", {20, 140}},
-            {"Adamantium suit", {22, 180}},
-            {"Plate", {26, 250}}};
-    }
-    return db;  // ← тепер завжди повертає
-}
-
-std::string Armory::RandomizeArmorSpecial()                                  //Starter pack armor
+void Armory::BrokenArmory()
 {
+    isBroken_a = true;
+    durability_a = 0;
     
-    auto& db = GetWeaponARS();
-auto it = db.find(name_a);
-    if (it != db.end()) {
-        value_a  = it->second.second; 
-    }
-return name_a;
+    std::cout << "\n┌───────────────────────────────────────────────────┐\n";
+    std::cout << "│  Status: " << (IsUsable() ? "Usable" : "Broken") << "\n";
+    std::cout << "└───────────────────────────────────────────────────┘\n";
 }
-    

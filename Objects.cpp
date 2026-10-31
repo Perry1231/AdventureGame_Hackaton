@@ -4,25 +4,48 @@
 #include "Header.h"
 //Here will be functions for objects db and their abillities
 
-//Name -> {price, rarity, isQuestItem}
-static std::map<std::string, std::tuple<int, std::string, bool>>& GetObjectDB() {
-    static std::map<std::string, std::tuple<int, std::string, bool>> db;
+//Name -> {price, rarity, isQuestItem, description}
+static std::map<std::string, std::tuple<int, std::string, bool, std::string>>& GetObjectDB() {
+    static std::map<std::string, std::tuple<int, std::string, bool, std::string>> db;
     if (db.empty()) {
         db = {
-            {"Magic Grass",            {8,  "Common", false}},
-            {"Magic Stone",            {10, "Common", false}},
-            {"Magic Mushroom",         {12, "Common", false}},
-            {"Rare Ore",                {25, "Rare", false}},
-            {"Broken Portal Fragment", {35, "Rare", false}},
-            {"Festival Ingredient",    {15, "Common", false}},
-            {"Magic White Moss",       {14, "Common", false}},
-            {"Mandragora Root",        {22, "Rare", false}},
-            {"Magic Mirror Shard",     {30, "Rare", false}},
-            {"Ancient Book Page",      {28, "Epic", false}},
-            {"Pinecone",               {5,  "Common", false}},
-            {"Dwarf House Leaves",     {6,  "Common", false}},
-            {"Village Elder's Letter", {0,  "Common", true}},
-            {"Stolen Goblin Amulet",   {0,  "Rare", true}}
+            // Common campus items
+            {"Energy Drink",           {8,  "Common", false, "Restores 15 HP. Tastes like battery acid and citrus."}},
+            {"Instant Noodles",        {5,  "Common", false, "Cheap meal. Restores 10 HP."}},
+            {"Lecture Notes",          {12, "Common", false, "Someone's borrowed notes. +5 Intelligence temporarily."}},
+            {"Stale Bagel",            {3,  "Common", false, "Hard as a rock. Restores 5 HP."}},
+            {"Campus Map",             {10, "Common", false, "Shows all building locations. Useful for navigation."}},
+            {"Library Card",           {0,  "Common", false, "Grants access to the university library."}},
+            {"Student ID",             {0,  "Common", false, "Your identification. Required for exams and dorm access."}},
+            {"Dorm Key",               {0,  "Common", false, "Opens your dorm room. Don't lose it!"}},
+            {"Laundry Token",          {2,  "Common", false, "One wash cycle in the dorm laundry room."}},
+            {"Vending Machine Snack",  {4,  "Common", false, "Chips or chocolate bar. Restores 8 HP."}},
+            
+            // Uncommon items
+            {"Energy Shot",            {25, "Uncommon", false, "Concentrated caffeine. Restores 30 HP, +2 Agility temporarily."}},
+            {"Professor's Handout",    {30, "Uncommon", false, "Extra credit opportunity. +10 Intelligence."}},
+            {"Rare Textbook",          {50, "Uncommon", false, "First edition. Can be sold for good gold."}},
+            {"Campus Legend Token",    {40, "Uncommon", false, "Collect all 5 for a special reward."}},
+            {"Roommate's Snack Stash", {15, "Uncommon", false, "Hidden treats. Restores 20 HP."}},
+            {"Lost AirPods",           {60, "Uncommon", false, "Someone's expensive earbuds. Return for karma or sell."}},
+            {"Exam Cheat Sheet",       {35, "Uncommon", true, "Risky but effective. Use during exams."}},
+            
+            // Rare items
+            {"Ancient Lecture Notes",  {100, "Rare", false, "Notes from a legendary professor. +15 Intelligence permanently."}},
+            {"Dean's List Certificate", {200, "Rare", false, "Proof of academic excellence. Opens special opportunities."}},
+            {"Master Key",             {500, "Rare", false, "Opens any dorm room. Use wisely."}},
+            {"Secret Society Invite",  {150, "Rare", true, "Invitation to a mysterious campus group."}},
+            {"Cursed Textbook",        {75, "Rare", true, "Gives knowledge but drains health. -10 HP, +20 Int."}},
+            {"Golden Energy Drink",    {300, "Rare", false, "Legendary beverage. Fully restores HP and all stats."}},
+            
+            // Epic items
+            {"Time-Turner Watch",      {1000, "Epic", false, "Rewind one turn per day. Extremely rare."}},
+            {"Professor's Tenure Letter", {500, "Epic", true, "Guarantees passing grade in one class."}},
+            
+            // Legacy magic items (for compatibility)
+            {"Magic Grass",            {8,  "Common", false, "A strange glowing grass."}},
+            {"Magic Stone",            {10, "Common", false, "A stone with faint magical aura."}},
+            {"Pinecone",               {5,  "Common", false, "A perfectly symmetrical pinecone."}},
         };
     }
     return db;
@@ -39,9 +62,7 @@ void Object::CreateObjectConstructor()
     price_object = std::get<0>(it->second);
     rarityType_object = std::get<1>(it->second);
     isQuest = std::get<2>(it->second);
-    describtion_object = isQuest
-        ? ("A quest item: " + name_object + ".")
-        : ("A collectible object: " + name_object + ".");
+    describtion_object = std::get<3>(it->second);
 }
 
 

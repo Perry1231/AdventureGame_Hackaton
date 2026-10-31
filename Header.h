@@ -17,11 +17,13 @@ class Chest;
 class Enemy;
 class GameHard;
 class Quest;
+class OtherCharacter;
 
 enum ChestType { COMMON = 52, RARE = 28, EPIC=15, LEGENDARY=5 };
 enum EffectType { HEALTH, DEFENSE, AGILITY, INTELLIGENCE, GOLD, STRENGTH }; 
 enum AuraType {WORST,BAD,MEDIUM,GOOD,EXCELLENT};
 enum ArtifactRarity { COMMON_ARTIFACT, RARE_ARTIFACT, EPIC_ARTIFACT, LEGENDARY_ARTIFACT, UKNOWN_RARITY};
+enum ObjectRarity { OBJ_COMMON, OBJ_UNCOMMON, OBJ_RARE, OBJ_EPIC, OBJ_LEGENDARY };
 //=====================================================Item_structure==========================================
 class Item {
 private:
@@ -159,6 +161,13 @@ Character(int health_, std::string name_, int age_, std::string race_, std::stri
     int Talk(Enemy& enemy);
     void Attack(Character& hero, Enemy& enemy);
     void DamageSystem(Enemy& enemy);
+    
+    // OtherCharacter interactions (dormitory NPCs)
+    int Talk(OtherCharacter& other);
+    int Trade(OtherCharacter& other);
+    void Attack(OtherCharacter& other);
+    void DamageSystem(OtherCharacter& other);
+    int Interact(OtherCharacter& other);
 
     ~Character(){};
 };
@@ -444,7 +453,16 @@ Artifact() : name(""), description(""),effectType(0) ,value(0) ,power(0), isEqui
     std::string GetName() const override { return name; }
     std::string GetArtifactDescription() const { return description; }
     int GetEffectType() const { return effectType; }
-    void GetArtifactRarity() const { std::cout << "Artifact Rarity: " << rarityType << std::endl; }
+    ArtifactRarity GetArtifactRarity() const { return rarityType; }
+    std::string GetArtifactRarityName() const {
+        switch(rarityType) {
+            case COMMON_ARTIFACT: return "Common";
+            case RARE_ARTIFACT: return "Rare";
+            case EPIC_ARTIFACT: return "Epic";
+            case LEGENDARY_ARTIFACT: return "Legendary";
+            default: return "Unknown";
+        }
+    }
 
     std::string GetType() const override { return "Artifact"; }
     void ShowInfo() const override ;
@@ -495,21 +513,45 @@ public:
     void RemoveItem(int index);
 };
 //==================================================================Other_Character============================================================================
-enum CharacterType{QUESTGIVERS, MERCHANS, ALLIES, ANTAGONISTS};
+enum CharacterType{QUESTGIVERS, MERCHANTS, ALLIES, ANTAGONISTS, ROOMMATE, RA, PROFESSOR, VENDOR};
 class OtherCharacter
 {
     protected:
         CharacterType ctype;
+        std::string name;
+        std::string description;
+        int attitude; // -100 to 100
+        MyInventory* inventory;
+        int level;
+        std::string location;
 
     public:
         
-        OtherCharacter() : ctype(QUESTGIVERS) {}
+        OtherCharacter() : ctype(ROOMMATE), name("Unknown Student"), description("A fellow student"), attitude(50), inventory(nullptr), level(1), location("Dormitory") {}
         
         CharacterType GetType() const { return ctype; }
         void SetType(CharacterType type) { ctype = type; }
+        std::string GetName() const { return name; }
+        void SetName(const std::string& n) { name = n; }
+        std::string GetDescription() const { return description; }
+        void SetDescription(const std::string& d) { description = d; }
+        int GetAttitude() const { return attitude; }
+        void SetAttitude(int a) { attitude = a; if (attitude > 100) attitude = 100; if (attitude < -100) attitude = -100; }
+        MyInventory* GetInventory() const { return inventory; }
+        void SetInventory(MyInventory* inv) { inventory = inv; }
+        int GetLevel() const { return level; }
+        void SetLevel(int l) { level = l; }
+        std::string GetLocation() const { return location; }
+        void SetLocation(const std::string& loc) { location = loc; }
         
+        static OtherCharacter CreateRoommate();
+        static OtherCharacter CreateRA();
+        static OtherCharacter CreateProfessor();
+        static OtherCharacter CreateVendor();
         static OtherCharacter CreateQuestGiver();
         static OtherCharacter CreateMerchant();
+        void DisplayInfo() const;
+        void RandomizeStats();
 
 };
 
@@ -716,8 +758,8 @@ void Menu(Enemy& enemy, Character& hero, MyInventory& inv1, GameHard& levelDific
 void Settings(Character& hero, MyInventory& inv, Enemy& enemy, GameHard& levelDificulty);
 void Reseter(Character& hero, MyInventory& inv, GameHard& levelDificulty);
 void Saver(Character& hero, MyInventory& inv, GameHard& levelDificulty);
-void Loader(Character& hero, MyInventory& inv);
-//==================================================================Events_functions============================================================================
+void Loader(Character& hero, MyInventory& inv, GameHard& difficultyLevel, Quest& quest);
+void ListSaveFilesLoader();
 void ToxicRain(Character& hero, GameHard& levelDificulty);
 void Rain(Character& hero, GameHard& levelDificulty);
 void VolcanicEruption(Character& hero, GameHard& levelDificulty);
@@ -772,13 +814,16 @@ void MusicChallenge(Character& hero);
 void FistFight(Character& hero);
 void DrinkingContest(Character& hero, GameHard& levelDificulty);
 void CardDraw(Character& hero);
+// Common Room Game Randomizers
+void PlayRandomCommonRoomGame(Character& hero);
+void PlayGameTournament(Character& hero);
 //==================================================================StoryFunction_and_Turn_Functions=============================================================================
 void Turn(Character& hero, GameHard& levelDificulty, GameEvent& gameEvent, MyInventory& inv1, Quest& quest1); //Plot.cpp
 void BugReportFunction();           //Addition.cpp
 //==================================================================Additional_functions================================================================================
 void HowToPlayRollDiceFunction();
 //==================================================================Error_catcher==================================================
-void ManageGameSaves(Character& hero, MyInventory& inv, GameHard& levelDificulty); //ManageGamesaves.cpp
+void ManageGameSaves(Character& hero, MyInventory& inv, GameHard& levelDificulty, Quest& quest); //ManageGamesaves.cpp
 void ListSaveFiles(); 
 void ListSaveFilesLoader();
 void Deleter();

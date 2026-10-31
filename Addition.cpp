@@ -140,11 +140,30 @@ void Reseter(Character& hero, MyInventory& inv, GameHard& levelDificulty)
     std::cin.ignore();
 }
 
-void ManageGameSaves(Character& hero, MyInventory& inv, GameHard& levelDificulty)
+void ManageGameSaves(Character& hero, MyInventory& inv, GameHard& levelDificulty, Quest& quest)
 {
-    // Placeholder implementation - saves and loads game state
-    std::cout << "[MANAGE GAME SAVES] - Function not yet implemented.\n";
-    std::cout << "Save/Load game functionality would go here.\n";
+    int choice = 0;
+    while (true) {
+        std::cout << "\n┌───────────────────────────────────────────────────┐\n";
+        std::cout << "│                  GAME SAVES                      │\n";
+        std::cout << "├───────────────────────────────────────────────────┤\n";
+        std::cout << "│  1. Save Game                                    │\n";
+        std::cout << "│  2. Load Game                                    │\n";
+        std::cout << "│  0. Back                                         │\n";
+        std::cout << "└───────────────────────────────────────────────────┘\n";
+        std::cout << "Choice: ";
+        std::cin >> choice;
+        
+        if (choice == 1) {
+            Saver(hero, inv, levelDificulty);
+        } else if (choice == 2) {
+            Loader(hero, inv, levelDificulty, quest);
+        } else if (choice == 0) {
+            break;
+        } else {
+            std::cout << "Invalid choice!\n";
+        }
+    }
 }
 
 
