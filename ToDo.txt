@@ -1,8 +1,8 @@
 Charcter.cpp=========================================
-Implement Character::Talk(Enemy& enemy)
-Implement Character::Trade(Enemy& enemy)
+Implement Character::Talk(Enemy& enemy)      +-
+Implement Character::Trade(Enemy& enemy)     +-
 Implement Character::Attack(Enemy& enemy)    +-
-Implement Character::Menu(function)
+Implement Character::Menu(function)          +-
 Perfect Character::DmageSystem(function)     +-
 
 

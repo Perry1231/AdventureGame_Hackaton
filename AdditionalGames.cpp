@@ -7,7 +7,7 @@
 #define BLUE    "\033[34m"
 #define CYAN    "\033[36m"
 #define BOLD    "\033[1m"
-//This file for tavern games
+//This file for common room games
 
 void DiceRoll(Character& hero)
 {
@@ -56,7 +56,7 @@ while(choice != 3);
 
 void MusicChallenge(Character& hero)
 {
-    std::cout << "You participate in a music challenge with the tavern patrons." << std::endl;
+    std::cout << "You participate in a music challenge with other students." << std::endl;
     
     std::cout << "Choose a music challenge:\n1. Singing Contest\n2. Instrumental Performance\n3. Dance Off\n";
     int musicChoice;
@@ -103,7 +103,7 @@ void MusicChallenge(Character& hero)
 }
 void FistFight(Character& hero)
 {
-    std::cout << "You engage in a fist fight with the tavern patrons." << std::endl;
+    std::cout << "You engage in a fist fight with other students." << std::endl;
     std::cout << "Choose action:\n1. Play fist fight\n2. Leave the game\n";
     int actionChoice=0;
     std::cin >> actionChoice;
@@ -168,7 +168,7 @@ else if (actionChoice == 2)
 
 void DrinkingContest(Character& hero, GameHard& levelDificulty)
 {
-    std::cout << "You participate in a drinking contest with the tavern patrons." << std::endl;
+    std::cout << "You participate in an energy drink contest with other students." << std::endl;
     std::cout << "Choose action:\n1. Drink \n2. Leave the game\n";
     int actionChoice=0 ;
     std::cin >> actionChoice;
@@ -252,9 +252,9 @@ std::cout << "You throw 2 times dice "
 void CardDraw(Character& hero)            
 {
     std::cout << "\n========================================\n";
-    std::cout << "       TAVERN: CARD DRAW GAME       \n";
+    std::cout << "       COMMON ROOM: CARD DRAW GAME       \n";
     std::cout << "========================================\n";
-    std::cout << "You sit at a table with local patrons and propose a game.\n";
+    std::cout << "You sit at a table with other students and propose a game.\n";
     std::cout << "1. Play the card game\n";
     std::cout << "2. Leave the game\n";
     std::cout << "----------------------------------------\n";
@@ -360,7 +360,7 @@ void CardDraw(Character& hero)
     }
     else if (actionChoice == 2)
     {
-        std::cout << "\nYou decided not to participate and leave the tavern.\n";
+        std::cout << "\nYou decided not to participate and leave the common room.\n";
         return;
     }
     else
