@@ -67,10 +67,9 @@ static std::map<std::string, QuestStructBasic>& GetQuestTaskDB() {              
             {"Collect Magic Mirror",{20, 1, 0.01}},
             {"Collect Magic Pages from Book",{25, 5, 0.01}},
             {"Collect Magic Pages from Evil Book",{32, 2, 0.01}},
-{"Collect Magical Herb for dorm",{25, 2, 0.01}},
+            {"Collect Magical Herb for dorm",{25, 2, 0.01}},
             {"Collect pinocones for magic squirrel",{12, 1, 0.01}},
             {"Collect leaves for roommate's plant",{20, 1, 0.01}},
-
             
             {"Rescue girl from noisy neighbor", {40, 3, 0.3}},
             {"Rescue roommate from noisy neighbors", {50, 3, 0.3}},
@@ -86,10 +85,18 @@ static std::map<std::string, QuestStructBasic>& GetQuestTaskDB() {              
 
             {"Eliminate danger: noisy neighbor", {25, 2, 0.08}},
             {"Kill big hog", {15, 1, 0.04}},
-            {"Eliminate danger: mold in bathroom", {17, 2, 0.05}}
-            
+            {"Eliminate danger: mold in bathroom", {17, 2, 0.05}},
+
+            // Main story quests
+            {"Reach University Campus", {100, 1, 0.5}},
+            {"Find Your Dorm Room", {50, 1, 0.3}},
+            {"Meet Your Roommates", {50, 2, 0.3}},
+            {"Attend First Lecture", {75, 2, 0.4}},
+            {"Survive Exam Week", {200, 5, 1.0}}
         };
     }
+    return yar;
+}
     return yar;
 }
 
@@ -103,10 +110,12 @@ std::string Quest::RandomizeQuest(GameHard& difficulty) {
     std::string task_ar[] = {   //List of tasks
        "Collect Magic Sticks" , "Collect Magic Stones", "ColLect Magic Items", "ColLect Magic Grass", "Collect Magic Flowers",
         "Collect Rare Ores", "Collect Broken Portal Fragments", "Collect Festival Ingredients",
-        "Rescue girl from goblin", "Rescue roommate from noisy neighbors", "Rescue boy from laundry room",
+        "Rescue girl from noisy neighbor", "Rescue roommate from noisy neighbors", "Rescue boy from laundry room",
         "Rescue pet from misfortune", "Rescue a batch of cookies for neighbor",
         "Explore new floors for RA", "Explore new floors for dean",
-        "Eliminate danger: noisy neighbor", "Kill big hog", "Eliminate danger: mold in bathroom"
+        "Eliminate danger: noisy neighbor", "Kill big hog", "Eliminate danger: mold in bathroom",
+        // Main story quests
+        "Reach University Campus", "Find Your Dorm Room", "Meet Your Roommates", "Attend First Lecture", "Survive Exam Week"
     };
 
     std::string chosen_name_t;
@@ -129,17 +138,59 @@ std::string Quest::RandomizeQuest(GameHard& difficulty) {
     return questName;
 }
 
+// Create a specific quest by name (for main story quests)
+Quest* Quest::CreateSpecificQuest(const std::string& questName, GameHard& difficulty) {
+    auto& yar = GetQuestTaskDB();
+    auto it = yar.find(questName);
+    if (it == yar.end()) {
+        std::cout << "[!] Quest not found in database: " << questName << "\n";
+        return nullptr;
+    }
+
+    Quest* quest = new Quest();
+    quest->SetQuestName(questName);
+    quest->SetQuestDifficulty(it->second.difficulty_task);
+    quest->SetReward(it->second.gold_task);
+    quest->SetQuestExperience(it->second.experience_task);
+    
+    // Scale by difficulty
+    int diffLevel = difficulty.GetDifficultyLevel();
+    quest->SetReward(quest->GetQuestDifficulty() * diffLevel * 10); // This will be overridden below
+    // Actually, let's use the reward directly
+    quest->SetReward(it->second.gold_task * diffLevel);
+    quest->SetQuestExperience(it->second.experience_task * diffLevel);
+    
+    // Set description based on quest name
+    if (questName == "Reach University Campus") {
+        quest->SetQuestDescription("Navigate through the city and find the university campus. Follow the signs and ask locals for directions.");
+    } else if (questName == "Find Your Dorm Room") {
+        quest->SetQuestDescription("Locate your assigned dormitory building and find your room. Check the notice board for room assignments.");
+    } else if (questName == "Meet Your Roommates") {
+        quest->SetQuestDescription("Introduce yourself to your new roommates. Learn their names, majors, and maybe share some snacks.");
+    } else if (questName == "Attend First Lecture") {
+        quest->SetQuestDescription("Find the correct lecture hall and attend your first university lecture. Don't be late!");
+    } else if (questName == "Survive Exam Week") {
+        quest->SetQuestDescription("Study hard, manage your stress, and pass all your exams. The ultimate test of a student's resolve.");
+    } else {
+        quest->SetQuestDescription("A task offered by a stranger: " + questName + ".");
+    }
+    
+    return quest;
+}
+
 
 
 void Quest::DisplayQuestInfo() const {
-    std::cout << "\n┌───────────────────────────────────────────────────┐\n";
-    std::cout << "│                 QUEST DETAILS                     │\n";
-    std::cout << "├───────────────────────────────────────────────────┤\n";
+    std::cout << "\n┌─────────────────────────────────────────────────────┐\n";
+    std::cout << "│                    QUEST DETAILS                    │\n";
+    std::cout << "├─────────────────────────────────────────────────────┤\n";
     std::cout << "│  Title       : " << questName << "\n";
-    std::cout << "│  Difficulty  : " << questDifficulty << "\n";
+    std::cout << "│  Description : " << questDescription << "\n";
+    std::cout << "│  Difficulty  : " << questDifficulty << "/5\n";
     std::cout << "│  Reward      : " << reward << " gold\n";
+    std::cout << "│  Experience  : " << questExperience << "\n";
     std::cout << "│  Status      : " << (isCompleted ? "Completed" : "In Progress") << "\n";
-    std::cout << "└───────────────────────────────────────────────────┘\n\n";
+    std::cout << "└─────────────────────────────────────────────────────┘\n\n";
 }
 
 
@@ -159,10 +210,15 @@ void Quest::DisplayAllQuestInfo() const
         std::cout << YELLOW << "#" << (i + 1) << " " << RESET
                   << quests[i]->GetQuestName() 
                   << GRAY << " [ID: " << quests[i]->GetQuestNumber() 
-                  << " | Type: " << quests[i]->GetQuestDifficulty() << "]" << RESET << "\n";
+                  << " | Diff: " << quests[i]->GetQuestDifficulty() 
+                  << " | " << (quests[i]->IsCompleted() ? "DONE" : "ACTIVE") << "]" << RESET << "\n";
 
-  
-        quests[i]->DisplayQuestInfo();//Details here are
+        // Show description for active quests
+        if (!quests[i]->IsCompleted()) {
+            std::cout << GRAY << "    " << quests[i]->GetQuestDescription() << RESET << "\n";
+        }
+   
+        quests[i]->DisplayQuestInfo();
 
         if (i < count_quest - 1) {
             std::cout << GRAY << "--------------------------------------------------\n" << RESET;

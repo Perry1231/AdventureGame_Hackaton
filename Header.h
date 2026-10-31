@@ -628,6 +628,7 @@ class Quest
         
         int Delete_Quest(int number_quest);
         std::string RandomizeQuest(GameHard& difficulty);
+        Quest* CreateSpecificQuest(const std::string& questName, GameHard& difficulty);
         bool IsCompleted() const { return isCompleted; }
 
 

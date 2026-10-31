@@ -43,6 +43,15 @@ void MainFunction() {
 
     Quest quest1;
     hero.SetActiveQuests(&quest1);
+    
+    // Add initial main story quest: Reach University Campus
+    Quest* initialQuest = quest1.CreateSpecificQuest("Reach University Campus", difficultyLevelObj);
+    if (initialQuest) {
+        quest1.AddQuest(initialQuest);
+        std::cout << "\n=== MAIN QUEST ADDED ===\n";
+        initialQuest->DisplayQuestInfo();
+    }
+    
     quest1.DisplayAllQuestInfo();
 
 
