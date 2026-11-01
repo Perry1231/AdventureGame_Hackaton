@@ -5,6 +5,8 @@
 #include <QDir>
 #include <QTextStream>
 #include <QStandardPaths>
+#include <QKeyEvent>
+#include <QWidget>
 #include "MainWindow.h"
 #include "DifficultyWindow.h"
 #include "GameWindow.h"
@@ -72,6 +74,12 @@ int main(int argc, char *argv[])
     // State management
     enum AppState { MainMenu, DifficultySelect, InGame, SaveLoad };
     AppState currentState = MainMenu;
+
+    // Easter egg state (Konami code on the main menu)
+    bool dormSpiritBlessing = false;
+    QObject::connect(&mainWindow, &MainWindow::easterEggUnlocked, [&]() {
+        dormSpiritBlessing = true;
+    });
     
     // Show main window initially
     mainWindow.setContinueMode(gameController.hasSaveFiles());
@@ -92,6 +100,13 @@ int main(int argc, char *argv[])
                 gameWindow.setAvailableActions(gameController.getAvailableActions());
                 gameWindow.appendGameLog("=== NEW GAME STARTED ===");
                 gameWindow.appendGameLog(QString("Difficulty: %1").arg(difficulty));
+                if (dormSpiritBlessing && gameController.getHero()) {
+                    gameController.getHero()->SetGold(gameController.getHero()->GetGold() + 100);
+                    gameController.getHero()->SetStrength(gameController.getHero()->GetStrength() + 2);
+                    gameWindow.appendGameLog("🍀 <b>The Legendary Dorm Spirit grants you +100 gold and +2 luck!</b>");
+                    dormSpiritBlessing = false;
+                    gameWindow.updateHeroStatus(gameController.getHeroStatus());
+                }
                 gameWindow.appendGameLog("Welcome to the Dorm Adventure!");
                 gameWindow.appendGameLog("Use the action buttons on the right to play.");
                 gameWindow.showFullScreen();
@@ -213,6 +228,34 @@ int main(int argc, char *argv[])
         gameWindow.setAvailableActions(gameController.getAvailableActions());
         gameWindow.updateHeroStatus(gameController.getHeroStatus());
     });
+
+    // Hidden self-test for the Konami easter egg (no user focus required)
+    for (int i = 1; i < argc; ++i) {
+        if (QString(argv[i]) == "--eastertest") {
+            static bool unlocked = false;
+            QObject::connect(&mainWindow, &MainWindow::easterEggUnlocked, [&]() { unlocked = true; });
+            QTimer::singleShot(300, [&]() {
+                const int keys[] = { Qt::Key_Up, Qt::Key_Up, Qt::Key_Down, Qt::Key_Down,
+                                     Qt::Key_Left, Qt::Key_Right, Qt::Key_Left, Qt::Key_Right,
+                                     Qt::Key_B, Qt::Key_A };
+                for (int k : keys) {
+                    QKeyEvent press(QEvent::KeyPress, k, Qt::NoModifier);
+                    QApplication::sendEvent(&mainWindow, &press);
+                }
+            });
+            QTimer::singleShot(600, [&]() {
+                if (QWidget *modal = QApplication::activeModalWidget()) modal->close();
+            });
+            QTimer::singleShot(1000, [&]() {
+                QFile report(QDir::tempPath() + "/dorm_eastertest.txt");
+                if (report.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                    QTextStream stream(&report);
+                    stream << (unlocked ? "UNLOCKED" : "FAILED") << "\n";
+                }
+                QApplication::quit();
+            });
+        }
+    }
     QObject::connect(&gameController, &GameController::eventTriggered, [&](const QString &text, const QStringList &choices) {
         gameWindow.appendGameLog(text);
         for (const QString &choice : choices) {

@@ -5,6 +5,9 @@
 #include <QScreen>
 #include <QGuiApplication>
 #include <QShortcut>
+#include <QKeyEvent>
+#include <QMessageBox>
+#include <QList>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -25,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     new QShortcut(QKeySequence(Qt::Key_Escape), this, [this]() {
         if (isFullScreen()) showNormal();
     });
+
+    // Catch the Konami code even when child widgets have focus
+    qApp->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
@@ -126,6 +132,46 @@ void MainWindow::applyWhiteTheme()
         "   color: #2c3e50;"
         "}"
     );
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    QMainWindow::keyPressEvent(event);
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    // Easter egg: Konami code (Up Up Down Down Left Right Left Right B A)
+    if (event->type() == QEvent::KeyPress && isVisible()) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        static const QList<int> konami = {
+            Qt::Key_Up, Qt::Key_Up, Qt::Key_Down, Qt::Key_Down,
+            Qt::Key_Left, Qt::Key_Right, Qt::Key_Left, Qt::Key_Right,
+            Qt::Key_B, Qt::Key_A
+        };
+
+        int key = keyEvent->key();
+        if (key == konami[m_konamiProgress]) {
+            ++m_konamiProgress;
+            if (m_konamiProgress >= konami.size()) {
+                m_konamiProgress = 0;
+                if (!m_easterEggTriggered) {
+                    m_easterEggTriggered = true;
+                    m_titleLabel->setText("🍀 THE DORM SPIRIT BLESSES YOU 🍀");
+                    m_titleLabel->setStyleSheet("color: #d4a017; margin-bottom: 10px;");
+                    QMessageBox::information(this, "🥚 Easter Egg Found!",
+                        "You discovered the Legendary Dorm Spirit!\n\n"
+                        "\"May your noodles never overcook and your alarm always ring.\"\n\n"
+                        "Reward: your next new game starts with +100 gold and +2 luck (strength).");
+                    emit easterEggUnlocked();
+                }
+            }
+        } else {
+            m_konamiProgress = (key == konami[0]) ? 1 : 0;
+        }
+    }
+
+    return QMainWindow::eventFilter(obj, event);
 }
 
 void MainWindow::setContinueMode(bool hasSaves)

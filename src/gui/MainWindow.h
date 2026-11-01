@@ -21,6 +21,11 @@ signals:
     void loadGameRequested();
     void settingsRequested();
     void exitRequested();
+    void easterEggUnlocked();
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private slots:
     void onStartClicked();
@@ -40,6 +45,9 @@ private:
     QPushButton *m_loadButton = nullptr;
     QPushButton *m_settingsButton = nullptr;
     QPushButton *m_exitButton = nullptr;
+
+    int m_konamiProgress = 0;
+    bool m_easterEggTriggered = false;
 };
 
 #endif // MAINWINDOW_H

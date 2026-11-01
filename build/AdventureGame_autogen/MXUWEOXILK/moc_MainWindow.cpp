@@ -45,6 +45,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "loadGameRequested",
         "settingsRequested",
         "exitRequested",
+        "easterEggUnlocked",
         "onStartClicked",
         "onLoadClicked",
         "onSettingsClicked",
@@ -60,14 +61,16 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'exitRequested'
         QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'easterEggUnlocked'
+        QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onStartClicked'
-        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onLoadClicked'
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onSettingsClicked'
+        // Slot 'onLoadClicked'
         QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onExitClicked'
+        // Slot 'onSettingsClicked'
         QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onExitClicked'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -95,10 +98,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->loadGameRequested(); break;
         case 2: _t->settingsRequested(); break;
         case 3: _t->exitRequested(); break;
-        case 4: _t->onStartClicked(); break;
-        case 5: _t->onLoadClicked(); break;
-        case 6: _t->onSettingsClicked(); break;
-        case 7: _t->onExitClicked(); break;
+        case 4: _t->easterEggUnlocked(); break;
+        case 5: _t->onStartClicked(); break;
+        case 6: _t->onLoadClicked(); break;
+        case 7: _t->onSettingsClicked(); break;
+        case 8: _t->onExitClicked(); break;
         default: ;
         }
     }
@@ -110,6 +114,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         if (QtMocHelpers::indexOfMethod<void (MainWindow::*)()>(_a, &MainWindow::settingsRequested, 2))
             return;
         if (QtMocHelpers::indexOfMethod<void (MainWindow::*)()>(_a, &MainWindow::exitRequested, 3))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (MainWindow::*)()>(_a, &MainWindow::easterEggUnlocked, 4))
             return;
     }
 }
@@ -133,14 +139,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }
@@ -167,5 +173,11 @@ void MainWindow::settingsRequested()
 void MainWindow::exitRequested()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void MainWindow::easterEggUnlocked()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP
