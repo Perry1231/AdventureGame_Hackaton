@@ -363,11 +363,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "AdventureGame_autogen::@6890427a1f51a3e7e1df"
+			"id" : "AdventureGame_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "AdventureGame_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "AdventureGame_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "AdventureGame::@6890427a1f51a3e7e1df",
@@ -470,21 +470,21 @@
 	"orderDependencies" : 
 	[
 		{
-			"backtrace" : 27,
-			"id" : "Qt6::rcc::@6890427a1f51a3e7e1df"
-		},
-		{
 			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
 		},
 		{
-			"backtrace" : 0,
-			"id" : "AdventureGame_autogen::@6890427a1f51a3e7e1df"
+			"backtrace" : 27,
+			"id" : "Qt6::rcc::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "AdventureGame_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "AdventureGame_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 

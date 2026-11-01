@@ -685,7 +685,9 @@ QString GameController::formatQuests() const
     
     QString qtext;
     QTextStream out(&qtext);
-    out << "=== ACTIVE QUESTS ===\n";
+    out << "=== MAIN MISSION ===\n\n";
+    out << formatMission() << "\n";
+    out << "=== SIDE QUESTS ===\n";
     
     int count = m_quest->GetCountQuest();
     if (count == 0) {

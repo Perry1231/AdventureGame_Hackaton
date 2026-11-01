@@ -583,7 +583,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "AdventureGame::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-AdventureGame-Debug-324e32d509e4045df841.json",
+					"jsonFile" : "target-AdventureGame-Debug-780ef7571cf559518723.json",
 					"name" : "AdventureGame",
 					"projectIndex" : 0
 				},
@@ -597,7 +597,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "AdventureGame_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-AdventureGame_autogen_timestamp_deps-Debug-972053627d7dc45c6cb2.json",
+					"jsonFile" : "target-AdventureGame_autogen_timestamp_deps-Debug-31c5cdb114c464088b2e.json",
 					"name" : "AdventureGame_autogen_timestamp_deps",
 					"projectIndex" : 0
 				}
