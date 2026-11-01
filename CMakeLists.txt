@@ -4,6 +4,11 @@ project(AdventureGame_Hackaton VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Default to Release so the shipped executable stays small
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+
 # Qt 6
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 

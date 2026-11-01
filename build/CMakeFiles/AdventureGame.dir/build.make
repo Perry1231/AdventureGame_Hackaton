@@ -79,7 +79,7 @@ AdventureGame_autogen/timestamp: C:/msys64/ucrt64/share/qt6/bin/moc.exe
 AdventureGame_autogen/timestamp: C:/msys64/ucrt64/share/qt6/bin/uic.exe
 AdventureGame_autogen/timestamp: CMakeFiles/AdventureGame.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="C:\Users\Dell\Desktop\projetcs\GitHub Projects\AdventureGame_Hackaton\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Automatic MOC and UIC for target AdventureGame"
-	"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/AdventureGame_autogen.dir/AutogenInfo.json" ""
+	"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/CMakeFiles/AdventureGame_autogen.dir/AutogenInfo.json" Release
 	"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/AdventureGame_autogen/timestamp"
 
 CMakeFiles/AdventureGame.dir/codegen:

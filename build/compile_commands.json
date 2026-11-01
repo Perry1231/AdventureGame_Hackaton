@@ -1,0 +1,182 @@
+[
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\AdventureGame_autogen\\mocs_compilation.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\build\\AdventureGame_autogen\\mocs_compilation.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/AdventureGame_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/AdventureGame_autogen/mocs_compilation.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Addition.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Addition.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Addition.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Addition.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\AdditionalGames.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\AdditionalGames.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/AdditionalGames.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/AdditionalGames.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Additional_Functions.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Additional_Functions.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Additional_Functions.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Additional_Functions.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Armory.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Armory.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Armory.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Armory.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Artifact.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Artifact.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Artifact.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Artifact.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Character.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Character.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Character.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Character.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Chest.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Chest.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Chest.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Chest.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Deleter.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Deleter.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Deleter.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Deleter.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Enemy.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Enemy.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Enemy.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Enemy.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\ErrorCatcher.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\ErrorCatcher.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/ErrorCatcher.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/ErrorCatcher.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Events.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Events.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Events.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Events.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Inventory.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Inventory.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Inventory.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Inventory.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Loader.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Loader.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Loader.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Loader.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\MainFunction.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\MainFunction.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/MainFunction.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/MainFunction.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Objects.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Objects.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Objects.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Objects.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\OtherCharacter.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\OtherCharacter.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/OtherCharacter.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/OtherCharacter.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Plot.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Plot.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Plot.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Plot.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Potion.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Potion.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Potion.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Potion.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Saver.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Saver.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Saver.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Saver.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Task_Generator_For_Character.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Task_Generator_For_Character.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Task_Generator_For_Character.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Task_Generator_For_Character.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\Weapon.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\Weapon.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/Weapon.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/Weapon.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\main.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\main.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/main.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\GameController.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\GameController.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/GameController.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/GameController.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\MainWindow.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\MainWindow.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/MainWindow.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/MainWindow.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\DifficultyWindow.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\DifficultyWindow.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/DifficultyWindow.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/DifficultyWindow.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\GameWindow.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\GameWindow.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/GameWindow.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/GameWindow.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\SaveLoadWindow.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\SaveLoadWindow.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/SaveLoadWindow.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/SaveLoadWindow.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\src\\gui\\InfoDialog.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\src\\gui\\InfoDialog.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/src/gui/InfoDialog.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/src/gui/InfoDialog.cpp.obj"
+},
+{
+  "directory": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles\\AdventureGame.dir\\includes_CXX.rsp -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles\\AdventureGame.dir\\qrc_resources.cpp.obj -c \"C:\\Users\\Dell\\Desktop\\projetcs\\GitHub Projects\\AdventureGame_Hackaton\\build\\qrc_resources.cpp\"",
+  "file": "C:/Users/Dell/Desktop/projetcs/GitHub Projects/AdventureGame_Hackaton/build/qrc_resources.cpp",
+  "output": "CMakeFiles/AdventureGame.dir/qrc_resources.cpp.obj"
+}
+]
