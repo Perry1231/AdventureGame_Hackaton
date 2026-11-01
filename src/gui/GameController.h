@@ -45,6 +45,7 @@ public:
     QString getHeroStatus() const;
     QString getInventoryText() const;
     QString getQuestText() const;
+    QString getMissionText() const;
     QString getCurrentEventText() const;
     QStringList getAvailableActions() const;
     QStringList getCombatActions() const;
@@ -72,6 +73,8 @@ signals:
     void combatStarted(const QString &enemyName, int enemyHp, int enemyMaxHp, int enemyAttack, int enemyDefense);
     void combatUpdated(int enemyHp, int enemyMaxHp, int heroHp, int heroMaxHp);
     void combatEnded(const QString &message);
+    void missionUpdated(const QString &progressText);
+    void missionCompleted();
 
 private:
     // Existing game objects
@@ -87,6 +90,19 @@ private:
     bool m_inTavern = false;
     int m_enemyMaxHealth = 0;
     int m_heroMaxHealth = 100;
+
+    // Main mission: "How to Get to the University"
+    QStringList m_missionSteps{
+        "Find your student ID card",
+        "Pack three supplies for the road",
+        "Get the dorm master key from the RA",
+        "Slip past the night guard",
+        "Cross campus and reach the University gates"
+    };
+    int m_missionStep = 0;
+    bool m_missionComplete = false;
+    void advanceMission();
+    QString formatMission() const;
     QString m_currentLocation;
     QString m_lastEventText;
     QStringList m_lastChoices;

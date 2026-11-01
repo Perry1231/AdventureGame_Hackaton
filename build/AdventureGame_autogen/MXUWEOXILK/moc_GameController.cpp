@@ -73,7 +73,10 @@ template <> constexpr inline auto GameController::qt_create_metaobjectdata<qt_me
         "heroHp",
         "heroMaxHp",
         "combatEnded",
-        "message"
+        "message",
+        "missionUpdated",
+        "progressText",
+        "missionCompleted"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -140,6 +143,12 @@ template <> constexpr inline auto GameController::qt_create_metaobjectdata<qt_me
         QtMocHelpers::SignalData<void(const QString &)>(34, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 35 },
         }}),
+        // Signal 'missionUpdated'
+        QtMocHelpers::SignalData<void(const QString &)>(36, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 37 },
+        }}),
+        // Signal 'missionCompleted'
+        QtMocHelpers::SignalData<void()>(38, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -179,6 +188,8 @@ void GameController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 13: _t->combatStarted((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[5]))); break;
         case 14: _t->combatUpdated((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4]))); break;
         case 15: _t->combatEnded((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 16: _t->missionUpdated((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 17: _t->missionCompleted(); break;
         default: ;
         }
     }
@@ -215,6 +226,10 @@ void GameController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             return;
         if (QtMocHelpers::indexOfMethod<void (GameController::*)(const QString & )>(_a, &GameController::combatEnded, 15))
             return;
+        if (QtMocHelpers::indexOfMethod<void (GameController::*)(const QString & )>(_a, &GameController::missionUpdated, 16))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (GameController::*)()>(_a, &GameController::missionCompleted, 17))
+            return;
     }
 }
 
@@ -237,14 +252,14 @@ int GameController::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 18;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 18)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 16;
+        _id -= 18;
     }
     return _id;
 }
@@ -343,5 +358,17 @@ void GameController::combatUpdated(int _t1, int _t2, int _t3, int _t4)
 void GameController::combatEnded(const QString & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 15, nullptr, _t1);
+}
+
+// SIGNAL 16
+void GameController::missionUpdated(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 16, nullptr, _t1);
+}
+
+// SIGNAL 17
+void GameController::missionCompleted()
+{
+    QMetaObject::activate(this, &staticMetaObject, 17, nullptr);
 }
 QT_WARNING_POP

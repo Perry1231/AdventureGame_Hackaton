@@ -38,6 +38,10 @@ int main(int argc, char *argv[])
                 testController.processCombatAction(0); // attack
             }
             rep << "combat: OK\n";
+            for (int m = 0; m < 5; ++m) {
+                testController.processTurn(5); // advance main mission
+            }
+            rep << "mission: " << (testController.getHeroStatus().contains("COMPLETE") ? "COMPLETE" : "IN PROGRESS") << "\n";
             rep << testController.getHeroStatus() << "\n";
             rep << testController.getInventoryText() << "\n";
             rep << testController.getQuestText() << "\n";
@@ -109,6 +113,7 @@ int main(int argc, char *argv[])
                 }
                 gameWindow.appendGameLog("Welcome to the Dorm Adventure!");
                 gameWindow.appendGameLog("Use the action buttons on the right to play.");
+                gameWindow.appendGameLog("🎯 <b>Main Mission: How to Get to the University</b> — press the \"Main Mission\" button to advance.");
                 gameWindow.showFullScreen();
                 currentState = InGame;
             } else {
@@ -227,6 +232,17 @@ int main(int argc, char *argv[])
         gameWindow.hideCombatInterface();
         gameWindow.setAvailableActions(gameController.getAvailableActions());
         gameWindow.updateHeroStatus(gameController.getHeroStatus());
+    });
+
+    QObject::connect(&gameController, &GameController::missionUpdated,
+                     [&](const QString &progressText) {
+        gameWindow.appendGameLog("<b style='color:#8e44ad;'>🎯 MAIN MISSION STATUS</b>\n" + progressText.toHtmlEscaped().replace("\n", "<br/>"));
+    });
+    QObject::connect(&gameController, &GameController::missionCompleted, [&]() {
+        QMessageBox::information(&gameWindow, "🎓 Mission Complete!",
+            "You reached the University!\n\n"
+            "Your main mission is complete. You can keep exploring the dorm, "
+            "fight enemies or complete side quests.");
     });
 
     // Hidden self-test for the Konami easter egg (no user focus required)

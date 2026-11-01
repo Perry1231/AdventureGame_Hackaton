@@ -43,6 +43,7 @@ bool GameController::initializeNewGame(int difficultyLevel)
         emit heroStatusUpdated(formatHeroStatus());
         emit inventoryUpdated(formatInventory());
         emit questUpdated(formatQuests());
+        emit missionUpdated(formatMission());
         return true;
     } catch (...) {
         emit gameInitialized(false);
@@ -74,6 +75,9 @@ void GameController::setupNewGame(int difficultyLevel)
     m_enemy->RandomizeStats();
     
     m_gameEvent = new GameEvent();
+
+    m_missionStep = 0;
+    m_missionComplete = false;
 }
 
 bool GameController::loadGame(const QString &saveName)
@@ -342,6 +346,10 @@ void GameController::processTurn(int action)
             emit heroStatusUpdated(formatHeroStatus());
             return;
         }
+        case 5: { // Main mission: get to the University
+            advanceMission();
+            return;
+        }
     }
     
     emit turnProcessed(result);
@@ -492,6 +500,85 @@ void GameController::processLocationAction(const QString &location, int action)
     emit heroStatusUpdated(formatHeroStatus());
 }
 
+void GameController::advanceMission()
+{
+    if (!m_hero) return;
+
+    static const char *completionTexts[] = {
+        "You dig through a pile of laundry and finally find your student ID card.",
+        "You pack instant noodles, a power bank and your lucky hoodie into your backpack.",
+        "The RA hands you the dorm master key after you promise to return it by morning.",
+        "You slip past the night guard while he is watching cat videos.",
+        "You cross the dark campus and reach the University gates. You made it!"
+    };
+
+    QString result;
+    QTextStream out(&result);
+
+    if (m_missionComplete) {
+        out << "<span style='color:#27ae60;'><b>🎓 The main mission is already complete:</b> you reached the University gates.</span>";
+        emit turnProcessed(result);
+        return;
+    }
+
+    int step = qBound(0, m_missionStep, m_missionSteps.size() - 1);
+
+    m_hero->SetLevel(m_hero->GetLevel() + 0.05f);
+
+    out << "<div style='margin:6px 0;'>"
+        << "<span style='color:#8e44ad;'><b>🎯 MAIN MISSION</b></span><br/>"
+        << "<span style='color:#2c3e50;'>" << completionTexts[step] << "</span><br/>"
+        << "<span style='color:#7f8c8d;'><b>+ 0.05 XP</b></span>";
+
+    if (step == 2) {
+        m_hero->SetGold(m_hero->GetGold() + 5);
+        out << " <span style='color:#f39c12;'><b>+ 5 gold</b></span>";
+    }
+
+    out << "</div>";
+
+    if (step >= m_missionSteps.size() - 1) {
+        m_missionComplete = true;
+        out << "<div style='margin-top:6px; color:#27ae60;'><b>🎓 MISSION COMPLETE — YOU REACHED THE UNIVERSITY!</b></div>";
+    } else {
+        ++m_missionStep;
+    }
+
+    emit turnProcessed(result);
+    emit heroStatusUpdated(formatHeroStatus());
+    emit missionUpdated(formatMission());
+
+    if (m_missionComplete) {
+        emit missionCompleted();
+    }
+}
+
+QString GameController::formatMission() const
+{
+    QString text;
+    QTextStream out(&text);
+    out << "MAIN MISSION: How to Get to the University\n\n";
+
+    for (int i = 0; i < m_missionSteps.size(); ++i) {
+        bool done = m_missionComplete || i < m_missionStep;
+        out << (done ? "[x] " : "[ ] ") << m_missionSteps[i] << "\n";
+    }
+
+    if (m_missionComplete) {
+        out << "\nMISSION COMPLETE! You reached the University gates.\n";
+    } else {
+        out << "\nNext objective: " << m_missionSteps.value(m_missionStep) << "\n";
+        out << "Use the \"🎯 Main Mission\" button to work on it.\n";
+    }
+
+    return text;
+}
+
+QString GameController::getMissionText() const
+{
+    return formatMission();
+}
+
 QString GameController::getHeroStatus() const
 {
     return formatHeroStatus();
@@ -514,7 +601,7 @@ QString GameController::getCurrentEventText() const
 
 QStringList GameController::getAvailableActions() const
 {
-    return {"Make Turn", "Inventory", "Active Quest", "Main Menu", "⚔️ Fight Enemy"};
+    return {"Make Turn", "Inventory", "Active Quest", "Main Menu", "⚔️ Fight Enemy", "🎯 Main Mission"};
 }
 
 QStringList GameController::getCombatActions() const
@@ -565,6 +652,11 @@ QString GameController::formatHeroStatus() const
     out << "Gold: " << m_hero->GetGold() << "\n";
     out << "Level: " << m_hero->GetLevel() << "\n";
     if (m_difficulty) out << "Difficulty: " << m_difficulty->GetDifficultyLevel() << "\n";
+    if (m_missionComplete) {
+        out << "Main Mission: COMPLETE (University reached)\n";
+    } else {
+        out << "Main Mission: " << m_missionSteps.value(m_missionStep) << "\n";
+    }
     return status;
 }
 
