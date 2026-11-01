@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QLinearGradient>
+#include <QShortcut>
 
 GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -21,6 +22,14 @@ GameWindow::GameWindow(QWidget *parent) : QMainWindow(parent)
     if (QScreen *screen = QGuiApplication::primaryScreen()) {
         move(screen->availableGeometry().center() - rect().center());
     }
+
+    // F11 toggles fullscreen, Esc leaves fullscreen
+    new QShortcut(QKeySequence(Qt::Key_F11), this, [this]() {
+        isFullScreen() ? showNormal() : showFullScreen();
+    });
+    new QShortcut(QKeySequence(Qt::Key_Escape), this, [this]() {
+        if (isFullScreen()) showNormal();
+    });
 }
 
 GameWindow::~GameWindow()

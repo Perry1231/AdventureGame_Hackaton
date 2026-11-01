@@ -4,18 +4,27 @@
 #include <QApplication>
 #include <QScreen>
 #include <QGuiApplication>
+#include <QShortcut>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setWindowTitle("Adventure Game - Dorm Edition");
-    setFixedSize(800, 600);
+    resize(900, 700);
     setupUI();
     applyWhiteTheme();
-    
-    // Center on screen
+
+    // Center on screen (used in windowed mode)
     if (QScreen *screen = QGuiApplication::primaryScreen()) {
         move(screen->availableGeometry().center() - rect().center());
     }
+
+    // F11 toggles fullscreen, Esc leaves fullscreen
+    new QShortcut(QKeySequence(Qt::Key_F11), this, [this]() {
+        isFullScreen() ? showNormal() : showFullScreen();
+    });
+    new QShortcut(QKeySequence(Qt::Key_Escape), this, [this]() {
+        if (isFullScreen()) showNormal();
+    });
 }
 
 MainWindow::~MainWindow()
@@ -27,13 +36,14 @@ void MainWindow::setupUI()
     m_centralWidget = new QWidget(this);
     m_layout = new QVBoxLayout(m_centralWidget);
     m_layout->setSpacing(20);
-    m_layout->setContentsMargins(50, 50, 50, 50);
+    m_layout->setContentsMargins(50, 30, 50, 30);
+    m_layout->addStretch(1);
     
     // Title
     m_titleLabel = new QLabel("🏠 ADVENTURE GAME: DORM EDITION 🏠", this);
     m_titleLabel->setAlignment(Qt::AlignCenter);
     QFont titleFont = m_titleLabel->font();
-    titleFont.setPointSize(24);
+    titleFont.setPointSize(28);
     titleFont.setBold(true);
     m_titleLabel->setFont(titleFont);
     m_titleLabel->setStyleSheet("color: #2c3e50; margin-bottom: 10px;");
@@ -44,7 +54,11 @@ void MainWindow::setupUI()
     m_imageLabel->setAlignment(Qt::AlignCenter);
     QPixmap pixmap(":/images/Photo.png");
     if (!pixmap.isNull()) {
-        m_imageLabel->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        int side = 380;
+        if (QScreen *screen = QGuiApplication::primaryScreen()) {
+            side = qMin(380, static_cast<int>(screen->availableGeometry().height() * 0.35));
+        }
+        m_imageLabel->setPixmap(pixmap.scaled(side, side, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     } else {
         m_imageLabel->setText("🏠\n[Image not found]");
         m_imageLabel->setStyleSheet("font-size: 48px; color: #95a5a6;");
@@ -54,7 +68,9 @@ void MainWindow::setupUI()
     // Buttons
     auto createButton = [this](const QString &text, const QString &color) {
         QPushButton *btn = new QPushButton(text, this);
-        btn->setFixedHeight(50);
+        btn->setFixedHeight(52);
+        btn->setMaximumWidth(460);
+        btn->setMinimumWidth(320);
         btn->setFont(QFont("Arial", 14, QFont::Bold));
         btn->setStyleSheet(QString(
             "QPushButton {"
@@ -71,7 +87,7 @@ void MainWindow::setupUI()
             "   background-color: %3;"
             "}"
         ).arg(color).arg(color).arg(color));
-        m_layout->addWidget(btn);
+        m_layout->addWidget(btn, 0, Qt::AlignHCenter);
         return btn;
     };
     
@@ -85,7 +101,7 @@ void MainWindow::setupUI()
     connect(m_settingsButton, &QPushButton::clicked, this, &MainWindow::onSettingsClicked);
     connect(m_exitButton, &QPushButton::clicked, this, &MainWindow::onExitClicked);
     
-    m_layout->addStretch();
+    m_layout->addStretch(2);
     
     // Version label
     QLabel *versionLabel = new QLabel("v1.0.0 | Dorm Adventure", this);

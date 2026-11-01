@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     
     // Show main window initially
     mainWindow.setContinueMode(gameController.hasSaveFiles());
-    mainWindow.show();
+    mainWindow.showFullScreen();
     
     // ===== CONNECTIONS =====
     
@@ -94,14 +94,14 @@ int main(int argc, char *argv[])
                 gameWindow.appendGameLog(QString("Difficulty: %1").arg(difficulty));
                 gameWindow.appendGameLog("Welcome to the Dorm Adventure!");
                 gameWindow.appendGameLog("Use the action buttons on the right to play.");
-                gameWindow.show();
+                gameWindow.showFullScreen();
                 currentState = InGame;
             } else {
                 QMessageBox::critical(nullptr, "Error", "Failed to initialize game!");
-                mainWindow.show();
+                mainWindow.showFullScreen();
             }
         } else {
-            mainWindow.show();
+            mainWindow.showFullScreen();
         }
     });
     
@@ -124,14 +124,14 @@ int main(int argc, char *argv[])
                 gameWindow.setAvailableActions(gameController.getAvailableActions());
                 gameWindow.appendGameLog("=== GAME LOADED ===");
                 gameWindow.appendGameLog(QString("Loaded: %1").arg(saveName));
-                gameWindow.show();
+                gameWindow.showFullScreen();
                 currentState = InGame;
             } else {
                 QMessageBox::critical(nullptr, "Error", "Failed to load game!");
-                mainWindow.show();
+                mainWindow.showFullScreen();
             }
         } else {
-            mainWindow.show();
+            mainWindow.showFullScreen();
         }
     });
     
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
         gameController.saveGame("autosave.sav");
         gameWindow.hide();
         mainWindow.setContinueMode(gameController.hasSaveFiles());
-        mainWindow.show();
+        mainWindow.showFullScreen();
         currentState = MainMenu;
     });
     
@@ -225,13 +225,13 @@ int main(int argc, char *argv[])
         gameWindow.enableMainActions(false);
         QTimer::singleShot(3000, [&]() {
             gameWindow.hide();
-            mainWindow.show();
+            mainWindow.showFullScreen();
             currentState = MainMenu;
         });
     });
     QObject::connect(&gameController, &GameController::returnedToMainMenu, [&]() {
         gameWindow.hide();
-        mainWindow.show();
+        mainWindow.showFullScreen();
         currentState = MainMenu;
     });
     
