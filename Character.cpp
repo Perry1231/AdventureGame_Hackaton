@@ -12,9 +12,9 @@ void Character::DisplayStats()
     const int width = 45;
 
     std::cout << "\n";
-    std::cout << "┌" << std::string(width - 2, '─') << "┐\n";
+    std::cout << "┌" << std::string(width - 2, '-') << "┐\n";
     std::cout << "│ " << std::left << std::setw(width - 4) << "CHARACTER PROFILE" << " │\n";
-    std::cout << "├" << std::string(width - 2, '─') << "┤\n";
+    std::cout << "├" << std::string(width - 2, '-') << "┤\n";
 
     // Basic Info
     std::cout << "│ " << std::left << std::setw(15) << "Name:"        << std::setw(width - 19) << name        << " │\n";
@@ -24,9 +24,9 @@ void Character::DisplayStats()
     std::cout << "│ " << std::left << std::setw(15) << "Level:"       << std::setw(width - 19) << level       << " │\n";
     std::cout << "│ " << std::left << std::setw(15) << "Description:" << std::setw(width - 19) << description << " │\n";
 
-    std::cout << "├" << std::string(width - 2, '─') << "┤\n";
+    std::cout << "├" << std::string(width - 2, '-') << "┤\n";
     std::cout << "│ " << std::left << std::setw(width - 4) << "ATTRIBUTES & STATS" << " │\n";
-    std::cout << "├" << std::string(width - 2, '─') << "┤\n";
+    std::cout << "├" << std::string(width - 2, '-') << "┤\n";
 
     // Stats
     std::cout << "│ " << std::left << std::setw(15) << "Health:"       << std::setw(width - 19) << health       << " │\n";
@@ -36,7 +36,7 @@ void Character::DisplayStats()
     std::cout << "│ " << std::left << std::setw(15) << "Defense:"      << std::setw(width - 19) << defense      << " │\n";
     std::cout << "│ " << std::left << std::setw(15) << "Gold:"         << std::setw(width - 19) << gold         << " │\n";
 
-    std::cout << "└" << std::string(width - 2, '─') << "┘\n\n";
+    std::cout << "└" << std::string(width - 2, '-') << "┘\n\n";
 }
 
 
